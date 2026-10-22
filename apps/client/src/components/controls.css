@@ -1,0 +1,122 @@
+.field,
+.quantity-control,
+.numpad {
+  display: grid;
+  gap: 12px;
+}
+.field label,
+.quantity-control > label,
+.numpad label,
+.otp-field legend {
+  font-weight: 500;
+}
+.stepper {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 56px;
+  align-items: center;
+  border: 1px solid var(--border-control);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.stepper .icon-button {
+  inline-size: 56px;
+  block-size: 60px;
+}
+.stepper input {
+  inline-size: 100%;
+  text-align: center;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  min-block-size: 60px;
+  font: 600 26px/1.5 var(--font-display);
+}
+.quantity-chips {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-block-start: 8px;
+}
+.quantity-chips .button {
+  padding: 10px 4px;
+  font-size: 16px;
+}
+.numpad-display {
+  min-block-size: 76px;
+  inline-size: 100%;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border-control);
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 36px;
+  text-align: end;
+}
+.numpad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.numpad-grid button {
+  display: grid;
+  place-items: center;
+  min-block-size: 60px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 22px;
+}
+.numpad-grid button:active {
+  background: var(--surface-3);
+}
+.phone-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-control);
+  border-radius: 12px;
+  background: var(--surface-2);
+  min-inline-size: 0;
+}
+.phone-input > span {
+  padding-inline: 14px;
+  border-inline-end: 1px solid var(--border);
+}
+.phone-input input {
+  min-inline-size: 0;
+  inline-size: 100%;
+  padding: 12px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  min-block-size: 48px;
+}
+.otp-field {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  min-inline-size: 0;
+}
+.otp-field legend {
+  margin-block-end: 12px;
+}
+.otp-field > p {
+  margin-block-start: 12px;
+}
+.otp-input {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.otp-input input {
+  inline-size: 100%;
+  min-block-size: 56px;
+  padding: 0;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border-control);
+  border-radius: 8px;
+  font-size: 24px;
+  text-align: center;
+}
