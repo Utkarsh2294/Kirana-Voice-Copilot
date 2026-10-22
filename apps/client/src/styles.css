@@ -1,5 +1,11 @@
 @import './tokens.css';
 @import 'tailwindcss';
+@import './components/components.css';
+@import './components/overlays.css';
+@import './components/controls.css';
+@import './components/voice.css';
+@import './components/bill-line.css';
+@import './shell.css';
 
 @theme inline {
   --color-background: var(--bg);
