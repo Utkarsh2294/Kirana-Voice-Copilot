@@ -73,3 +73,7 @@ The older Python package pins were replaced with versions already available on t
 - [x] 23 JavaScript tests and 2 Python tests pass locally. No external speech/payment claim is inferred from these checks.
 
 See [the handoff](phase-02-handoff.md) for run commands, evidence, scope boundaries and remaining hardware checks. Requested stop: no Phase 3 work.
+
+## Public website addition
+
+The user subsequently authorized an original, mission-led public website before onboarding: Home, Our Story & Mission, How It Works, and all 15 roadmap phases. English/Hindi, dark/day, mobile navigation, accessible disclosures, original imagery, and the existing merchant entry are delivered in one commit. See [the website handoff](public-website.md) for plan mapping and evidence. The user then authorized continuing into Phases 3 and 4 after this website commit.

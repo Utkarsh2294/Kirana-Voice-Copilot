@@ -72,7 +72,7 @@ export function Shell({ children }) {
         {t('common.skipContent')}
       </a>
       <aside className="sidebar">
-        <NavLink to="/bill" className="wordmark">
+        <NavLink to="/" className="wordmark" aria-label={t('nav.home')}>
           <span className="brand-icon">
             <AudioLines size={24} />
           </span>
@@ -122,10 +122,10 @@ export function Shell({ children }) {
       </aside>
       <div className="workspace">
         <header className="topbar">
-          <div className="topbar-store">
+          <NavLink to="/" className="topbar-store" aria-label={t('nav.home')}>
             <Store size={20} />
             <span>{t('brand.store')}</span>
-          </div>
+          </NavLink>
           <p className="greeting">
             {t('brand.owner')}
             <span className="greeting-dot" />

@@ -1,0 +1,291 @@
+{
+  "brand": "Kirana",
+  "brandSuffix": "VOICE COPILOT",
+  "skip": "Skip to content",
+  "nav": {
+    "home": "Home",
+    "about": "Our story",
+    "how": "How it works",
+    "roadmap": "Roadmap",
+    "label": "Main navigation"
+  },
+  "menu": "Open menu",
+  "closeMenu": "Close menu",
+  "language": "Website language",
+  "fallback": "Public pages are available in English and Hindi. English is shown for your selected language; your app preference is unchanged.",
+  "day": "Switch to day mode",
+  "dark": "Switch to dark mode",
+  "try": "Explore the prototype",
+  "seeHow": "See how it will work",
+  "readStory": "Meet the mission",
+  "seeRoadmap": "Explore the roadmap",
+  "planned": "Planned capability",
+  "current": "Current prototype",
+  "next": "Next · not started",
+  "complete": "Foundation built",
+  "phase": "Phase {{number}}",
+  "hero": {
+    "eyebrow": "THE NEXT CHAPTER OF NEIGHBOURHOOD RETAIL",
+    "line1": "Your shop.",
+    "line2": "Your voice.",
+    "line3": "More possibility.",
+    "body": "A voice-first copilot for India’s kirana merchants. Built around the way you speak, the prices you set, and the community you serve.",
+    "note": "Interactive UI prototype · Live voice and payments are planned.",
+    "imageAlt": "Illustration of a kirana shopkeeper holding a phone behind her grocery counter, with blue and rose lighting.",
+    "caption": "LOCAL KNOWLEDGE. NEW POSSIBILITIES.",
+    "imageNote": "AI-generated illustration",
+    "voiceLabel": "THE VISION · YOUR LANGUAGE, YOUR COUNTER",
+    "phrase": "“डेढ़ किलो चावल, एक लीटर तेल”",
+    "translation": "One and a half kilos of rice. One litre of oil.",
+    "voiceNote": "Illustrative order · voice parsing comes in later phases"
+  },
+  "intro": {
+    "eyebrow": "MADE FOR THE EVERYDAY EXTRAORDINARY",
+    "title": "The heart of a neighbourhood deserves a helping hand.",
+    "body": "A busy counter leaves little time for typing, checking prices, or deciding what to stock next. We’re building a companion that turns everyday billing into clearer decisions — with the merchant always in control.",
+    "tags": ["Regional languages", "Merchant-led prices", "Explainable advice"]
+  },
+  "features": {
+    "eyebrow": "WHAT WE’RE BUILDING",
+    "title": "From a spoken order to a smarter shop.",
+    "items": [
+      {
+        "title": "Say it your way.",
+        "body": "Speak or type an order in a familiar language. Review items and quantities before you confirm. Tap and type remain part of the plan.",
+        "detail": "Voice & language · Phases 6–7"
+      },
+      {
+        "title": "Keep the counter in your hands.",
+        "body": "Set your own prices, check the bill, and choose how to collect payment. Market estimates will inform you; your saved prices will take priority.",
+        "detail": "Catalog, billing & payments · Phases 4–9"
+      },
+      {
+        "title": "Know what comes next.",
+        "body": "Turn item-level sales into useful summaries, restock suggestions, and relevant offers — with a reason you can understand and a choice you can dismiss.",
+        "detail": "Insights & recommendations · Phases 10–13"
+      }
+    ]
+  },
+  "missionStrip": {
+    "eyebrow": "OUR MISSION",
+    "title": "Make technology speak the language of small business.",
+    "body": "Less friction at the counter. More confidence in the next decision. More room for the people behind every neighbourhood shop."
+  },
+  "preview": {
+    "eyebrow": "A CLEAR START. AN OPEN ROAD.",
+    "title": "Explore what’s taking shape.",
+    "body": "The foundations and design system are built. Try the sample bill, catalog, and insight screens to see the direction. Store accounts and onboarding are next.",
+    "today": "Available to explore",
+    "items": [
+      "Sample bill and price edits",
+      "Responsive merchant workspace",
+      "Dark and day modes",
+      "English and Hindi interface"
+    ],
+    "notice": "Sample data only. Bills are not sent to a server, and no real payments are collected."
+  },
+  "faq": {
+    "eyebrow": "A FEW THINGS TO KNOW",
+    "title": "Before you step inside.",
+    "items": [
+      {
+        "q": "Can I use this to run my shop today?",
+        "a": "Not yet. This is an interactive prototype after Phases 1 and 2. You can explore sample screens and UI interactions. Merchant accounts, saved bills, live speech, payment confirmation, and recommendations are planned for later phases."
+      },
+      {
+        "q": "Which languages are available?",
+        "a": "The current interface has English and Hindi copy. The plan targets 11 Indian speech languages, with provider capabilities and native-speaker review to be verified during the voice phases. Other app language choices currently use English fallback."
+      },
+      {
+        "q": "Will I have to use voice for every bill?",
+        "a": "No. The plan includes tap and typed billing alongside voice, including a review step before confirmation. Cloud speech will need internet. Offline billing and sync are planned for Phase 14."
+      },
+      {
+        "q": "Does this already connect to UPI or Paytm?",
+        "a": "No live payment integration is available in this prototype. Manual, clearly labelled demo, and provider-backed payment modes are planned for Phase 9. Provider access must be verified; this project does not claim a Paytm partnership."
+      },
+      {
+        "q": "Who sets my prices and sees customer information?",
+        "a": "The plan gives merchant-saved prices priority. Customer history is intended to require consent and remain separate for each store, with export and erasure controls. These safeguards and data flows must be implemented and verified before real merchant or customer data is used."
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "OUR STORY",
+    "title": "Built around the people behind the counter.",
+    "lead": "Kirana Voice Copilot is a product in development for India’s neighbourhood grocery merchants. Our starting point is simple: useful technology should fit the shop, its language, and its everyday rhythm.",
+    "whoTitle": "Who we are",
+    "whoBody": "We’re building a voice-first billing and business companion for small, independent kirana stores. This is an early prototype guided by a 15-phase build plan — a practical vision for a merchant’s phone or tablet, one store at a time.",
+    "whyTitle": "Why this matters",
+    "whyBody": "The people who know a neighbourhood best should not have to learn a new working language to benefit from better tools. Billing can become the foundation for understanding what sells, what needs restocking, and what a regular customer might need next.",
+    "missionTitle": "Our mission",
+    "missionBody": "Help kirana merchants bill in familiar words, make informed decisions, and spend more attention on their customers. Technology should support the merchant’s judgement and independence.",
+    "visionTitle": "Our vision",
+    "visionBody": "A counter companion that listens, helps build a bill, and turns the day’s sales into a short, useful story with clear next steps. Accessible on an everyday device, with honest fallbacks when the network or a service is unavailable.",
+    "principlesTitle": "The principles behind the product.",
+    "principles": [
+      {
+        "title": "Familiar before clever",
+        "body": "Regional-language words, readable numbers, large touch targets, and a tap or typed alternative. Accessibility is part of the foundation."
+      },
+      {
+        "title": "The merchant decides",
+        "body": "Review the bill, override a price, accept or dismiss a suggestion. Advice should explain itself and stay out of the way of billing."
+      },
+      {
+        "title": "Trust through clarity",
+        "body": "Separate a saved shop price from a market estimate. Label sample data, payment modes, uncertain matches, and projected revenue honestly."
+      },
+      {
+        "title": "Privacy by intention",
+        "body": "The plan calls for consent before customer history, no stored raw audio, separate store data, and export and erasure controls. These are build commitments, not a claim that the prototype already implements them."
+      }
+    ],
+    "privacyTitle": "A responsible path to a real product.",
+    "privacyBody": "This public site asks for no phone number, shop details, or customer records. The prototype uses sample data and stores UI preferences in your browser. Account, speech-provider, payment, and customer-data notices will be added alongside their respective features before real use.",
+    "privacyLink": "See when each commitment is planned"
+  },
+  "how": {
+    "eyebrow": "HOW IT WILL WORK",
+    "title": "A familiar rhythm. A little more help.",
+    "lead": "The planned journey follows an ordinary day at a kirana counter — from the first order to the next restock. The workflow below describes the product vision, not a live end-to-end service.",
+    "steps": [
+      {
+        "title": "Make it your shop.",
+        "body": "Choose your language, add your store details and location, then set up your payment details. Your catalog and saved prices will shape your workspace.",
+        "detail": "Accounts & onboarding · Phase 3. Catalog & pricing · Phases 4–5.",
+        "example": "Your language. Your store. Your prices."
+      },
+      {
+        "title": "Speak. Check. Confirm.",
+        "body": "Say an order naturally, or use the keyboard and item picker. Check the matched items, quantities, and prices. Uncertain matches should ask for your confirmation.",
+        "detail": "Speech, parsing & saved bills · Phases 6–8.",
+        "example": "An order becomes a bill you can review."
+      },
+      {
+        "title": "Close the sale clearly.",
+        "body": "Choose the payment method, with separate manual, demo, and live-provider modes. A displayed QR will never be treated as proof of payment; confirmation must be verified.",
+        "detail": "Payments & confirmation · Phase 9.",
+        "example": "Clear payment status. No guesswork."
+      },
+      {
+        "title": "Turn the day into a next step.",
+        "body": "See what sold, hear a short summary, and review a small set of useful actions. Restock and customer suggestions will explain their evidence and leave the final choice to you.",
+        "detail": "Analytics, recommendations & spoken insights · Phases 10–13.",
+        "example": "Understand today. Prepare for tomorrow."
+      }
+    ],
+    "resilienceTitle": "Designed for real shop conditions.",
+    "resilienceBody": "Noisy counters and uneven internet are part of the plan. Tap and type are essential alternatives. Phase 14 adds offline drafts, an outbox, and visible sync status; cloud speech and live payment checks will still need a connection.",
+    "nowTitle": "What can I try now?",
+    "nowBody": "Explore the sample bill and its quantity and price controls, browse the catalog UI, and preview the insights layout. The screens use sample data; voice, payment, and business advice are demonstrations of interface states."
+  },
+  "roadmap": {
+    "eyebrow": "THE BUILD ROADMAP",
+    "title": "Built with care. One useful step at a time.",
+    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1 and 2 form the current prototype. This public website is an addition before Phase 3, which has not started.",
+    "foundation": "THE FOUNDATION",
+    "counter": "THE EVERYDAY COUNTER",
+    "growth": "THE NEXT DECISION",
+    "readiness": "READY FOR REAL CONDITIONS",
+    "items": [
+      {
+        "title": "Project foundation",
+        "body": "JavaScript workspace, API and service skeletons, shared arithmetic, i18n, CI, and architecture decisions."
+      },
+      {
+        "title": "Design system & prototype",
+        "body": "Responsive merchant screens, accessible controls, sample bill interactions, dark/day themes, and a component gallery. Physical-device checks remain before real use."
+      },
+      {
+        "title": "Merchant accounts & onboarding",
+        "body": "Phone OTP, store setup, language and location preferences, UPI details, and protected merchant routes."
+      },
+      {
+        "title": "Catalog & units",
+        "body": "A searchable product catalog with aliases and consistent quantity and pack units."
+      },
+      {
+        "title": "Prices that respect your shop",
+        "body": "Merchant-saved prices first, then labelled market estimates and MRP fallback."
+      },
+      {
+        "title": "Voice input & Listen",
+        "body": "Speech capture, language capabilities, controlled read-aloud, and dependable fallbacks."
+      },
+      {
+        "title": "Order understanding",
+        "body": "Parse item names and quantities into bill lines, with confirmation for uncertain matches."
+      },
+      {
+        "title": "Saved bills & customer consent",
+        "body": "Persistent bills, price snapshots, customer consent, and a clear sale record."
+      },
+      {
+        "title": "Payments & confirmation",
+        "body": "Separate manual, demo, and provider-backed modes, with verified payment status."
+      },
+      {
+        "title": "Sales analytics",
+        "body": "Reliable daily summaries and item-level trends, evaluated with labelled synthetic data."
+      },
+      {
+        "title": "Demand & restocking",
+        "body": "Explainable demand estimates and practical buying suggestions for different levels of stock data."
+      },
+      {
+        "title": "Customer & basket suggestions",
+        "body": "Relevant, explainable recommendations that respect consent, availability, and merchant feedback."
+      },
+      {
+        "title": "Spoken insights & actions",
+        "body": "Short summaries with accurate numbers, three clear actions, and shareable restock lists."
+      },
+      {
+        "title": "Offline, security & privacy",
+        "body": "Outbox sync, performance, ownership checks, retention, export and erasure, plus accessibility hardening."
+      },
+      {
+        "title": "Testing & release readiness",
+        "body": "Full journey testing, measured performance, a resilient demo, deployment checks, and evidence for the pitch."
+      }
+    ],
+    "afterTitle": "Beyond the core journey",
+    "afterBody": "The wider backlog explores khata, supplier-bill capture, staff accounts, festival planning, and distributor ordering. These are future possibilities, not current commitments or launch dates.",
+    "timing": "No launch dates or performance claims are promised here. Each phase needs its own implementation and acceptance checks."
+  },
+  "cta": {
+    "eyebrow": "SMALL SHOP. BIG POSSIBILITIES.",
+    "title": "Step into the next chapter.",
+    "body": "Explore the foundation of a companion built for your counter."
+  },
+  "footer": {
+    "tagline": "Familiar words. Clearer decisions.",
+    "note": "An independent project in development for India’s kirana merchants.",
+    "product": "Explore",
+    "project": "The project",
+    "principles": "Our principles",
+    "faq": "Questions",
+    "source": "View the code",
+    "status": "Phases 1–2 prototype · Public website before Phase 3",
+    "disclaimer": "Sample data. Planned features are labelled. No live speech or payment integration. No claimed provider partnership."
+  },
+  "meta": {
+    "home": {
+      "title": "Kirana Voice Copilot — Your shop. Your voice.",
+      "description": "Meet the mission and explore an early prototype of a regional-language billing and business companion for India’s kirana merchants."
+    },
+    "about": {
+      "title": "Our story & mission | Kirana Voice Copilot",
+      "description": "Why we are building Kirana Voice Copilot: familiar-language billing, merchant control, explainable decisions, and a responsible path to real use."
+    },
+    "how": {
+      "title": "How it will work | Kirana Voice Copilot",
+      "description": "Explore the planned journey from spoken orders and reviewed bills to payment confirmation, restocking, and understandable insights."
+    },
+    "roadmap": {
+      "title": "The 15-phase roadmap | Kirana Voice Copilot",
+      "description": "See the current Phase 1–2 prototype and the planned path through onboarding, voice, billing, recommendations, privacy, and release readiness."
+    }
+  }
+}

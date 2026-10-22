@@ -1,5 +1,7 @@
 # Design system
 
+The public website reuses these tokens and fonts with a separate editorial layout and original merchant imagery. Its scope, language copy, and verification are documented in [the public-site handoff](public-website.md).
+
 The product is an everyday counter tool: quiet dark surfaces, clear hierarchy, a cerulean information layer and one rose voice/action accent. UI/UX Pro Max's operations direction informs density and readability; the supplied plan overrides its generic landing-page and green palette suggestions.
 
 `src/tokens.css` is the source of truth. Jet Black #0A0A0A, surfaces #111316 / #171A1F / #1E222A, cerulean #007BA7, rose #FF2D95. Day mode uses #F6F7F9 and darker rose #E0157B with white text. The plan's light cerulean hover fails white-text contrast, so use #007498 instead. Interactive outlines use a stronger control border; faint borders are decoration only.

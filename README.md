@@ -2,7 +2,7 @@
 
 A voice-first counter companion for India's neighbourhood grocery stores.
 
-**Build scope: Phases 1–2.** This repository contains the monorepo foundation and an interactive, accessible design prototype. Sample bills and insights are explicitly illustrative. Authentication (Phase 3), catalog APIs (4), pricing (5), cloud speech (6), parsing (7), persisted billing (8), payments (9), analytics (10), recommendations (11–13), and offline sync (14) are separate milestones.
+**Build scope: Phases 1–2, plus the public website before Phase 3.** This repository contains the monorepo foundation and an interactive, accessible design prototype. Sample bills and insights are explicitly illustrative. Authentication (Phase 3), catalog APIs (4), pricing (5), cloud speech (6), parsing (7), persisted billing (8), payments (9), analytics (10), recommendations (11–13), and offline sync (14) are separate milestones.
 
 ## Architecture
 
@@ -19,6 +19,8 @@ flowchart LR
 
 See [the build ledger](docs/progress.md), [architecture](docs/architecture.md), and [contribution guide](CONTRIBUTING.md).
 
+The public website adds Home (`/`), Our Story & Mission (`/about`), How It Works (`/how-it-works`), and the full Roadmap (`/roadmap`). The merchant prototype remains at `/bill`. See [the public-site handoff](docs/public-website.md).
+
 ![Phase 2 counter prototype](docs/screenshots/phase-02-desktop.png)
 
 The [Phase 2 handoff](docs/phase-02-handoff.md) records delivered behavior, acceptance evidence and physical-device checks still needed. The two phase checkpoints are tagged `phase-01-done` and `phase-02-done`.
@@ -33,7 +35,7 @@ Copy-Item services/reco/.env.example services/reco/.env
 npm run dev:all
 ```
 
-Start Docker Desktop first. Open http://localhost:5173/bill. Compose serves a production build, so `/dev/ui` is intentionally absent. For the development gallery and hot reload, stop the Compose client (`docker compose -f infra/docker-compose.yml stop client`) and run `npm run dev -w @kirana/client` instead.
+Start Docker Desktop first. Open http://localhost:5173 for the public website or http://localhost:5173/bill for the merchant prototype. Compose serves a production build, so `/dev/ui` is intentionally absent. For the development gallery and hot reload, stop the Compose client (`docker compose -f infra/docker-compose.yml stop client`) and run `npm run dev -w @kirana/client` instead.
 
 Without containers, run MongoDB as a replica set, then:
 

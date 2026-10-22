@@ -24,6 +24,10 @@ body {
   color: var(--text);
   font: 400 16px/1.6 var(--font-body);
 }
+.route-loading {
+  padding: 32px;
+  color: var(--text-2);
+}
 button,
 input,
 select {

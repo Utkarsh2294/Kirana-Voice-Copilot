@@ -1,39 +1,25 @@
 import React, { lazy, Suspense } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { Shell } from './components/Shell.jsx';
-import { UiProvider } from './components/overlays.jsx';
-import { Skeleton } from './components/primitives.jsx';
+import { Route, Routes } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const Gallery = import.meta.env.DEV ? lazy(() => import('./pages/Gallery.jsx')) : null;
-const Bill = lazy(() => import('./pages/Bill.jsx'));
-const Insights = lazy(() => import('./pages/Insights.jsx'));
-const Catalog = lazy(() => import('./pages/Catalog.jsx'));
-const Settings = lazy(() => import('./pages/Settings.jsx'));
-const ComingSoon = lazy(() => import('./pages/ComingSoon.jsx'));
-const CoachMarks = lazy(() => import('./components/CoachMarks.jsx'));
+const PublicSite = lazy(() => import('./public/PublicSite.jsx'));
+const MerchantApp = lazy(() => import('./MerchantApp.jsx'));
 export function App() {
+  const { t } = useTranslation();
   return (
-    <UiProvider>
-      <Shell>
-        <Suspense fallback={<Skeleton lines={5} />}>
-          <Routes>
-            <Route path="/" element={<Navigate to="/bill" replace />} />
-            <Route path="/bill" element={<Bill />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/insights" element={<Insights />} />
-            {['customers', 'login'].map((name) => (
-              <Route key={name} path={`/${name}`} element={<ComingSoon name={name} />} />
-            ))}
-            {Gallery && <Route path="/dev/ui" element={<Gallery />} />}
-            {import.meta.env.DEV && (
-              <Route path="/dev/voice" element={<ComingSoon name="voice" phase={6} />} />
-            )}
-            <Route path="*" element={<ComingSoon name="notFound" />} />
-          </Routes>
-          <CoachMarks />
-        </Suspense>
-      </Shell>
-    </UiProvider>
+    <Suspense
+      fallback={
+        <div className="route-loading" role="status">
+          {t('common.loading')}
+        </div>
+      }
+    >
+      <Routes>
+        {['/', '/about', '/how-it-works', '/roadmap'].map((path) => (
+          <Route key={path} path={path} element={<PublicSite />} />
+        ))}
+        <Route path="*" element={<MerchantApp />} />
+      </Routes>
+    </Suspense>
   );
 }

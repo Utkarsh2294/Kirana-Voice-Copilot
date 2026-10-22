@@ -20,6 +20,12 @@ for (const key of [
   'src/components/motion-features.js',
 ])
   collect(key);
+// Rollup can give a shared dynamic entry a generated manifest key.
+const merchantKey = Object.keys(manifest).find((key) => manifest[key].name === 'MerchantApp');
+assert(merchantKey, 'Missing merchant application chunk');
+collect(merchantKey);
+const publicChunk = Object.values(manifest).find((chunk) => chunk.name === 'PublicSite');
+assert(publicChunk && !files.has(publicChunk.file), 'Public pages leaked into the bill bundle');
 const bytes = [...files]
   .filter((file) => file.endsWith('.js'))
   .reduce((sum, file) => sum + gzipSync(readFileSync(root + file)).byteLength, 0);
