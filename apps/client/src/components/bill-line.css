@@ -1,0 +1,155 @@
+.bill-line {
+  position: relative;
+  border-block-end: 1px solid var(--border);
+  list-style: none;
+  overflow: hidden;
+}
+.bill-line:last-child {
+  border-block-end: 0;
+}
+.bill-line-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px minmax(100px, 1fr) 84px 100px 96px;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 20px;
+  background: var(--surface-1);
+  touch-action: pan-y;
+}
+.swipe-hints {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  color: var(--text);
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--primary) 30%, var(--surface-2)),
+    color-mix(in srgb, var(--danger) 30%, var(--surface-2))
+  );
+}
+.bill-line-name {
+  min-inline-size: 0;
+}
+.bill-line-name > p {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.bill-line-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-block-start: 4px;
+  color: var(--text-2);
+  font-size: 16px;
+}
+.quantity-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-control);
+  background: var(--surface-2);
+  color: var(--text);
+  border-radius: 10px;
+  min-block-size: 52px;
+  padding: 6px 12px;
+  font-size: 16px;
+  line-height: 1.25;
+  font-variant-numeric: tabular-nums;
+}
+.quantity-pill span {
+  color: var(--text-2);
+  font-size: 12px;
+  margin-block-start: 4px;
+}
+.bill-line-amount {
+  font-size: 20px;
+  text-align: end;
+  overflow-wrap: anywhere;
+}
+.bill-line-actions {
+  display: flex;
+}
+.bill-line-actions .icon-button {
+  color: var(--text-2);
+}
+.product-mark {
+  display: grid;
+  place-items: center;
+  inline-size: 48px;
+  block-size: 52px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-2);
+  color: var(--primary-text);
+  flex-shrink: 0;
+}
+.product-mark--amber {
+  color: var(--warning);
+  background: color-mix(in srgb, var(--warning) 7%, var(--surface-1));
+}
+.product-mark--green {
+  color: var(--success);
+  background: color-mix(in srgb, var(--success) 7%, var(--surface-1));
+}
+.product-mark--rose {
+  color: var(--accent-text);
+  background: var(--accent-soft);
+}
+.product-mark--small {
+  inline-size: 40px;
+  block-size: 44px;
+  border-radius: 10px;
+}
+@media (max-width: 1250px) {
+  .bill-line-content {
+    grid-template-columns: 40px minmax(90px, 1fr) 64px 90px;
+    gap: 12px;
+    padding: 20px 16px;
+  }
+  .bill-line-actions {
+    grid-column: 2 / -1;
+    justify-content: end;
+    margin-block-start: -12px;
+  }
+  .product-mark {
+    inline-size: 40px;
+  }
+}
+@media (max-width: 480px) {
+  .bill-line-content {
+    grid-template-columns: 36px minmax(80px, 1fr) 58px;
+    gap: 12px;
+    padding: 20px 12px;
+  }
+  .bill-line-name > p {
+    font-size: 20px;
+  }
+  .bill-line-amount {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: start;
+  }
+  .bill-line-actions {
+    grid-column: 3;
+    grid-row: 2;
+    margin-block-start: 0;
+    margin-inline-start: -24px;
+  }
+  .bill-line-actions .icon-button {
+    inline-size: 48px;
+  }
+  .bill-line-meta {
+    font-size: 16px;
+  }
+  .product-mark {
+    inline-size: 36px;
+  }
+}
