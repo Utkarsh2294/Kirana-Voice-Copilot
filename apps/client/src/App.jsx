@@ -10,6 +10,7 @@ const Insights = lazy(() => import('./pages/Insights.jsx'));
 const Catalog = lazy(() => import('./pages/Catalog.jsx'));
 const Settings = lazy(() => import('./pages/Settings.jsx'));
 const ComingSoon = lazy(() => import('./pages/ComingSoon.jsx'));
+const CoachMarks = lazy(() => import('./components/CoachMarks.jsx'));
 export function App() {
   return (
     <UiProvider>
@@ -30,6 +31,7 @@ export function App() {
             )}
             <Route path="*" element={<ComingSoon name="notFound" />} />
           </Routes>
+          <CoachMarks />
         </Suspense>
       </Shell>
     </UiProvider>

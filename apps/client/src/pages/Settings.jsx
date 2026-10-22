@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight, BookOpen, Monitor, Moon, Play, Sun } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -17,6 +17,7 @@ export default function Settings() {
   const { t } = useTranslation();
   const prefs = usePreferences();
   const { read } = useUi();
+  const navigate = useNavigate();
   const themes = [
     { value: 'dark', Icon: Moon },
     { value: 'day', Icon: Sun },
@@ -94,7 +95,13 @@ export default function Settings() {
             <Play size={24} className="muted" />
             <h2>{t('settings.coach')}</h2>
             <p className="muted section-description">{t('settings.coachHint')}</p>
-            <Button variant="ghost" onClick={() => prefs.update({ tourSeen: false })}>
+            <Button
+              variant="ghost"
+              onClick={() => {
+                prefs.update({ tourSeen: false });
+                navigate('/bill');
+              }}
+            >
               {t('settings.coach')}
             </Button>
           </GlassCard>

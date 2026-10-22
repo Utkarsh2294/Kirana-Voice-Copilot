@@ -1,0 +1,41 @@
+.coach-content {
+  display: grid;
+  gap: 24px;
+}
+.coach-visual {
+  display: grid;
+  place-items: center;
+  min-block-size: 140px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse at center, var(--accent-soft), transparent 70%), var(--surface-2);
+  color: var(--accent-text);
+}
+.coach-dots {
+  display: flex;
+  gap: 6px;
+}
+.coach-dots span {
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 50%;
+  background: var(--text-2);
+  opacity: 0.5;
+}
+.coach-dots span.is-active {
+  background: var(--accent);
+  opacity: 1;
+}
+:root[data-coach-step='mic'] .desktop-mic,
+:root[data-coach-step='mic'] .nav-mic {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 6px;
+  border-radius: 60px;
+}
+@media (max-width: 480px) {
+  .coach-content > .row:last-child {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}
