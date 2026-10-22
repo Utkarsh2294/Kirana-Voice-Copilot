@@ -1,0 +1,405 @@
+.bill-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 320px);
+  gap: 28px;
+  align-items: start;
+}
+.bill-main,
+.bill-aside {
+  min-inline-size: 0;
+}
+.bill-panel {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-1);
+  overflow: hidden;
+}
+.bill-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-block-end: 1px solid var(--border);
+  gap: 8px;
+}
+.bill-panel-heading h2,
+.summary-panel h2 {
+  font-size: 16px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.bill-panel-heading > .row {
+  gap: 8px;
+}
+.bill-panel-heading > .row > svg {
+  color: var(--primary-text);
+}
+.sample-number {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.customer-strip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  inline-size: 100%;
+  padding: 12px 20px;
+  background: transparent;
+  border: 0;
+  border-block-end: 1px solid var(--border);
+  color: var(--text-2);
+  text-align: start;
+  font-size: 16px;
+  min-block-size: 60px;
+}
+.customer-add {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--primary-text);
+  margin-inline-start: auto;
+  font-size: 12px;
+}
+.line-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 84px 100px 96px;
+  gap: 16px;
+  padding: 16px 20px 0 84px;
+  color: var(--text-2);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.line-columns span:nth-child(2) {
+  text-align: center;
+}
+.line-columns span:nth-child(3) {
+  text-align: end;
+}
+.bill-lines {
+  margin: 0;
+  padding: 0;
+}
+.bill-panel-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 11px;
+  border-block-start: 1px solid var(--border);
+}
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-inline-size: 0;
+  min-block-size: 56px;
+  border: 1px solid var(--border-control);
+  border-radius: 12px;
+  padding-inline: 16px 8px;
+  background: var(--surface-1);
+  color: var(--text-2);
+  margin-block: 20px 28px;
+}
+.search-field input {
+  min-inline-size: 0;
+  inline-size: 100%;
+  background: transparent;
+  color: var(--text);
+  border: 0;
+  outline: none;
+  min-block-size: 54px;
+}
+.search-field:focus-within {
+  outline: 2px solid var(--primary-text);
+  outline-offset: 3px;
+}
+.search-field kbd {
+  display: grid;
+  place-items: center;
+  inline-size: 26px;
+  block-size: 26px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 12px;
+  margin-inline-end: 8px;
+  flex-shrink: 0;
+}
+.quick-add > .row {
+  margin-block-end: 16px;
+  gap: 8px;
+}
+.quick-add h2 {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-2);
+}
+.quick-add > .row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary-text);
+  font-size: 11px;
+}
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.quick-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  background: var(--surface-1);
+  min-block-size: 76px;
+  text-align: start;
+}
+.quick-item > span:nth-child(2) {
+  min-inline-size: 0;
+}
+.quick-item strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+.quick-item small {
+  display: block;
+  color: var(--text-2);
+  font-size: 10px;
+  margin-block-start: 5px;
+}
+.quick-item > svg {
+  color: var(--text-2);
+  margin-inline-start: auto;
+}
+.summary-panel {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface-1);
+  padding: 24px;
+}
+.summary-divider {
+  border-block-start: 1px dashed var(--border-control);
+  margin-block: 24px;
+  opacity: 0.45;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-block: 12px;
+  font-size: 16px;
+}
+.summary-row > span:first-child {
+  color: var(--text-2);
+}
+.summary-total {
+  border-block-start: 1px solid var(--border);
+  padding-block: 24px 28px;
+  margin-block-start: 24px;
+}
+.summary-total > p:first-child {
+  font-size: 12px;
+  color: var(--text-2);
+  margin-block-end: 8px;
+}
+.hero-total {
+  display: block;
+  font-size: clamp(44px, 4vw, 56px);
+  line-height: 1.5;
+  background: linear-gradient(125deg, var(--text) 25%, var(--primary-text) 85%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  overflow-wrap: anywhere;
+}
+.summary-caption {
+  font-size: 10px;
+  color: var(--text-2);
+  margin-block-start: 4px;
+}
+.summary-panel .button--action {
+  min-block-size: 54px;
+}
+.payment-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: var(--text-2);
+  font-size: 10px;
+  margin-block-start: 12px;
+}
+.summary-listen {
+  display: flex;
+  justify-content: center;
+  border-block-start: 1px solid var(--border);
+  padding-block-start: 12px;
+  margin-block-start: 20px;
+}
+.summary-listen .listen-button {
+  font-size: 12px;
+}
+.voice-tip {
+  padding: 24px 12px;
+  margin-block-start: 12px;
+}
+.tip-icon {
+  display: inline-flex;
+  color: var(--primary-text);
+  margin-block-end: 12px;
+}
+.voice-tip h3 {
+  font-size: 16px;
+  letter-spacing: -0.025em;
+}
+.voice-tip p {
+  color: var(--text-2);
+  font-size: 12px;
+  margin-block-start: 8px;
+  line-height: 1.8;
+}
+.voice-tip .voice-tip-label {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  color: var(--text-2);
+  font-size: 11px;
+  margin-block-start: 16px;
+}
+.voice-tip-label svg {
+  margin-block-start: 4px;
+}
+.reset-sample {
+  min-block-size: 48px;
+  background: transparent;
+  color: var(--primary-text);
+  font-size: 12px;
+  border: 0;
+  padding-inline: 12px;
+}
+.bill-disclaimer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-2);
+  font-size: 11px;
+  margin-block-start: 28px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .quick-item:hover {
+    border-color: var(--primary-text);
+    background: var(--surface-2);
+  }
+  .customer-strip:hover {
+    background: var(--surface-2);
+  }
+}
+@media (max-width: 1350px) {
+  .quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .bill-layout {
+    gap: 20px;
+    grid-template-columns: minmax(0, 1fr) 280px;
+  }
+  .summary-panel {
+    padding: 20px;
+  }
+  .hero-total {
+    font-size: 44px;
+  }
+}
+@media (max-width: 1250px) {
+  .line-columns {
+    grid-template-columns: minmax(0, 1fr) 64px 90px;
+    padding-inline-start: 68px;
+    gap: 12px;
+  }
+}
+@media (max-width: 1099px) {
+  .bill-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .bill-aside {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 20px;
+  }
+  .bill-aside .reset-sample {
+    grid-column: 2;
+    margin-block-start: -60px;
+    justify-self: start;
+  }
+  .quick-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 759px) {
+  .bill-panel-heading {
+    padding: 16px;
+    flex-wrap: wrap;
+  }
+  .sample-number {
+    margin-inline-start: auto;
+  }
+  .customer-strip {
+    padding-inline: 16px;
+    font-size: 14px;
+    flex-wrap: wrap;
+  }
+  .customer-add {
+    font-size: 11px;
+  }
+  .line-columns {
+    display: none;
+  }
+  .bill-panel-footer {
+    padding-inline: 16px;
+  }
+  .bill-aside {
+    display: block;
+  }
+  .summary-panel {
+    padding: 24px;
+  }
+  .summary-total {
+    padding-block: 20px;
+  }
+  .summary-total .hero-total {
+    font-size: 48px;
+  }
+  .voice-tip {
+    display: none;
+  }
+  .quick-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .quick-item {
+    padding: 12px 8px;
+    gap: 8px;
+  }
+  .quick-item .product-mark {
+    inline-size: 32px;
+  }
+  .quick-item > svg {
+    inline-size: 12px;
+  }
+  .quick-add > .row a {
+    font-size: 11px;
+  }
+  .bill-aside .reset-sample {
+    margin-block-start: 8px;
+  }
+}

@@ -6,6 +6,7 @@
 @import './components/voice.css';
 @import './components/bill-line.css';
 @import './shell.css';
+@import './pages/bill.css';
 
 @theme inline {
   --color-background: var(--bg);

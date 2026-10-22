@@ -6,6 +6,7 @@ import { UiProvider } from './components/overlays.jsx';
 import { PageHeading, Skeleton } from './components/primitives.jsx';
 
 const Gallery = import.meta.env.DEV ? lazy(() => import('./pages/Gallery.jsx')) : null;
+const Bill = lazy(() => import('./pages/Bill.jsx'));
 function Placeholder({ name }) {
   const { t } = useTranslation();
   return (
@@ -28,7 +29,8 @@ export function App() {
         <Suspense fallback={<p>{t('common.loading')}</p>}>
           <Routes>
             <Route path="/" element={<Navigate to="/bill" replace />} />
-            {['bill', 'insights', 'catalog', 'customers', 'settings', 'login'].map((name) => (
+            <Route path="/bill" element={<Bill />} />
+            {['insights', 'catalog', 'customers', 'settings', 'login'].map((name) => (
               <Route key={name} path={`/${name}`} element={<Placeholder name={name} />} />
             ))}
             {Gallery && <Route path="/dev/ui" element={<Gallery />} />}

@@ -11,7 +11,7 @@ export function parseDisplayQuantity(text, size) {
   const scaled = BigInt(whole + fraction) * BigInt(size);
   if (scaled % divisor !== 0n) return null;
   const result = scaled / divisor;
-  return result > 0n && result <= 1_000_000_000n ? Number(result) : null;
+  return result > 0n && result <= 1_000_000n ? Number(result) : null;
 }
 
 export function QuantityStepper({ valueBase, onChange, size = 1000, unit = 'kg' }) {
