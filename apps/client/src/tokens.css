@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&family=Sora:wght@500;600;700&display=swap');
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0a;
+  --surface-1: #111316;
+  --surface-2: #171a1f;
+  --surface-3: #1e222a;
+  --border: rgba(255, 255, 255, 0.08);
+  --border-control: #64717f;
+  --text: #f4f6f8;
+  --text-2: #a9b2bd;
+  --text-3: #6f7985;
+  --primary: #007ba7;
+  --primary-hover: #007498;
+  --primary-text: #3fb4dd;
+  --accent: #ff2d95;
+  --accent-soft: rgba(255, 45, 149, 0.14);
+  --accent-text: #ff66b2;
+  --on-accent: #0a0a0a;
+  --success: #22d3a0;
+  --warning: #ffb020;
+  --danger: #ff5c5c;
+  --grad-brand: linear-gradient(135deg, #007ba7, #ff2d95);
+  --glow-primary: 0 0 24px rgba(0, 123, 167, 0.45);
+  --glow-accent: 0 0 24px rgba(255, 45, 149, 0.35);
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --font-body: 'Inter', var(--font-script, 'Noto Sans'), system-ui, sans-serif;
+  --font-display: 'Sora', var(--font-script, 'Noto Sans'), system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-micro: 120ms;
+  --duration-transition: 220ms;
+  --shadow: 0 16px 48px rgb(0 0 0 / 16%);
+}
+
+:root[data-theme='day'] {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --surface-1: #fff;
+  --surface-2: #edf0f4;
+  --surface-3: #e4e8ee;
+  --border: rgba(10, 10, 10, 0.12);
+  --border-control: #75808d;
+  --text: #0a0a0a;
+  --text-2: #4e5967;
+  --text-3: #717b88;
+  --primary-text: #006386;
+  --accent: #e0157b;
+  --accent-text: #b80061;
+  --accent-soft: rgba(224, 21, 123, 0.07);
+  --on-accent: #fff;
+  --success: #007354;
+  --warning: #805300;
+  --danger: #bd2828;
+  --shadow: 0 16px 48px rgb(20 35 50 / 7%);
+}
