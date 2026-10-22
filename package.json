@@ -1,0 +1,55 @@
+{
+  "name": "kirana-voice-copilot",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n client,server,reco \"npm run dev -w @kirana/client\" \"npm run dev -w @kirana/server\" \"python -m uvicorn app.main:app --app-dir services/reco --port 8000 --reload\"",
+    "dev:all": "docker compose -f infra/docker-compose.yml up --build --wait",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "eslint . && node scripts/check-javascript.js",
+    "test": "vitest run",
+    "test:python": "python -m pytest services/reco/tests",
+    "lint:python": "python -m ruff check services/reco",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "seed": "node scripts/seed.js",
+    "gen:synthetic": "node scripts/gen-synthetic.js"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.39.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.39.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsdoc": "^61.0.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^16.4.0",
+    "husky": "^9.1.7",
+    "jsdom": "^26.1.0",
+    "lint-staged": "^16.2.0",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4",
+    "vitest": "^3.2.4"
+  },
+  "lint-staged": {
+    "*.{js,jsx,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,yml,yaml}": "prettier --write"
+  }
+}

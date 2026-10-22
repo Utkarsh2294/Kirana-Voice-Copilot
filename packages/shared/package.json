@@ -1,0 +1,16 @@
+{
+  "name": "@kirana/shared",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.js",
+    "./money": "./src/money.js",
+    "./units": "./src/units.js",
+    "./languages": "./src/languages.js",
+    "./schemas": "./src/schemas.js"
+  },
+  "dependencies": {
+    "zod": "^4.1.12"
+  }
+}
