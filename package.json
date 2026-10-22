@@ -11,7 +11,7 @@
     "node": ">=20.19.0"
   },
   "scripts": {
-    "dev": "concurrently -k -n client,server,reco \"npm run dev -w @kirana/client\" \"npm run dev -w @kirana/server\" \"python -m uvicorn app.main:app --app-dir services/reco --port 8000 --reload\"",
+    "dev": "concurrently -k -n client,server,reco \"npm run dev -w @kirana/client\" \"npm run dev -w @kirana/server\" \"node scripts/dev-reco.js\"",
     "dev:all": "docker compose -f infra/docker-compose.yml up --build --wait",
     "build": "npm run build --workspaces --if-present",
     "lint": "eslint . && node scripts/check-javascript.js",
