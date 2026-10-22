@@ -169,14 +169,14 @@
 }
 .quick-item strong {
   display: block;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: 500;
   overflow-wrap: anywhere;
 }
 .quick-item small {
   display: block;
   color: var(--text-2);
-  font-size: 10px;
+  font-size: 12px;
   margin-block-start: 5px;
 }
 .quick-item > svg {
@@ -265,7 +265,7 @@
 }
 .voice-tip p {
   color: var(--text-2);
-  font-size: 12px;
+  font-size: 16px;
   margin-block-start: 8px;
   line-height: 1.8;
 }

@@ -1,5 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
-import { animate, m } from 'motion/react';
+import React, { forwardRef, useLayoutEffect, useRef } from 'react';
 import {
   AlertCircle,
   Check,
@@ -178,24 +177,36 @@ export function GlassCard({ children, className = '', as: Element = 'section', .
 
 export function AnimatedNumber({ value, currency = false, className = '' }) {
   const reduce = useReducedMotion();
-  const [display, setDisplay] = useState(value);
-  const previous = useRef(value);
-  useEffect(() => {
-    if (reduce) {
-      previous.current = value;
+  const { i18n } = useTranslation();
+  const visible = useRef(null);
+  const current = useRef(value);
+  const initial = useRef(value);
+  const language = i18n.language;
+  useLayoutEffect(() => {
+    const format = (amount) => (currency ? money(amount) : number(amount));
+    if (reduce || current.current === value) {
+      current.current = value;
+      visible.current.textContent = format(value);
       return;
     }
-    const animation = animate(previous.current, value, {
-      duration: 0.22,
-      ease: [0.23, 1, 0.32, 1],
-      onUpdate: (current) => setDisplay(Math.round(current)),
-    });
-    previous.current = value;
-    return () => animation.stop();
-  }, [value, reduce]);
+    const startValue = current.current;
+    const start = performance.now();
+    let frame;
+    function tick(now) {
+      const progress = Math.min(1, (now - start) / 220);
+      current.current = Math.round(startValue + (value - startValue) * (1 - (1 - progress) ** 3));
+      visible.current.textContent = format(current.current);
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    }
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [value, currency, reduce, language]);
   return (
     <span className={`money ${className}`}>
-      {currency ? money(reduce ? value : display) : number(reduce ? value : display)}
+      <span ref={visible} aria-hidden="true">
+        {currency ? money(initial.current) : number(initial.current)}
+      </span>
+      <span className="sr-only">{currency ? money(value) : number(value)}</span>
     </span>
   );
 }
@@ -272,24 +283,22 @@ export function EmptyState({ icon: Icon = Headphones, title, description, action
 }
 
 export function PageHeading({ eyebrow, title, accent, description, action }) {
-  const reduce = useReducedMotion();
   return (
-    <m.div
-      className="page-heading"
-      initial={{ opacity: 0, transform: reduce ? 'none' : 'translateY(8px)' }}
-      animate={{ opacity: 1, transform: 'none' }}
-      transition={{ duration: 0.22 }}
-    >
+    <div className="page-heading">
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h1>
           {title}
-          <br />
-          <span>{accent}</span>
+          {accent && (
+            <>
+              <br />
+              <span>{accent}</span>
+            </>
+          )}
         </h1>
         <p className="page-description">{description}</p>
       </div>
       {action}
-    </m.div>
+    </div>
   );
 }

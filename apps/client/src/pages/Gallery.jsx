@@ -1,3 +1,4 @@
+import './gallery.css';
 import React, { useState } from 'react';
 import { Check, CircleAlert, Headphones, Plus, Trash2, Volume2, Wifi } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -58,7 +59,7 @@ export default function Gallery() {
     notify(t('gallery.toast'), () => setLine(previous));
   };
   return (
-    <div className="gallery">
+    <div className="gallery" data-dev-gallery="true">
       <PageHeading
         eyebrow={t('prototype.badge')}
         title={t('gallery.title')}

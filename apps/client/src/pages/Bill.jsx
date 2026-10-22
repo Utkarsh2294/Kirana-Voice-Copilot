@@ -112,7 +112,12 @@ export default function Bill() {
               <div className="row">
                 <ReceiptText size={18} />
                 <h2>{t('bill.current')}</h2>
-                <Chip>{t('bill.lineCount', { count: number(lines.length) })}</Chip>
+                <Chip>
+                  {t('bill.lineCount', {
+                    count: lines.length,
+                    formattedCount: number(lines.length),
+                  })}
+                </Chip>
               </div>
               <span className="sample-number">{t('bill.number')}</span>
             </div>

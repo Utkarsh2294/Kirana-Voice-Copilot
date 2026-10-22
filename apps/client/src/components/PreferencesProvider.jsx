@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { LazyMotion, MotionConfig } from 'motion/react';
 import { languages } from '@kirana/shared/languages';
-import i18n from '../i18n.js';
+import { selectLanguage } from '../i18n.js';
 import { usePreferences } from '../preferences.js';
 
 const loadFeatures = () => import('./motion-features.js').then((module) => module.default);
@@ -39,7 +39,7 @@ export function PreferencesProvider({ children }) {
     document.documentElement.dataset.reducedMotion = String(reduce);
   }, [reduce]);
   useEffect(() => {
-    i18n.changeLanguage(language);
+    selectLanguage(language);
     const script = languages.find((item) => item.code === language)?.script;
     let link = document.getElementById('indic-font');
     if (script === 'Latin') {

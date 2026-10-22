@@ -22,6 +22,7 @@ jobs:
       - run: npm run format:check
       - run: npm test
       - run: npm run build
+      - run: node scripts/check-client-build.js
       - run: npm audit --audit-level=high
       - uses: actions/upload-artifact@v4
         with:

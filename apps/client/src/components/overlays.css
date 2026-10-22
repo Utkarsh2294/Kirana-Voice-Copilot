@@ -36,7 +36,7 @@
   background: var(--border-control);
   border-radius: 4px;
 }
-.sheet-title {
+.sheet .sheet-title {
   flex-wrap: nowrap;
   gap: 12px;
   margin-block-end: 8px;

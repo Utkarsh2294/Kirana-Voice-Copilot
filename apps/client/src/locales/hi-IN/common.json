@@ -126,7 +126,9 @@
     "selectItem": "{{item}} जोड़ें",
     "removeItem": "{{item}} हटाएँ",
     "editItem": "{{item}} बदलें",
-    "enterToAdd": "पहला परिणाम जोड़ने के लिए Enter दबाएँ"
+    "enterToAdd": "पहला परिणाम जोड़ने के लिए Enter दबाएँ",
+    "lineCount_one": "{{formattedCount}} बिल पंक्ति",
+    "lineCount_other": "{{formattedCount}} बिल पंक्तियाँ"
   },
   "items": {
     "rice": "बासमती चावल",
@@ -240,7 +242,9 @@
     "emptyBody": "दूसरी श्रेणी या नाम खोजें।",
     "inBill": "नमूना बिल में पहले से है",
     "favourite": "{{item}} पसंदीदा बनाएँ",
-    "favoriteHint": "पसंद इसी पूर्वावलोकन सत्र तक रहेगी।"
+    "favoriteHint": "पसंद इसी पूर्वावलोकन सत्र तक रहेगी।",
+    "count_one": "{{formattedCount}} नमूना उत्पाद",
+    "count_other": "{{formattedCount}} नमूना उत्पाद"
   },
   "settings": {
     "eyebrow": "अपना जैसा बनाएँ",

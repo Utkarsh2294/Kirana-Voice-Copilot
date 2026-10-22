@@ -126,7 +126,9 @@
     "selectItem": "Add {{item}}",
     "removeItem": "Remove {{item}}",
     "editItem": "Edit {{item}}",
-    "enterToAdd": "Press Enter to add the first result"
+    "enterToAdd": "Press Enter to add the first result",
+    "lineCount_one": "{{formattedCount}} bill line",
+    "lineCount_other": "{{formattedCount}} bill lines"
   },
   "items": {
     "rice": "Basmati rice",
@@ -240,7 +242,9 @@
     "emptyBody": "Try a different category or search term.",
     "inBill": "Already in your sample bill",
     "favourite": "Favourite {{item}}",
-    "favoriteHint": "Favourites are local to this preview session."
+    "favoriteHint": "Favourites are local to this preview session.",
+    "count_one": "{{formattedCount}} sample product",
+    "count_other": "{{formattedCount}} sample products"
   },
   "settings": {
     "eyebrow": "MAKE YOURSELF AT HOME",

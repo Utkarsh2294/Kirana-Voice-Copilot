@@ -52,8 +52,8 @@ export function QuantityStepper({ valueBase, onChange, size = 1000, unit = 'kg' 
         <IconButton
           icon={Plus}
           label={t('controls.increase')}
-          onClick={() => onChange(Math.min(1_000_000_000, valueBase + step))}
-          disabled={valueBase >= 1_000_000_000}
+          onClick={() => onChange(Math.min(1_000_000, valueBase + step))}
+          disabled={valueBase >= 1_000_000}
         />
       </div>
       {!valid && (

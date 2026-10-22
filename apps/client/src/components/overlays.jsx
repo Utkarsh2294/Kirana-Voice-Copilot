@@ -46,9 +46,9 @@ export function Sheet({ open, onOpenChange, title, description, children }) {
               <m.section
                 key="sheet"
                 className="sheet"
-                initial={{ opacity: 0, transform: reduce ? 'none' : 'translateY(100%)' }}
-                animate={{ opacity: 1, transform: 'translateY(0%)' }}
-                exit={{ opacity: 0, transform: reduce ? 'none' : 'translateY(100%)' }}
+                initial={{ opacity: 0, y: reduce ? 0 : '100%' }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: reduce ? 0 : '100%' }}
                 transition={
                   reduce ? { duration: 0.12 } : { type: 'spring', stiffness: 300, damping: 30 }
                 }

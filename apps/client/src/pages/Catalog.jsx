@@ -79,7 +79,7 @@ export default function Catalog() {
         ))}
       </div>
       <p className="muted catalog-count" role="status">
-        {t('catalog.count', { count: number(items.length) })}
+        {t('catalog.count', { count: items.length, formattedCount: number(items.length) })}
       </p>
       <div className="catalog-grid">
         {items.map((item) => (

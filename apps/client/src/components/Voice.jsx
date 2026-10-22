@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useDrag } from '@use-gesture/react';
 import { AlertCircle, ArrowUp, LoaderCircle, LockKeyhole, Mic, Square } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useReducedMotion } from './PreferencesProvider.jsx';
@@ -101,6 +100,7 @@ export function Waveform({ level = 0, active = false, label }) {
 
 export function MicButton({ onComplete, enableAudio = false, previewState, docked = false }) {
   const { t } = useTranslation();
+  const reduce = useReducedMotion();
   const [state, setState] = useState('idle');
   const stateRef = useRef(state);
   stateRef.current = state;
@@ -109,7 +109,7 @@ export function MicButton({ onComplete, enableAudio = false, previewState, docke
   const { level, start, stop, error } = useMicLevel(() => {
     if (stateRef.current === 'locked') finish();
   });
-  const shown = previewState || (error ? 'error' : state);
+  const shown = previewState || (error && state === 'idle' ? 'error' : state);
   const active = shown === 'listening' || shown === 'locked';
   function clearTimers() {
     for (const timer of Object.values(timers.current)) clearTimeout(timer);
@@ -126,42 +126,59 @@ export function MicButton({ onComplete, enableAudio = false, previewState, docke
     stateRef.current = 'locked';
     timers.current.silence = setTimeout(finish, enableAudio ? 15_000 : 5000);
   }
-  const bind = useDrag(
-    ({ first, last, movement: [, y], elapsedTime, canceled }) => {
-      if (previewState) return;
-      if (first) {
-        pressed.current = { stop: stateRef.current === 'locked', locked: false };
-        clearTimers();
-        if (!pressed.current.stop) {
-          if (enableAudio) start();
-          timers.current.hold = setTimeout(() => {
-            setState('listening');
-            stateRef.current = 'listening';
-          }, 180);
-        }
-      }
-      if (canceled) {
-        clearTimers();
-        stop();
-        setState('idle');
-        return;
-      }
-      if (y <= -60 && !pressed.current.stop && !pressed.current.locked) {
-        clearTimeout(timers.current.hold);
-        pressed.current.locked = true;
+  function pointerDown(event) {
+    if (previewState || event.button !== 0) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    pressed.current = {
+      stop: stateRef.current === 'locked',
+      locked: false,
+      y: event.clientY,
+      at: performance.now(),
+    };
+    clearTimers();
+    if (!pressed.current.stop) {
+      if (enableAudio) start();
+      timers.current.hold = setTimeout(() => {
+        setState('listening');
+        stateRef.current = 'listening';
+      }, 180);
+      timers.current.limit = setTimeout(finish, 15_000);
+    }
+  }
+  function pointerMove(event) {
+    if (!pressed.current.at || previewState) return;
+    if (
+      event.clientY - pressed.current.y <= -60 &&
+      !pressed.current.stop &&
+      !pressed.current.locked
+    ) {
+      clearTimeout(timers.current.hold);
+      pressed.current.locked = true;
+      lock();
+    }
+  }
+  function pointerUp(event) {
+    if (!pressed.current.at || previewState) return;
+    clearTimeout(timers.current.hold);
+    if (pressed.current.stop) finish();
+    else if (!pressed.current.locked) {
+      if (
+        micGestureResult(
+          performance.now() - pressed.current.at,
+          event.clientY - pressed.current.y,
+        ) === 'locked'
+      )
         lock();
-      }
-      if (last) {
-        clearTimeout(timers.current.hold);
-        if (pressed.current.stop) finish();
-        else if (!pressed.current.locked) {
-          if (micGestureResult(elapsedTime, y) === 'locked') lock();
-          else finish();
-        }
-      }
-    },
-    { filterTaps: false, pointer: { capture: true }, preventScroll: false },
-  );
+      else finish();
+    }
+    pressed.current.at = null;
+  }
+  function cancel() {
+    clearTimers();
+    stop();
+    pressed.current.at = null;
+    setState('idle');
+  }
   useEffect(
     () => () => {
       for (const timer of Object.values(timers.current)) clearTimeout(timer);
@@ -197,11 +214,14 @@ export function MicButton({ onComplete, enableAudio = false, previewState, docke
       <span
         className="mic-ring"
         aria-hidden="true"
-        style={{ transform: `scale(${active ? 1.08 + level * 0.16 : 1})` }}
+        style={{ transform: `scale(${active && !reduce ? 1.08 + level * 0.16 : 1})` }}
       />
       <button
         type="button"
-        {...bind()}
+        onPointerDown={pointerDown}
+        onPointerMove={pointerMove}
+        onPointerUp={pointerUp}
+        onPointerCancel={cancel}
         className={`mic-button mic-button--${shown}`}
         aria-label={t(active ? 'voice.finish' : 'voice.button')}
         aria-pressed={active}
@@ -225,6 +245,11 @@ export function MicButton({ onComplete, enableAudio = false, previewState, docke
             {t(`voice.${shown}`)}
           </p>
           <Waveform level={level} active={active} />
+          {error && (
+            <p className="error-text" role="alert">
+              {t('voice.denied')}
+            </p>
+          )}
         </>
       )}
     </div>
