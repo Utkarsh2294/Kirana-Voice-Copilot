@@ -1,0 +1,119 @@
+.mic-wrap {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 24px;
+  min-inline-size: 0;
+}
+.mic-button {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  inline-size: 72px;
+  block-size: 72px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  border: 0;
+  touch-action: none;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 14%);
+}
+.mic-button:disabled {
+  cursor: default;
+}
+.mic-button:active:not(:disabled) {
+  transform: scale(0.96);
+}
+.mic-button--error {
+  background: var(--surface-3);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+}
+.mic-button--processing {
+  background: var(--surface-3);
+  color: var(--primary-text);
+}
+.mic-ring {
+  position: absolute;
+  inset-block-start: 20px;
+  inline-size: 80px;
+  block-size: 80px;
+  border-radius: 50%;
+  background: var(--grad-brand);
+  opacity: 0.55;
+  transition: transform 120ms ease-out;
+}
+.mic-wrap.is-active .mic-ring {
+  box-shadow: var(--glow-accent);
+}
+.mic-state {
+  text-align: center;
+  color: var(--text-2);
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+.mic-lock-hint {
+  position: absolute;
+  inset-block-start: -12px;
+  display: flex;
+  gap: 8px;
+  color: var(--primary-text);
+}
+.mic-lock-icon {
+  position: absolute;
+  inset-inline-end: 12px;
+  inset-block-end: 12px;
+}
+.mic-wrap--docked {
+  padding: 0;
+  inline-size: 80px;
+  block-size: 80px;
+  display: grid;
+  place-items: center;
+}
+.mic-wrap--docked .mic-ring {
+  inset-block-start: 0;
+}
+.waveform {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  block-size: 36px;
+  color: var(--text-2);
+}
+.waveform > span {
+  display: block;
+  inline-size: 4px;
+  block-size: 32px;
+  border-radius: 4px;
+  background: currentColor;
+  transition: transform 80ms linear;
+}
+.waveform.is-active {
+  color: var(--accent-text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .mic-ring,
+  .waveform > span {
+    transition: none;
+  }
+  .mic-wrap.is-active .mic-ring {
+    box-shadow: none;
+  }
+  .mic-button:active:not(:disabled) {
+    transform: none;
+  }
+}
+:root[data-reduced-motion='true'] .mic-ring,
+:root[data-reduced-motion='true'] .waveform > span {
+  transition: none;
+}
+:root[data-reduced-motion='true'] .mic-wrap.is-active .mic-ring {
+  box-shadow: none;
+}
+:root[data-reduced-motion='true'] .mic-button:active:not(:disabled) {
+  transform: none;
+}
