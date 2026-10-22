@@ -12,7 +12,7 @@ All body text is at least 16px, bill names 20px, totals 44–56px, Indic line-he
 
 Use transform/opacity only; layout projection handles bill reflow. Sheets/cards use spring 300/30; small controls 500/35. Feedback 120ms, transitions 220ms. Keyboard navigation is immediate. Reduced motion replaces transform/layout/spring effects with short fades and removes shimmer, pulses and animated counters. Hover effects require a fine pointer.
 
-Mic: tap toggles a hands-free preview, hold/release completes a gesture, slide up locks, Escape cancels. Without audio capture, preview stops after a short timeout; optional mic-level capture uses AnalyserNode silence detection and stops all tracks on release/unmount. Audio is never recorded or sent. Cloud voice comes in Phase 6.
+Mic: native pointer capture handles tap, hold/release and slide-up locking; Escape cancels. Without audio capture, the hands-free preview stops after five seconds; optional mic-level capture uses AnalyserNode silence detection and stops all tracks on release/unmount. A 15-second limit prevents a stuck hold from leaving capture open. Audio is never recorded or sent. Cloud voice comes in Phase 6. Insights uses @use-gesture/react; bill rows and sheets use Motion drag. Loading gesture code only on its route keeps the counter within the build budget.
 
 Bill rows: left delete with Undo, right edit, long press price, quantity button opens its sheet. Buttons provide keyboard equivalents. Sheets drag down with distance/velocity snapping and allow focus to leave, per the plan. Confirmation dialogs are modal with cancel-first focus and restoration. Insight periods use swipe plus accessible buttons and pull-to-refresh plus an explicit refresh button.
 

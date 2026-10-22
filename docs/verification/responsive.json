@@ -1,0 +1,143 @@
+{
+  "date": "2026-10-22",
+  "browser": "Codex in-app Chromium",
+  "mainRoutes": [
+    {
+      "heading": "A little less typing.A lot more selling.",
+      "overflow": false,
+      "route": "/bill",
+      "scroll": 345,
+      "width": 360
+    },
+    {
+      "heading": "Good days start witha little clarity.",
+      "overflow": false,
+      "route": "/insights",
+      "scroll": 345,
+      "width": 360
+    },
+    {
+      "heading": "Everyday essentials.One tap away.",
+      "overflow": false,
+      "route": "/catalog",
+      "scroll": 345,
+      "width": 360
+    },
+    {
+      "heading": "Your counter.Your way.",
+      "overflow": false,
+      "route": "/settings",
+      "scroll": 345,
+      "width": 360
+    },
+    {
+      "heading": "A little less typing.A lot more selling.",
+      "overflow": false,
+      "route": "/bill",
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "heading": "Good days start witha little clarity.",
+      "overflow": false,
+      "route": "/insights",
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "heading": "Everyday essentials.One tap away.",
+      "overflow": false,
+      "route": "/catalog",
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "heading": "Your counter.Your way.",
+      "overflow": false,
+      "route": "/settings",
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "heading": "A little less typing.A lot more selling.",
+      "overflow": false,
+      "route": "/bill",
+      "scroll": 1265,
+      "width": 1280
+    },
+    {
+      "heading": "Good days start witha little clarity.",
+      "overflow": false,
+      "route": "/insights",
+      "scroll": 1265,
+      "width": 1280
+    },
+    {
+      "heading": "Everyday essentials.One tap away.",
+      "overflow": false,
+      "route": "/catalog",
+      "scroll": 1265,
+      "width": 1280
+    },
+    {
+      "heading": "Your counter.Your way.",
+      "overflow": false,
+      "route": "/settings",
+      "scroll": 1265,
+      "width": 1280
+    },
+    {
+      "heading": "A little less typing.A lot more selling.",
+      "overflow": false,
+      "route": "/bill",
+      "scroll": 829,
+      "width": 844
+    },
+    {
+      "heading": "Good days start witha little clarity.",
+      "overflow": false,
+      "route": "/insights",
+      "scroll": 829,
+      "width": 844
+    },
+    {
+      "heading": "Everyday essentials.One tap away.",
+      "overflow": false,
+      "route": "/catalog",
+      "scroll": 829,
+      "width": 844
+    },
+    {
+      "heading": "Your counter.Your way.",
+      "overflow": false,
+      "route": "/settings",
+      "scroll": 829,
+      "width": 844
+    }
+  ],
+  "gallery": [
+    {
+      "overflow": false,
+      "theme": "dark",
+      "width": 1280
+    },
+    {
+      "overflow": false,
+      "theme": "day",
+      "width": 1280
+    },
+    {
+      "otpWidths": [49, 49, 49, 49, 49, 49, 49, 49, 49, 49, 49, 49],
+      "overflow": false,
+      "shimmer": "none",
+      "theme": "day",
+      "width": 360
+    },
+    {
+      "overflow": false,
+      "theme": "dark",
+      "width": 360
+    }
+  ],
+  "physicalDevice": false
+}

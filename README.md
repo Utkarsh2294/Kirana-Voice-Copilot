@@ -19,6 +19,10 @@ flowchart LR
 
 See [the build ledger](docs/progress.md), [architecture](docs/architecture.md), and [contribution guide](CONTRIBUTING.md).
 
+![Phase 2 counter prototype](docs/screenshots/phase-02-desktop.png)
+
+The [Phase 2 handoff](docs/phase-02-handoff.md) records delivered behavior, acceptance evidence and physical-device checks still needed. The two phase checkpoints are tagged `phase-01-done` and `phase-02-done`.
+
 ## Start locally (PowerShell)
 
 ```powershell

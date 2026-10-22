@@ -55,6 +55,21 @@ Requested: complete through Phase 2, with 30 substantive conventional commits pu
 - [x] Eleven namespaces, English/Hindi key parity, route stubs, error boundary and placeholder manifest exist.
 - [x] JavaScript-only source policy, hooks, CI, disabled deploy jobs, five core ADRs and contribution/deploy instructions exist.
 - [ ] Local full-stack Docker runtime: engine unavailable; startup command was blocked by automatic approval review. CI includes an independent Compose runtime check.
-- [ ] Remote CI result: pending push of the completed foundation.
+- [x] Remote Phase 1 CI: [run 39763130091](https://github.com/Utkarsh2294/Kirana-Voice-Copilot/actions/runs/39763130091) passed JavaScript, Python 3.11 and the full Linux Compose runtime checks at `c55bb95`.
 
 The older Python package pins were replaced with versions already available on this host; Mongo/PyMongo is deferred until the recommendation service actually reads Mongo in Phase 11. No analytics stack is installed prematurely.
+
+## Phase 2 audit
+
+- [x] All prescribed components and states have gallery entries; route and gallery render at 360px/1280px in dark/day modes.
+- [x] Text and control palette contrast passes AA math checks in both themes. Semantic axe, focus behavior and keyboard interactions pass automated tests.
+- [x] Swipe delete, persistent Undo and restoration recover the original line/order/total.
+- [x] Hold/release, tap, slide-up lock and sheet drag dismissal work in the browser preview.
+- [ ] Those mic gestures have not been tested on a physical phone; the real-phone acceptance item remains open.
+- [x] Reduced-motion preference removes shimmer, spring/layout motion, ring reactions and animated totals as documented.
+- [x] Hindi/Tamil narrow-screen previews do not clip; Hindi/English common-key parity is tested.
+- [x] Default-English bill bundle is 177.8 KiB gzip including first-run and gesture chunks; production output excludes the dev gallery.
+- [x] Main screens checked at mobile, tablet, desktop and landscape widths with no horizontal overflow. Long text, empty data and large values remain inspectable in the gallery.
+- [x] 23 JavaScript tests and 2 Python tests pass locally. No external speech/payment claim is inferred from these checks.
+
+See [the handoff](phase-02-handoff.md) for run commands, evidence, scope boundaries and remaining hardware checks. Requested stop: no Phase 3 work.
