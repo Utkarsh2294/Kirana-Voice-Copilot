@@ -9,6 +9,7 @@
 @import './pages/bill.css';
 @import './pages/screens.css';
 @import './pages/insights.css';
+@import './pages/gallery.css';
 
 @theme inline {
   --color-background: var(--bg);

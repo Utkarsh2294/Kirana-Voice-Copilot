@@ -1,0 +1,81 @@
+.gallery {
+  max-inline-size: 1050px;
+  margin-inline: auto;
+}
+.gallery-controls {
+  padding: 24px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-block-end: 28px;
+}
+.gallery-controls h2 {
+  font-size: 20px;
+  margin-block-end: 20px;
+}
+.gallery-section {
+  border-block-end: 1px solid var(--border);
+  padding-block: 28px 36px;
+  display: grid;
+  gap: 28px;
+  min-inline-size: 0;
+}
+.gallery-section > h2 {
+  font-size: 24px;
+}
+.gallery-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.gallery-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  min-inline-size: 0;
+  align-items: start;
+}
+.gallery-columns .glass-card > p {
+  margin-block-start: 16px;
+  overflow-wrap: anywhere;
+}
+.gallery-mics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.gallery-mics > div {
+  min-inline-size: 0;
+  text-align: center;
+}
+.gallery-mics .mic-wrap {
+  padding-inline: 8px;
+}
+.gallery-bill {
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.gallery .sparkline {
+  max-block-size: 160px;
+}
+@media (max-width: 1000px) {
+  .gallery-columns {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 759px) {
+  .gallery-mics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px 8px;
+  }
+  .gallery-controls {
+    padding: 20px;
+  }
+  .gallery-section {
+    gap: 24px;
+  }
+}
