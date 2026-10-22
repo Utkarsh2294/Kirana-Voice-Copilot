@@ -1,3 +1,5 @@
+import '../locales/insights.js';
+import '../locales/gallery.js';
 import './gallery.css';
 import React, { useState } from 'react';
 import { Check, CircleAlert, Headphones, Plus, Trash2, Volume2, Wifi } from 'lucide-react';

@@ -8,7 +8,8 @@
     "./money": "./src/money.js",
     "./units": "./src/units.js",
     "./languages": "./src/languages.js",
-    "./schemas": "./src/schemas.js"
+    "./schemas": "./src/schemas.js",
+    "./merchant": "./src/merchant.js"
   },
   "dependencies": {
     "zod": "^4.1.12"

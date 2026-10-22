@@ -2,7 +2,7 @@
 
 A voice-first counter companion for India's neighbourhood grocery stores.
 
-**Build scope: Phases 1–2, plus the public website before Phase 3.** This repository contains the monorepo foundation and an interactive, accessible design prototype. Sample bills and insights are explicitly illustrative. Authentication (Phase 3), catalog APIs (4), pricing (5), cloud speech (6), parsing (7), persisted billing (8), payments (9), analytics (10), recommendations (11–13), and offline sync (14) are separate milestones.
+**Build scope: Phases 1–3, plus the public website.** This repository contains the monorepo foundation and an interactive, accessible design prototype. Sample bills and insights are explicitly illustrative. Merchant accounts and onboarding are implemented; catalog APIs (4), pricing (5), cloud speech (6), parsing (7), persisted billing (8), payments (9), analytics (10), recommendations (11–13), and offline sync (14) are separate milestones.
 
 ## Architecture
 
@@ -19,7 +19,7 @@ flowchart LR
 
 See [the build ledger](docs/progress.md), [architecture](docs/architecture.md), and [contribution guide](CONTRIBUTING.md).
 
-The public website adds Home (`/`), Our Story & Mission (`/about`), How It Works (`/how-it-works`), and the full Roadmap (`/roadmap`). The merchant prototype remains at `/bill`. See [the public-site handoff](docs/public-website.md).
+The public website adds Home (`/`), Our Story & Mission (`/about`), How It Works (`/how-it-works`), and the full Roadmap (`/roadmap`). The public merchant sample is at `/demo/bill`; `/bill` is the authenticated workspace. See [the public-site handoff](docs/public-website.md).
 
 ![Phase 2 counter prototype](docs/screenshots/phase-02-desktop.png)
 
@@ -35,7 +35,7 @@ Copy-Item services/reco/.env.example services/reco/.env
 npm run dev:all
 ```
 
-Start Docker Desktop first. Open http://localhost:5173 for the public website or http://localhost:5173/bill for the merchant prototype. Compose serves a production build, so `/dev/ui` is intentionally absent. For the development gallery and hot reload, stop the Compose client (`docker compose -f infra/docker-compose.yml stop client`) and run `npm run dev -w @kirana/client` instead.
+Start Docker Desktop first. Open http://localhost:5173 for the public website or http://localhost:5173/demo/bill for the merchant sample. Compose serves a production build, so `/dev/ui` is intentionally absent. For the development gallery and hot reload, stop the Compose client (`docker compose -f infra/docker-compose.yml stop client`) and run `npm run dev -w @kirana/client` instead.
 
 Without containers, run MongoDB as a replica set, then:
 
@@ -61,4 +61,10 @@ python -m ruff check services/reco
 
 Use your virtual environment's interpreter for Python checks. Health URLs: API `/healthz`, `/readyz` at port 3001; reco `/healthz`, `/readyz` at port 8000. Reco `/v1` requires `x-api-key`. Readiness returns 503 when Mongo is unreachable; process liveness stays 200.
 
-Deployment preparation and every required variable/secret are in [docs/deploy.md](docs/deploy.md). Cloud speech, authentication and real payments are intentionally deferred according to the plan.
+Deployment preparation and every required variable/secret are in [docs/deploy.md](docs/deploy.md). Live SMS needs a vendor adapter and credentials. Cloud speech and real payments remain deferred according to the plan.
+
+## Merchant accounts (Phase 3)
+
+Open `/login` to set up a store. `/bill`, `/catalog`, `/insights`, `/settings`, and `/customers` require a session; unfinished accounts resume `/onboarding`. The sample UI remains public under `/demo/bill` and sibling demo routes.
+
+See [the Phase 3 handoff](docs/phase-03-handoff.md) for development OTP configuration, the optional disposable database, security choices, acceptance evidence, and current integration limits.

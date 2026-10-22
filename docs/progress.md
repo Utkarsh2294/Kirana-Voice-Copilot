@@ -77,3 +77,7 @@ See [the handoff](phase-02-handoff.md) for run commands, evidence, scope boundar
 ## Public website addition
 
 The user subsequently authorized an original, mission-led public website before onboarding: Home, Our Story & Mission, How It Works, and all 15 roadmap phases. English/Hindi, dark/day, mobile navigation, accessible disclosures, original imagery, and the existing merchant entry are delivered in one commit. See [the website handoff](public-website.md) for plan mapping and evidence. The user then authorized continuing into Phases 3 and 4 after this website commit.
+
+## Phase 3 — accounts and store setup
+
+Merchant models, OTP/session security, ordered onboarding, local PIN resolution, validated QR uploads, guarded routes, account controls, and honest speech previews are implemented. Public sample routes are now under `/demo/*`. See [the Phase 3 handoff](phase-03-handoff.md) for commands, acceptance evidence, data provenance, and outstanding live-SMS/device checks. The public-site commit `bbe3fbf` passed [CI run 39819131734](https://github.com/Utkarsh2294/Kirana-Voice-Copilot/actions/runs/39819131734).

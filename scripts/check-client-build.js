@@ -21,7 +21,7 @@ for (const key of [
 ])
   collect(key);
 // Rollup can give a shared dynamic entry a generated manifest key.
-const merchantKey = Object.keys(manifest).find((key) => manifest[key].name === 'MerchantApp');
+const merchantKey = Object.keys(manifest).find((key) => manifest[key].name === 'MerchantEntry');
 assert(merchantKey, 'Missing merchant application chunk');
 collect(merchantKey);
 const publicChunk = Object.values(manifest).find((chunk) => chunk.name === 'PublicSite');

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { Shell } from './components/Shell.jsx';
 import { UiProvider } from './components/overlays.jsx';
 import { Skeleton } from './components/primitives.jsx';
@@ -12,17 +12,19 @@ const Settings = lazy(() => import('./pages/Settings.jsx'));
 const ComingSoon = lazy(() => import('./pages/ComingSoon.jsx'));
 const CoachMarks = lazy(() => import('./components/CoachMarks.jsx'));
 export default function MerchantApp() {
+  const { pathname } = useLocation();
+  const prefix = pathname.startsWith('/demo/') ? '/demo' : '';
   return (
     <UiProvider>
       <Shell>
         <Suspense fallback={<Skeleton lines={5} />}>
           <Routes>
-            <Route path="/bill" element={<Bill />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/insights" element={<Insights />} />
-            {['customers', 'login'].map((name) => (
-              <Route key={name} path={`/${name}`} element={<ComingSoon name={name} />} />
+            <Route path={`${prefix}/bill`} element={<Bill />} />
+            <Route path={`${prefix}/catalog`} element={<Catalog />} />
+            <Route path={`${prefix}/settings`} element={<Settings />} />
+            <Route path={`${prefix}/insights`} element={<Insights />} />
+            {['customers'].map((name) => (
+              <Route key={name} path={`${prefix}/${name}`} element={<ComingSoon name={name} />} />
             ))}
             {Gallery && <Route path="/dev/ui" element={<Gallery />} />}
             {import.meta.env.DEV && (

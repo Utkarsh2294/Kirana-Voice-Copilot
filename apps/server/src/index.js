@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import { createApp } from './app.js';
 import { loadConfig } from './config.js';
 import { createLogger } from './logger.js';
+import { ensureCoreIndexes } from './models.js';
 
 let config;
 try {
@@ -31,6 +32,7 @@ async function connect() {
       serverSelectionTimeoutMS: 3000,
       connectTimeoutMS: 3000,
     });
+    await ensureCoreIndexes();
   } catch {
     logger.warn({ code: 'MONGO_CONNECT_FAILED' }, 'Database unavailable; retrying in five seconds');
     if (!stopping) retry = setTimeout(connect, 5000);

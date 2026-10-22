@@ -50,7 +50,7 @@ function Brand() {
   );
 }
 
-function Action({ to = '/bill', children, secondary = false, ...props }) {
+function Action({ to = '/demo/bill', children, secondary = false, ...props }) {
   return (
     <Link
       to={to}
@@ -103,6 +103,9 @@ function Header() {
               {t(`nav.${key}`)}
             </NavLink>
           ))}
+          <Link to="/login" className="public-account-link" onClick={() => setOpen(false)}>
+            {t('start')}
+          </Link>
         </nav>
         <div className="public-tools">
           <label className="public-language">
@@ -125,8 +128,8 @@ function Header() {
           >
             {day ? <Moon size={18} aria-hidden="true" /> : <Sun size={18} aria-hidden="true" />}
           </button>
-          <Link to="/bill" className="public-header-cta">
-            {t('try')}
+          <Link to="/login" className="public-header-cta">
+            {t('start')}
             <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
           <button
@@ -419,7 +422,7 @@ function Roadmap() {
                 return (
                   <li
                     key={phase}
-                    className={phase <= 2 ? 'is-built' : phase === 3 ? 'is-next' : ''}
+                    className={phase <= 3 ? 'is-built' : phase === 4 ? 'is-next' : ''}
                   >
                     <Index value={phase} />
                     <div>
@@ -432,8 +435,8 @@ function Roadmap() {
                       <p>{item.body}</p>
                     </div>
                     <span className="public-phase-status">
-                      {phase <= 2 && <CircleCheck size={16} aria-hidden="true" />}
-                      {t(phase <= 2 ? 'complete' : phase === 3 ? 'next' : 'planned')}
+                      {phase <= 3 && <CircleCheck size={16} aria-hidden="true" />}
+                      {t(phase <= 3 ? 'complete' : phase === 4 ? 'next' : 'planned')}
                     </span>
                   </li>
                 );
@@ -497,7 +500,8 @@ function Footer() {
             <h2>{t('footer.product')}</h2>
             <Link to="/how-it-works">{t('nav.how')}</Link>
             <Link to="/roadmap">{t('nav.roadmap')}</Link>
-            <Link to="/bill">{t('try')}</Link>
+            <Link to="/demo/bill">{t('try')}</Link>
+            <Link to="/login">{t('start')}</Link>
           </nav>
           <nav aria-label={t('footer.project')}>
             <h2>{t('footer.project')}</h2>

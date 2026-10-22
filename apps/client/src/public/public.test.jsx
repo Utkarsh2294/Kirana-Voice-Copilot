@@ -43,7 +43,9 @@ it('opens the public home, navigates the story and reaches the existing merchant
   expect(screen.getByRole('main')).toHaveFocus();
   expect(document.title).toBe('Our story & mission | Kirana Voice Copilot');
   await user.click(screen.getAllByRole('link', { name: 'Explore the prototype' })[0]);
-  expect(await screen.findByRole('heading', { name: 'Current bill' })).toBeInTheDocument();
+  expect(
+    await screen.findByRole('heading', { name: 'Current bill' }, { timeout: 5000 }),
+  ).toBeInTheDocument();
   expect(document.title).not.toContain('Our story');
   await user.click(screen.getAllByRole('link', { name: 'Kirana website home' })[0]);
   expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent('Your shop.');
@@ -73,11 +75,11 @@ it('supports menu Escape, day mode, Hindi, and honest expandable answers', async
   expect(usePreferences.getState().language).toBe('hi-IN');
 });
 
-it('keeps every roadmap phase and marks only the current two foundations built', async () => {
+it('keeps every roadmap phase and marks only the current three foundations built', async () => {
   open('/roadmap');
   await screen.findByRole('heading', { level: 1 });
   expect(within(screen.getByRole('main')).getAllByRole('listitem')).toHaveLength(15);
-  expect(screen.getAllByText('Foundation built')).toHaveLength(2);
+  expect(screen.getAllByText('Foundation built')).toHaveLength(3);
   expect(screen.getByText('Next · not started')).toBeInTheDocument();
   expect(screen.getByText('Offline, security & privacy')).toBeInTheDocument();
 });

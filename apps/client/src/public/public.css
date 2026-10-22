@@ -161,6 +161,9 @@
 .public-site .public-menu {
   display: none;
 }
+.public-site .public-account-link {
+  display: none;
+}
 .public-site .public-hero {
   position: relative;
   display: grid;
@@ -820,6 +823,9 @@
   }
 }
 @media (max-width: 1150px) {
+  .public-site .public-account-link {
+    display: grid;
+  }
   .public-site .public-container {
     width: calc(100% - 64px);
   }

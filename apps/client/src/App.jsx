@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const PublicSite = lazy(() => import('./public/PublicSite.jsx'));
-const MerchantApp = lazy(() => import('./MerchantApp.jsx'));
+const MerchantApp = lazy(() => import('./auth/MerchantEntry.jsx'));
 export function App() {
   const { t } = useTranslation();
   return (

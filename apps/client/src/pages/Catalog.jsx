@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowRight, Check, Plus, Search, ShoppingBag } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { sampleItems } from '../prototype/sample-data.js';
@@ -17,6 +17,8 @@ import { money, number } from '../format.js';
 import { feedback } from '../feedback.js';
 
 export default function Catalog() {
+  const { pathname } = useLocation();
+  const prefix = pathname.startsWith('/demo/') ? '/demo' : '';
   const { t } = useTranslation();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('all');
@@ -61,7 +63,7 @@ export default function Catalog() {
             aria-label={t('bill.search')}
           />
         </div>
-        <Link to="/bill" className="button button--ghost">
+        <Link to={`${prefix}/bill`} className="button button--ghost">
           {t('catalog.openBill')}
           <ArrowRight size={18} />
         </Link>

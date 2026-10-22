@@ -74,7 +74,7 @@
   "preview": {
     "eyebrow": "A CLEAR START. AN OPEN ROAD.",
     "title": "Explore what’s taking shape.",
-    "body": "The foundations and design system are built. Try the sample bill, catalog, and insight screens to see the direction. Store accounts and onboarding are next.",
+    "body": "The foundations, sample workspace, and merchant setup flow are built. Explore the sample bill and insights, or sign in to set up your store. Live speech and payments come later.",
     "today": "Available to explore",
     "items": [
       "Sample bill and price edits",
@@ -90,7 +90,7 @@
     "items": [
       {
         "q": "Can I use this to run my shop today?",
-        "a": "Not yet. This is an interactive prototype after Phases 1 and 2. You can explore sample screens and UI interactions. Merchant accounts, saved bills, live speech, payment confirmation, and recommendations are planned for later phases."
+        "a": "Not yet for real sales. This is an early prototype through Phase 3. You can explore sample screens and set up a merchant account when SMS or explicitly gated development OTP is configured. Saved bills, live speech, payment confirmation, and recommendations come in later phases."
       },
       {
         "q": "Which languages are available?",
@@ -183,7 +183,7 @@
   "roadmap": {
     "eyebrow": "THE BUILD ROADMAP",
     "title": "Built with care. One useful step at a time.",
-    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1 and 2 form the current prototype. This public website is an addition before Phase 3, which has not started.",
+    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1–3 now include the foundations, sample UI, and merchant accounts with resumable onboarding. Catalog work is next.",
     "foundation": "THE FOUNDATION",
     "counter": "THE EVERYDAY COUNTER",
     "growth": "THE NEXT DECISION",
@@ -267,7 +267,7 @@
     "principles": "Our principles",
     "faq": "Questions",
     "source": "View the code",
-    "status": "Phases 1–2 prototype · Public website before Phase 3",
+    "status": "Phases 1–3 prototype · Catalog is next",
     "disclaimer": "Sample data. Planned features are labelled. No live speech or payment integration. No claimed provider partnership."
   },
   "meta": {
@@ -287,5 +287,6 @@
       "title": "The 15-phase roadmap | Kirana Voice Copilot",
       "description": "See the current Phase 1–2 prototype and the planned path through onboarding, voice, billing, recommendations, privacy, and release readiness."
     }
-  }
+  },
+  "start": "Set up your shop"
 }

@@ -1,5 +1,6 @@
+import '../locales/settings.js';
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { ArrowUpRight, BookOpen, Monitor, Moon, Play, Sun } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -12,12 +13,14 @@ import {
 } from '../components/primitives.jsx';
 import { usePreferences } from '../preferences.js';
 import { useUi } from '../components/overlays.jsx';
+import AccountSettings from '../auth/AccountSettings.jsx';
 
 export default function Settings() {
   const { t } = useTranslation();
   const prefs = usePreferences();
   const { read } = useUi();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
   const themes = [
     { value: 'dark', Icon: Moon },
     { value: 'day', Icon: Sun },
@@ -99,7 +102,7 @@ export default function Settings() {
               variant="ghost"
               onClick={() => {
                 prefs.update({ tourSeen: false });
-                navigate('/bill');
+                navigate(pathname.startsWith('/demo/') ? '/demo/bill' : '/bill');
               }}
             >
               {t('settings.coach')}
@@ -123,6 +126,7 @@ export default function Settings() {
           </div>
         </div>
       </div>
+      <AccountSettings />
       <p
         className={`settings-save-note ${prefs.storageError ? 'error-text' : 'muted'}`}
         role="status"

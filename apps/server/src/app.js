@@ -5,8 +5,18 @@ import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
 import pinoHttp from 'pino-http';
 import { createLogger } from './logger.js';
+import mongoSanitize from 'express-mongo-sanitize';
+import { createAuth } from './auth.js';
+import { merchantRouter, regionRouter } from './merchants.js';
+import { problem } from './http.js';
 
-export function createApp({ config, isReady = async () => false, logger = createLogger() }) {
+export function createApp({
+  config,
+  isReady = async () => false,
+  logger = createLogger(),
+  smsProvider,
+  clock,
+}) {
   const app = express();
   app.disable('x-powered-by');
   app.use(
@@ -50,7 +60,16 @@ export function createApp({ config, isReady = async () => false, logger = create
         next(Object.assign(new Error('Too many requests'), { status: 429, code: 'RATE_LIMITED' })),
     }),
   );
+  app.use('/api/v1/merchants/me/qr', express.json({ limit: '410kb' }));
   app.use(express.json({ limit: '32kb' }));
+  app.use('/api/v1', (req, _res, next) => {
+    // Express 5 query is a getter: use the package's object API, not its assigning middleware.
+    if ([req.body, req.query, req.params].some((value) => value && mongoSanitize.has(value)))
+      return next(problem(400, 'VALIDATION_FAILED'));
+    if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method) && req.get('x-kirana-client') !== 'web')
+      return next(problem(403, 'CSRF_REJECTED'));
+    next();
+  });
   app.get('/healthz', (_req, res) => res.json({ status: 'ok', service: 'api' }));
   app.get('/readyz', async (req, res) => {
     let ready = false;
@@ -64,15 +83,19 @@ export function createApp({ config, isReady = async () => false, logger = create
       .json({ status: ready ? 'ready' : 'not-ready', checks: { mongo: Boolean(ready) } });
   });
   app.get('/api/v1', (_req, res) =>
-    res.json({ name: 'Kirana Voice Copilot', version: '0.2.0', phase: 2 }),
+    res.json({ name: 'Kirana Voice Copilot', version: '0.2.0', phase: 3 }),
   );
+  const auth = createAuth({ config, logger, smsProvider, clock });
+  app.use('/api/v1/auth', auth.router);
+  app.use('/api/v1/merchants', merchantRouter(auth));
+  app.use('/api/v1/regions', regionRouter(auth));
   app.use((_req, _res, next) =>
     next(Object.assign(new Error('Route not found'), { status: 404, code: 'NOT_FOUND' })),
   );
   app.use((error, req, res, _next) => {
     const status = error.status >= 400 && error.status < 600 ? error.status : 500;
     const code =
-      error.code ||
+      (typeof error.code === 'string' && /^[A-Z_]+$/.test(error.code) ? error.code : null) ||
       (status === 400 ? 'INVALID_JSON' : status === 413 ? 'BODY_TOO_LARGE' : 'INTERNAL_ERROR');
     req.log.error({ code, status, requestId: req.id }, 'Request failed');
     res

@@ -1,0 +1,10 @@
+{
+  "originalSource": "https://www.data.gov.in/resource/all-india-pincode-directory-till-last-month",
+  "downloadMirror": "https://raw.githubusercontent.com/dropdevrahul/pincodes-india/main/pincode.csv",
+  "retrievedAt": "2026-10-22",
+  "sha256": "84af12fa29adddedfa9addcf46546000d89d2e2899b2993dc88050fafc8861e2",
+  "license": "Government Open Data License - India",
+  "records": 19300,
+  "transform": "One record per six-digit PIN; most common state/district; median valid coordinates rounded to two decimals. Coordinates only suggest a PIN; merchant must confirm. Unknown PIN uses prefix fallback.",
+  "fields": ["state", "district", "coarseLat (optional)", "coarseLng (optional)"]
+}

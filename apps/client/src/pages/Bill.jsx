@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import {
   ArrowRight,
@@ -35,6 +35,8 @@ import { money, number } from '../format.js';
 import { feedback } from '../feedback.js';
 
 export default function Bill() {
+  const { pathname } = useLocation();
+  const catalogPath = pathname.startsWith('/demo/') ? '/demo/catalog' : '/catalog';
   const { t } = useTranslation();
   const { lines, add, remove, restore, edit, clear, reset } = useSampleBill();
   const { notify, read } = useUi();
@@ -197,7 +199,7 @@ export default function Bill() {
           <section className="quick-add">
             <div className="row between">
               <h2>{t('bill.quickAdd')}</h2>
-              <Link to="/catalog">
+              <Link to={catalogPath}>
                 {t('bill.allItems')}
                 <ChevronRight size={14} />
               </Link>

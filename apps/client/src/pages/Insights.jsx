@@ -1,5 +1,6 @@
+import '../locales/insights.js';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useDrag } from '@use-gesture/react';
 import {
   ArrowRight,
@@ -33,6 +34,8 @@ export function nextPeriod(current, direction) {
   return periods[Math.max(0, Math.min(2, periods.indexOf(current) + direction))];
 }
 export default function Insights() {
+  const { pathname } = useLocation();
+  const prefix = pathname.startsWith('/demo/') ? '/demo' : '';
   const { t } = useTranslation();
   const { read, notify } = useUi();
   const [period, setPeriod] = useState('day');
@@ -215,7 +218,7 @@ export default function Insights() {
                 <h2>{t('insights.nextTitle')}</h2>
                 <p>{t('insights.nextBody')}</p>
               </div>
-              <Link to="/catalog" className="button button--ghost">
+              <Link to={`${prefix}/catalog`} className="button button--ghost">
                 {t('insights.nextAction')}
                 <ArrowRight size={18} />
               </Link>

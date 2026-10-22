@@ -22,7 +22,8 @@
     "format:check": "prettier --check .",
     "prepare": "husky",
     "seed": "node scripts/seed.js",
-    "gen:synthetic": "node scripts/gen-synthetic.js"
+    "gen:synthetic": "node scripts/gen-synthetic.js",
+    "dev:database": "node scripts/dev-mongo.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -42,6 +43,7 @@
     "husky": "^9.1.7",
     "jsdom": "^26.1.0",
     "lint-staged": "^16.2.0",
+    "mongodb-memory-server": "^11.3.0",
     "prettier": "^3.6.2",
     "supertest": "^7.1.4",
     "vitest": "4.1.12"
@@ -52,5 +54,10 @@
       "prettier --write"
     ],
     "*.{json,css,md,yml,yaml}": "prettier --write"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "7.0.24"
+    }
   }
 }

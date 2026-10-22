@@ -25,6 +25,7 @@ const envSchema = z
     COOKIE_SECURE: flag,
     COOKIE_SAME_SITE: z.enum(['lax', 'strict', 'none']).default('lax'),
     ALLOW_DEV_OTP: flag,
+    SMS_PROVIDER: z.enum(['console', 'msg91', 'twilio']).default('console'),
     SARVAM_API_KEY: z.string().default(''),
     SARVAM_BASE_URL: z.url().default('https://api.sarvam.ai'),
     PAYMENT_PROVIDER: z.enum(['manual', 'demo', 'paytm-dqr']).default('demo'),

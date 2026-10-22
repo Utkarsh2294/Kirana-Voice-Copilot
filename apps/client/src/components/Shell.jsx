@@ -22,6 +22,7 @@ import { LanguagePicker, OfflineBanner } from './primitives.jsx';
 import { MicButton } from './Voice.jsx';
 import { useUi } from './overlays.jsx';
 import { useReducedMotion } from './PreferencesProvider.jsx';
+import { useSession } from '../auth/Session.jsx';
 
 const links = [
   { path: 'bill', Icon: ReceiptText },
@@ -36,6 +37,13 @@ export function Shell({ children }) {
   const { notify } = useUi();
   const reduce = useReducedMotion();
   const location = useLocation();
+  const prefix = location.pathname.startsWith('/demo/') ? '/demo' : '';
+  const session = useSession();
+  const merchant = prefix ? null : session?.merchant;
+  const storeName = merchant?.storeName || t('brand.store');
+  const initials = merchant?.storeName
+    ? Array.from(merchant.storeName).slice(0, 2).join('').toLocaleUpperCase()
+    : t('brand.initials');
   const navigate = useNavigate();
   const pointerNavigation = useRef(false);
   useEffect(() => {
@@ -58,8 +66,8 @@ export function Shell({ children }) {
   }
   const NavItem = ({ path, Icon }) => (
     <NavLink
-      to={`/${path}`}
-      onClick={(event) => transition(event, `/${path}`)}
+      to={`${prefix}/${path}`}
+      onClick={(event) => transition(event, `${prefix}/${path}`)}
       className={({ isActive }) => `nav-item ${isActive ? 'is-active' : ''}`}
     >
       <Icon size={21} strokeWidth={1.7} />
@@ -89,7 +97,7 @@ export function Shell({ children }) {
             <Store size={18} />
           </span>
           <div>
-            <strong>{t('brand.store')}</strong>
+            <strong>{storeName}</strong>
             <p>{t('prototype.short')}</p>
           </div>
         </div>
@@ -112,9 +120,9 @@ export function Shell({ children }) {
             <p>{t('brand.madeFor')}</p>
           </div>
           <div className="rail-owner">
-            <span className="avatar">{t('brand.initials')}</span>
+            <span className="avatar">{initials}</span>
             <div>
-              <strong>{t('brand.store')}</strong>
+              <strong>{storeName}</strong>
               <p>{t('brand.version')}</p>
             </div>
           </div>
@@ -124,10 +132,10 @@ export function Shell({ children }) {
         <header className="topbar">
           <NavLink to="/" className="topbar-store" aria-label={t('nav.home')}>
             <Store size={20} />
-            <span>{t('brand.store')}</span>
+            <span>{storeName}</span>
           </NavLink>
           <p className="greeting">
-            {t('brand.owner')}
+            {merchant?.ownerName || t('brand.owner')}
             <span className="greeting-dot" />
           </p>
           <div className="topbar-tools">
@@ -144,7 +152,7 @@ export function Shell({ children }) {
               value={language}
               onChange={(value) => update({ language: value })}
             />
-            <span className="avatar avatar--small">{t('brand.initials')}</span>
+            <span className="avatar avatar--small">{initials}</span>
           </div>
         </header>
         <OfflineBanner offline={!online} />

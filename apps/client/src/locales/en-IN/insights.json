@@ -1,0 +1,29 @@
+{
+  "insights": {
+    "eyebrow": "THE BIGGER PICTURE",
+    "title": "Good days start with",
+    "titleAccent": "a little clarity.",
+    "subtitle": "A glimpse of how your daily story will come together.",
+    "day": "Day",
+    "week": "Week",
+    "month": "Month",
+    "revenue": "Sample sales",
+    "bills": "Sample bills",
+    "average": "Average bill",
+    "trend": "Illustrative growth",
+    "chart": "Sales rhythm",
+    "chartHint": "A sample of the moments that keep your counter moving.",
+    "sampleChart": "Illustrative sales chart for {{period}}",
+    "top": "Popular in this sample",
+    "topHint": "Real sales insights arrive in Phase 10.",
+    "next": "A nudge for tomorrow",
+    "nextTitle": "Keep the everyday essentials close.",
+    "nextBody": "Restock and customer suggestions will appear here once the store has a sales history.",
+    "nextAction": "Explore sample catalog",
+    "updated": "Sample view refreshed",
+    "pull": "Pull down to refresh the sample",
+    "chartLabels": ["9 am", "11 am", "1 pm", "3 pm", "5 pm", "7 pm"],
+    "weekLabels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "monthLabels": ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Today"]
+  }
+}

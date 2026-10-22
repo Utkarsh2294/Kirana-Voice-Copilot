@@ -18,7 +18,7 @@ export default function CoachMarks() {
   const { tourSeen, update } = usePreferences();
   const { pathname } = useLocation();
   const [index, setIndex] = useState(0);
-  const open = !tourSeen && pathname === '/bill';
+  const open = !tourSeen && ['/bill', '/demo/bill'].includes(pathname);
   const { key, Icon } = steps[index];
   useEffect(() => {
     if (!tourSeen) setIndex(0);

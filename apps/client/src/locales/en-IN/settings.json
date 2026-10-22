@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "eyebrow": "MAKE YOURSELF AT HOME",
+    "title": "Your counter.",
+    "titleAccent": "Your way.",
+    "subtitle": "A few thoughtful settings for the way you work.",
+    "appearance": "Appearance",
+    "appearanceHint": "A clear view, from early mornings to late evenings.",
+    "theme": "Display mode",
+    "dark": "Night",
+    "day": "Day",
+    "auto": "System",
+    "language": "Language",
+    "languageHint": "Your language belongs at the counter.",
+    "feedback": "Sound & feel",
+    "haptics": "Haptic feedback",
+    "hapticsHint": "A gentle tick on supported devices. Off by default.",
+    "earcons": "Counter sounds",
+    "earconsHint": "Optional sound for sample item additions. Off by default.",
+    "motion": "Reduce motion",
+    "motionHint": "Gentle fades without springs, pulses or shimmer.",
+    "coach": "Take a quick tour",
+    "coachHint": "Try the counter gestures again.",
+    "dev": "For the curious",
+    "devHint": "Inspect the foundations behind this prototype.",
+    "about": "Built around the neighbourhood store.",
+    "aboutBody": "A design foundation for faster counters, familiar languages and more human commerce.",
+    "preferencesSaved": "Preferences saved on this device",
+    "storageError": "This browser cannot save preferences. Changes will last for this session."
+  }
+}

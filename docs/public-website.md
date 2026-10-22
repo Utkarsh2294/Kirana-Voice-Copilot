@@ -1,5 +1,7 @@
 # Public website — before Phase 3
 
+Follow-up: Phase 3 adds protected account routes and moves the unauthenticated sample to `/demo/bill`. The public header now links to store setup. The evidence below records the original public-site delivery.
+
 The user requested this addition after the Phase 1–2 checkpoint. It is separate from the original 15 phases, which do not prescribe a public landing or about page. This website is delivered in one commit before proceeding with the newly authorized Phases 3–4.
 
 ## Routes and content
