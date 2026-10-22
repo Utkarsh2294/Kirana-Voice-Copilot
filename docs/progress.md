@@ -44,3 +44,17 @@ Requested: complete through Phase 2, with 30 substantive conventional commits pu
 - Docker CLI exists; Docker Desktop engine is currently stopped. Compose runtime verification needs an available engine.
 - Real-phone gesture, sunlight and screen-reader checks require physical hardware.
 - Phase completion evidence will be recorded here, with unchecked items disclosed.
+
+## Phase 1 audit
+
+- [x] Workspace install, JavaScript lint, shared/API tests and production build run locally.
+- [x] Exact arithmetic tests cover half-paise, negative values and safe-integer bounds.
+- [x] API configuration tests identify missing variables without disclosing values.
+- [x] Python health/key tests and Ruff pass using the available Python 3.14 host. CI/container target remains Python 3.11; the exact target has not run locally.
+- [x] Compose configuration validates; replica set, persistent volume, optional Redis and service healthchecks are defined.
+- [x] Eleven namespaces, English/Hindi key parity, route stubs, error boundary and placeholder manifest exist.
+- [x] JavaScript-only source policy, hooks, CI, disabled deploy jobs, five core ADRs and contribution/deploy instructions exist.
+- [ ] Local full-stack Docker runtime: engine unavailable; startup command was blocked by automatic approval review. CI includes an independent Compose runtime check.
+- [ ] Remote CI result: pending push of the completed foundation.
+
+The older Python package pins were replaced with versions already available on this host; Mongo/PyMongo is deferred until the recommendation service actually reads Mongo in Phase 11. No analytics stack is installed prematurely.

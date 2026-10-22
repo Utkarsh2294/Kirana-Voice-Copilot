@@ -1,6 +1,5 @@
 import pytest
 from fastapi.testclient import TestClient
-
 from services.reco.app.main import create_app
 
 KEY = "test-key-" + "x" * 32

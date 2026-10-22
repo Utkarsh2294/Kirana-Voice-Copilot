@@ -32,9 +32,17 @@ def create_app(api_key: str | None = None) -> FastAPI:
         start = time.monotonic()
         response = await call_next(request)
         response.headers["x-request-id"] = request_id
-        logger.info(json.dumps({"event": "request", "requestId": request_id,
-                                "method": request.method, "status": response.status_code,
-                                "durationMs": round((time.monotonic() - start) * 1000)}))
+        logger.info(
+            json.dumps(
+                {
+                    "event": "request",
+                    "requestId": request_id,
+                    "method": request.method,
+                    "status": response.status_code,
+                    "durationMs": round((time.monotonic() - start) * 1000),
+                }
+            )
+        )
         return response
 
     async def require_key(x_api_key: str = Header(default="")):

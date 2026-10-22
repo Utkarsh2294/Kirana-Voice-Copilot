@@ -18,3 +18,41 @@ flowchart LR
 ```
 
 See [the build ledger](docs/progress.md), [architecture](docs/architecture.md), and [contribution guide](CONTRIBUTING.md).
+
+## Start locally (PowerShell)
+
+```powershell
+npm ci
+Copy-Item apps/server/.env.example apps/server/.env
+Copy-Item apps/client/.env.example apps/client/.env
+Copy-Item services/reco/.env.example services/reco/.env
+npm run dev:all
+```
+
+Start Docker Desktop first. Open http://localhost:5173/bill. Compose serves a production build, so `/dev/ui` is intentionally absent. For the development gallery and hot reload, stop the Compose client (`docker compose -f infra/docker-compose.yml stop client`) and run `npm run dev -w @kirana/client` instead.
+
+Without containers, run MongoDB as a replica set, then:
+
+```powershell
+python -m venv .venv
+.venv/Scripts/python -m pip install -r services/reco/requirements-dev.txt
+$env:PYTHON = (Resolve-Path .venv/Scripts/python.exe).Path
+npm run dev
+```
+
+The Python launcher reads `services/reco/.env`; the API reads `apps/server/.env`. The client prototype can also run independently with `npm run dev -w @kirana/client`.
+
+## Verify
+
+```powershell
+npm run lint
+npm test
+npm run build
+npm run format:check
+python -m pytest services/reco/tests
+python -m ruff check services/reco
+```
+
+Use your virtual environment's interpreter for Python checks. Health URLs: API `/healthz`, `/readyz` at port 3001; reco `/healthz`, `/readyz` at port 8000. Reco `/v1` requires `x-api-key`. Readiness returns 503 when Mongo is unreachable; process liveness stays 200.
+
+Deployment preparation and every required variable/secret are in [docs/deploy.md](docs/deploy.md). Cloud speech, authentication and real payments are intentionally deferred according to the plan.
