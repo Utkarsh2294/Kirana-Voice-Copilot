@@ -16,17 +16,22 @@ resources['en-IN'] = { common: en };
 resources['hi-IN'] = { common: hi };
 resources['ta-IN'] = { common: ta };
 
-i18n
-  .use(initReactI18next)
-  .init({
-    resources,
-    lng: 'en-IN',
-    fallbackLng: 'en-IN',
-    supportedLngs: uiLanguageCodes,
-    load: 'currentOnly',
-    ns: ['common'],
-    defaultNS: 'common',
-    interpolation: { escapeValue: false },
-    returnNull: false,
-  });
+i18n.use(initReactI18next).init({
+  resources,
+  lng: 'en-IN',
+  fallbackLng: 'en-IN',
+  supportedLngs: uiLanguageCodes,
+  load: 'currentOnly',
+  ns: ['common'],
+  defaultNS: 'common',
+  interpolation: { escapeValue: false },
+  returnNull: false,
+});
 export default i18n;
+
+function updateDocumentLanguage(language) {
+  document.documentElement.lang = language;
+  document.documentElement.dir = language.startsWith('ur') ? 'rtl' : 'ltr';
+}
+i18n.on('languageChanged', updateDocumentLanguage);
+updateDocumentLanguage(i18n.language);
