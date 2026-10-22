@@ -8,6 +8,7 @@
 @import './shell.css';
 @import './pages/bill.css';
 @import './pages/screens.css';
+@import './pages/insights.css';
 
 @theme inline {
   --color-background: var(--bg);
