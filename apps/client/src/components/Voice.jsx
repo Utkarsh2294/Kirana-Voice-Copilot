@@ -7,7 +7,13 @@ export function micGestureResult(duration, offsetY) {
   return offsetY <= -60 || duration < 180 ? 'locked' : 'processing';
 }
 
-export function useMicLevel(onSilence) {
+const previewLevel = { level: 0, error: false, start: async () => {}, stop: () => {} };
+function usePreviewLevel() {
+  return previewLevel;
+}
+// Optional level capture is a development-gallery preview. Production speech arrives in Phase 6.
+export const useMicLevel = import.meta.env.DEV ? useLiveMicLevel : usePreviewLevel;
+function useLiveMicLevel(onSilence) {
   const [level, setLevel] = useState(0);
   const [error, setError] = useState(false);
   const resources = useRef({ generation: 0 });

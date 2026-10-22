@@ -24,5 +24,6 @@ export default defineConfig({
       },
     ],
     restoreMocks: true,
+    maxWorkers: 4,
   },
 });

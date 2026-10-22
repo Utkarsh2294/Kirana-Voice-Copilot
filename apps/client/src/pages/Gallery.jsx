@@ -1,3 +1,4 @@
+import { PhoneInput, OtpInput } from '../components/PhoneControls.jsx';
 import '../locales/insights.js';
 import '../locales/gallery.js';
 import './gallery.css';
@@ -22,7 +23,7 @@ import {
   Toggle,
 } from '../components/primitives.jsx';
 import { ConfirmDialog, Sheet, useUi } from '../components/overlays.jsx';
-import { NumPad, OtpInput, PhoneInput, QuantityStepper } from '../components/controls.jsx';
+import { NumPad, QuantityStepper } from '../components/controls.jsx';
 import { MicButton, Waveform } from '../components/Voice.jsx';
 import { BillLine } from '../components/BillLine.jsx';
 import { usePreferences } from '../preferences.js';

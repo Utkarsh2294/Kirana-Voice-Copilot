@@ -51,6 +51,11 @@ export function SessionProvider({ children }) {
     } catch (error) {
       if (error.status !== 401) throw error;
     }
+    try {
+      await import('../catalog/cache.js').then((module) => module.clearCatalogCache(merchant.id));
+    } catch {
+      /* Revocation still completes when browser storage is unavailable. */
+    }
     setAccessToken(null);
     setMerchant(null);
     setStatus('guest');

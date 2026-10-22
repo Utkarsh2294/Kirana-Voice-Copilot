@@ -1,0 +1,11 @@
+{
+  "items": 758,
+  "queries": 240,
+  "buildMs": 477.85,
+  "p95Ms": 1.171,
+  "indexHeapMiB": 5.759,
+  "gcAvailable": true,
+  "runtime": "v22.23.0",
+  "platform": "win32",
+  "scope": "In-process index search; excludes HTTP, database, and network latency."
+}

@@ -422,7 +422,7 @@ function Roadmap() {
                 return (
                   <li
                     key={phase}
-                    className={phase <= 3 ? 'is-built' : phase === 4 ? 'is-next' : ''}
+                    className={phase <= 4 ? 'is-built' : phase === 5 ? 'is-next' : ''}
                   >
                     <Index value={phase} />
                     <div>
@@ -435,8 +435,8 @@ function Roadmap() {
                       <p>{item.body}</p>
                     </div>
                     <span className="public-phase-status">
-                      {phase <= 3 && <CircleCheck size={16} aria-hidden="true" />}
-                      {t(phase <= 3 ? 'complete' : phase === 4 ? 'next' : 'planned')}
+                      {phase <= 4 && <CircleCheck size={16} aria-hidden="true" />}
+                      {t(phase <= 4 ? 'complete' : phase === 5 ? 'next' : 'planned')}
                     </span>
                   </li>
                 );

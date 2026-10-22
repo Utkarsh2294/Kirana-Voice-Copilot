@@ -98,7 +98,7 @@ export function Shell({ children }) {
           </span>
           <div>
             <strong>{storeName}</strong>
-            <p>{t('prototype.short')}</p>
+            <p>{merchant ? t('brand.version') : t('prototype.short')}</p>
           </div>
         </div>
         <p className="rail-label">{t('brand.workspace')}</p>
@@ -185,7 +185,7 @@ export function Shell({ children }) {
           <span>{t('voice.hint')}</span>
         </div>
       </div>
-      <nav className="bottom-nav" aria-label={t('brand.workspace')}>
+      <nav className="bottom-nav" aria-label={t('nav.mobile')}>
         {links.slice(0, 2).map((link) => (
           <NavItem key={link.path} {...link} />
         ))}

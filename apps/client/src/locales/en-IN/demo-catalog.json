@@ -1,0 +1,32 @@
+{
+  "catalog": {
+    "eyebrow": "YOUR SHELF, SIMPLIFIED",
+    "title": "Everyday essentials.",
+    "titleAccent": "One tap away.",
+    "subtitle": "Explore a small sample shelf. Your full catalog arrives in Phase 4.",
+    "all": "All items",
+    "staples": "Staples",
+    "dairy": "Dairy",
+    "pantry": "Pantry",
+    "care": "Home care",
+    "add": "Add to sample bill",
+    "count": "{{count}} sample products",
+    "details": "Sample item details",
+    "empty": "Nothing on this sample shelf",
+    "inBill": "Already in your sample bill",
+    "favourite": "Favourite {{item}}",
+    "favoriteHint": "Favourites are local to this preview session.",
+    "count_one": "{{formattedCount}} sample product",
+    "count_other": "{{formattedCount}} sample products"
+  },
+  "items": {
+    "riceDetail": "Loose · everyday staple",
+    "milkDetail": "Fresh · full cream",
+    "oilDetail": "Loose · cold pressed",
+    "sugarDetail": "Loose · refined",
+    "teaDetail": "Packed · 250 g",
+    "attaDetail": "Loose · chakki fresh",
+    "soapDetail": "Packed · 1 bar",
+    "biscuitsDetail": "Packed · 1 packet"
+  }
+}

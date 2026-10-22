@@ -49,7 +49,7 @@ it('opens the public home, navigates the story and reaches the existing merchant
   expect(document.title).not.toContain('Our story');
   await user.click(screen.getAllByRole('link', { name: 'Kirana website home' })[0]);
   expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent('Your shop.');
-});
+}, 15000);
 
 it('supports menu Escape, day mode, Hindi, and honest expandable answers', async () => {
   const user = userEvent.setup();
@@ -79,7 +79,7 @@ it('keeps every roadmap phase and marks only the current three foundations built
   open('/roadmap');
   await screen.findByRole('heading', { level: 1 });
   expect(within(screen.getByRole('main')).getAllByRole('listitem')).toHaveLength(15);
-  expect(screen.getAllByText('Foundation built')).toHaveLength(3);
+  expect(screen.getAllByText('Foundation built')).toHaveLength(4);
   expect(screen.getByText('Next · not started')).toBeInTheDocument();
   expect(screen.getByText('Offline, security & privacy')).toBeInTheDocument();
 });

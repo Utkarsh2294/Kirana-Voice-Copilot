@@ -21,6 +21,7 @@ jobs:
       - run: npm run lint
       - run: npm run format:check
       - run: npm test
+      - run: npm run bench:catalog
       - run: npm run build
       - run: node scripts/check-client-build.js
       - run: npm audit --audit-level=high

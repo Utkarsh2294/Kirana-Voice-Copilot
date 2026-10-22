@@ -39,5 +39,14 @@
     "source": "कीमत स्रोत",
     "progress": "ऑडियो प्रगति",
     "deferred": "इस चरण में क्लाउड ऑडियो केवल दृश्य उदाहरण है।"
+  },
+  "voice": {
+    "permission": "माइक स्तर पूर्वावलोकन चालू करें",
+    "sampleLevel": "उदाहरण स्तर",
+    "lockedShort": "हैंड्स-फ़्री",
+    "processingShort": "प्रक्रिया",
+    "errorShort": "त्रुटि",
+    "idleShort": "तैयार",
+    "listeningShort": "सुन रहा है"
   }
 }

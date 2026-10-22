@@ -1,0 +1,32 @@
+{
+  "catalog": {
+    "eyebrow": "आपकी सरल सूची",
+    "title": "रोज़ का सामान।",
+    "titleAccent": "बस एक टैप दूर।",
+    "subtitle": "यह छोटी नमूना सूची है। पूरी सूची चरण 4 में आएगी।",
+    "all": "सभी",
+    "staples": "राशन",
+    "dairy": "डेयरी",
+    "pantry": "रसोई",
+    "care": "घर की देखभाल",
+    "add": "नमूना बिल में जोड़ें",
+    "count": "{{count}} नमूना उत्पाद",
+    "details": "नमूना सामान का विवरण",
+    "empty": "इस श्रेणी में कुछ नहीं",
+    "inBill": "नमूना बिल में पहले से है",
+    "favourite": "{{item}} पसंदीदा बनाएँ",
+    "favoriteHint": "पसंद इसी पूर्वावलोकन सत्र तक रहेगी।",
+    "count_one": "{{formattedCount}} नमूना उत्पाद",
+    "count_other": "{{formattedCount}} नमूना उत्पाद"
+  },
+  "items": {
+    "riceDetail": "खुला · रोज़ का राशन",
+    "milkDetail": "ताज़ा · फुल क्रीम",
+    "oilDetail": "खुला · कोल्ड प्रेस्ड",
+    "sugarDetail": "खुली · रिफाइंड",
+    "teaDetail": "पैक · 250 ग्राम",
+    "attaDetail": "खुला · चक्की ताज़ा",
+    "soapDetail": "पैक · 1 टिकिया",
+    "biscuitsDetail": "पैक · 1 पैकेट"
+  }
+}

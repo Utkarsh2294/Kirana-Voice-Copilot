@@ -1,6 +1,6 @@
 import React from 'react';
 import { beforeEach, afterEach, expect, it, vi } from 'vitest';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router-dom';
 import axe from 'axe-core';
@@ -86,9 +86,9 @@ it('guards the workspace, signs in, and saves all four onboarding steps through 
   await user.type(await screen.findByLabelText('UPI ID'), 'test.kirana@upi');
   await user.type(screen.getByLabelText('Payee display name'), 'Test Kirana');
   await user.click(screen.getByRole('button', { name: 'Open my workspace' }));
-  await waitFor(() =>
-    expect(screen.getByRole('heading', { name: 'Current bill' })).toBeInTheDocument(),
-  );
+  expect(
+    await screen.findByRole('heading', { name: 'Current bill' }, { timeout: 10000 }),
+  ).toBeInTheDocument();
   expect(saved.map(([step]) => step)).toEqual(['language', 'store', 'location', 'upi']);
   expect(saved[2][1]).toEqual({ pincode: '122001' });
   expect(screen.getAllByText('Test Kirana').length).toBeGreaterThan(0);

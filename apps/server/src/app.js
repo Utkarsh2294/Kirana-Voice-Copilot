@@ -9,6 +9,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import { createAuth } from './auth.js';
 import { merchantRouter, regionRouter } from './merchants.js';
 import { problem } from './http.js';
+import { catalogRouter } from './catalog-routes.js';
 
 export function createApp({
   config,
@@ -83,12 +84,13 @@ export function createApp({
       .json({ status: ready ? 'ready' : 'not-ready', checks: { mongo: Boolean(ready) } });
   });
   app.get('/api/v1', (_req, res) =>
-    res.json({ name: 'Kirana Voice Copilot', version: '0.2.0', phase: 3 }),
+    res.json({ name: 'Kirana Voice Copilot', version: '0.2.0', phase: 4 }),
   );
   const auth = createAuth({ config, logger, smsProvider, clock });
   app.use('/api/v1/auth', auth.router);
   app.use('/api/v1/merchants', merchantRouter(auth));
   app.use('/api/v1/regions', regionRouter(auth));
+  app.use('/api/v1', catalogRouter(auth));
   app.use((_req, _res, next) =>
     next(Object.assign(new Error('Route not found'), { status: 404, code: 'NOT_FOUND' })),
   );

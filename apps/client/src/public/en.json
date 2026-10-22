@@ -90,7 +90,7 @@
     "items": [
       {
         "q": "Can I use this to run my shop today?",
-        "a": "Not yet for real sales. This is an early prototype through Phase 3. You can explore sample screens and set up a merchant account when SMS or explicitly gated development OTP is configured. Saved bills, live speech, payment confirmation, and recommendations come in later phases."
+        "a": "Not yet for real sales. The prototype now includes merchant accounts, resumable onboarding, and a searchable catalog with your own saved prices. Catalog names need language review and default prices are illustrative. Saved bills, live speech, payment confirmation, and recommendations come in later phases."
       },
       {
         "q": "Which languages are available?",
@@ -142,7 +142,7 @@
       }
     ],
     "privacyTitle": "A responsible path to a real product.",
-    "privacyBody": "This public site asks for no phone number, shop details, or customer records. The prototype uses sample data and stores UI preferences in your browser. Account, speech-provider, payment, and customer-data notices will be added alongside their respective features before real use.",
+    "privacyBody": "The public pages ask for no personal details. Signing in stores your mobile number and store setup on the server; your catalog prices stay scoped to your account. UI preferences and a catalog cache are stored in your browser. Customer records, cloud speech, and real payments are future features, with their own consent and data controls still to be built.",
     "privacyLink": "See when each commitment is planned"
   },
   "how": {
@@ -178,12 +178,12 @@
     "resilienceTitle": "Designed for real shop conditions.",
     "resilienceBody": "Noisy counters and uneven internet are part of the plan. Tap and type are essential alternatives. Phase 14 adds offline drafts, an outbox, and visible sync status; cloud speech and live payment checks will still need a connection.",
     "nowTitle": "What can I try now?",
-    "nowBody": "Explore the sample bill and its quantity and price controls, browse the catalog UI, and preview the insights layout. The screens use sample data; voice, payment, and business advice are demonstrations of interface states."
+    "nowBody": "Explore the sample bill and insights layout, or set up a merchant account and manage your own catalog, favourites, custom items, and prices. Catalog names need review and default prices are illustrative. Saved billing, live voice, and payment confirmation come later."
   },
   "roadmap": {
     "eyebrow": "THE BUILD ROADMAP",
     "title": "Built with care. One useful step at a time.",
-    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1–3 now include the foundations, sample UI, and merchant accounts with resumable onboarding. Catalog work is next.",
+    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1–4 now include the foundations, sample UI, merchant accounts, resumable onboarding, catalog search, and store-specific item management. Pricing services are next.",
     "foundation": "THE FOUNDATION",
     "counter": "THE EVERYDAY COUNTER",
     "growth": "THE NEXT DECISION",
@@ -267,7 +267,7 @@
     "principles": "Our principles",
     "faq": "Questions",
     "source": "View the code",
-    "status": "Phases 1–3 prototype · Catalog is next",
+    "status": "Phases 1–4 prototype · Pricing services are next",
     "disclaimer": "Sample data. Planned features are labelled. No live speech or payment integration. No claimed provider partnership."
   },
   "meta": {
@@ -285,7 +285,7 @@
     },
     "roadmap": {
       "title": "The 15-phase roadmap | Kirana Voice Copilot",
-      "description": "See the current Phase 1–2 prototype and the planned path through onboarding, voice, billing, recommendations, privacy, and release readiness."
+      "description": "See the current Phase 1–4 prototype and the planned path through pricing, voice, billing, recommendations, privacy, and release readiness."
     }
   },
   "start": "Set up your shop"

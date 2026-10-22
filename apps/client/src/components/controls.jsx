@@ -130,5 +130,3 @@ export function NumPad({ value, onChange, label }) {
     </div>
   );
 }
-
-export { PhoneInput, OtpInput } from './PhoneControls.jsx';

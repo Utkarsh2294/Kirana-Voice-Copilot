@@ -81,3 +81,19 @@ The user subsequently authorized an original, mission-led public website before 
 ## Phase 3 — accounts and store setup
 
 Merchant models, OTP/session security, ordered onboarding, local PIN resolution, validated QR uploads, guarded routes, account controls, and honest speech previews are implemented. Public sample routes are now under `/demo/*`. See [the Phase 3 handoff](phase-03-handoff.md) for commands, acceptance evidence, data provenance, and outstanding live-SMS/device checks. The public-site commit `bbe3fbf` passed [CI run 39819131734](https://github.com/Utkarsh2294/Kirana-Voice-Copilot/actions/runs/39819131734).
+
+Phase 3 commit `dd944c9` passed [CI run 39824747547](https://github.com/Utkarsh2294/Kirana-Voice-Copilot/actions/runs/39824747547), including JavaScript, Python and Linux Compose. Tagged `phase-03-done`.
+
+## Phase 4 — catalog and units prototype
+
+- [x] Shared exact units and line arithmetic, including 10,000 BigInt-reference combinations and the ₹50/₹52 rice example.
+- [x] 758 deterministic generic catalog drafts, 13 categories, 11 name fields, provenance, machine-review flags, and idempotent seeding.
+- [x] Authenticated search/details/categories/frequent and merchant-item APIs; store isolation, overrides, partial uniqueness, private customs, soft deletion and nominations.
+- [x] Prefix/fuzzy/script/Latin search with own 30-day frequency and recency tie-breaking; measured benchmark within 30 ms/40 MiB targets.
+- [x] Lazy catalog UI, NumPad item editing, private favourites, hide/show, cost/price/unit controls and reusable favourites shelf.
+- [x] Per-merchant IndexedDB cached search during API interruption, read-only fallback and reconnect recovery.
+- [x] English/Hindi copy, responsive browser checks, accessibility tests and production bill bundle within the original 180 KiB gzip cap.
+- [ ] Sarvam Translate generation and native-speaker review: not performed. All names remain machine drafts with recorded methods. This acceptance item remains a release gate.
+- [ ] Real device and live-SMS checks remain open from earlier phases.
+
+See [Phase 4 handoff](phase-04-handoff.md) for evidence and honest boundaries. Stop after Phase 4; pricing services, voice, saved bills, payments and full offline sync remain later work.

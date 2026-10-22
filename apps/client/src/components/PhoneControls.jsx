@@ -1,3 +1,4 @@
+import '../locales/phone.js';
 import React, { useId, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { number } from '../format.js';

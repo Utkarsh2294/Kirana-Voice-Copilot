@@ -1,3 +1,11 @@
+import catalogEn from './catalog/en.json';
+import catalogHi from './catalog/hi.json';
+import phoneEn from './locales/en-IN/phone.json';
+import phoneHi from './locales/hi-IN/phone.json';
+import demoCatalogEn from './locales/en-IN/demo-catalog.json';
+import demoCatalogHi from './locales/hi-IN/demo-catalog.json';
+import settingsEn from './locales/en-IN/settings.json';
+import settingsHi from './locales/hi-IN/settings.json';
 import { expect, it } from 'vitest';
 import en from './locales/en-IN/common.json';
 import hi from './locales/hi-IN/common.json';
@@ -22,6 +30,10 @@ it('has complete English and Hindi common keys', () => {
     [galleryEn, galleryHi],
     [insightsEn, insightsHi],
     [authEn, authHi],
+    [catalogEn, catalogHi],
+    [phoneEn, phoneHi],
+    [demoCatalogEn, demoCatalogHi],
+    [settingsEn, settingsHi],
   ])
     expect(paths(hindi).sort()).toEqual(paths(english).sort());
 });

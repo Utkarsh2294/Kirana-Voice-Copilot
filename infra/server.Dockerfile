@@ -7,6 +7,7 @@ COPY packages/shared/package.json packages/shared/package.json
 RUN npm ci --omit=dev --ignore-scripts
 COPY packages/shared packages/shared
 COPY apps/server apps/server
+COPY scripts/seed.js scripts/seed.js
 USER node
 EXPOSE 3001
 CMD ["node", "apps/server/src/index.js"]

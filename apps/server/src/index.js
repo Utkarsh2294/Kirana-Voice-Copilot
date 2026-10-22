@@ -3,6 +3,8 @@ import { createApp } from './app.js';
 import { loadConfig } from './config.js';
 import { createLogger } from './logger.js';
 import { ensureCoreIndexes } from './models.js';
+import { ensureCatalogIndexes } from './catalog-models.js';
+import { catalogService } from './catalog-service.js';
 
 let config;
 try {
@@ -33,6 +35,8 @@ async function connect() {
       connectTimeoutMS: 3000,
     });
     await ensureCoreIndexes();
+    await ensureCatalogIndexes();
+    await catalogService.reload();
   } catch {
     logger.warn({ code: 'MONGO_CONNECT_FAILED' }, 'Database unavailable; retrying in five seconds');
     if (!stopping) retry = setTimeout(connect, 5000);

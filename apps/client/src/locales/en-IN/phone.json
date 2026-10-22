@@ -1,0 +1,10 @@
+{
+  "controls": {
+    "phone": "Mobile number",
+    "phoneHint": "10-digit Indian mobile number",
+    "phoneError": "Enter 10 digits starting with 6, 7, 8 or 9.",
+    "otp": "Verification code",
+    "otpDigit": "Code digit {{digit}}",
+    "otpHint": "Paste or enter a six-digit code"
+  }
+}

@@ -39,5 +39,14 @@
     "source": "Source badges",
     "progress": "Playback progress",
     "deferred": "Cloud audio states are visual previews in this phase."
+  },
+  "voice": {
+    "permission": "Enable mic level preview",
+    "sampleLevel": "Illustrative level",
+    "lockedShort": "Hands-free",
+    "processingShort": "Processing",
+    "errorShort": "Error",
+    "idleShort": "Idle",
+    "listeningShort": "Listening"
   }
 }

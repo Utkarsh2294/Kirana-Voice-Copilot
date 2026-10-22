@@ -8,6 +8,7 @@ const Gallery = import.meta.env.DEV ? lazy(() => import('./pages/Gallery.jsx')) 
 const Bill = lazy(() => import('./pages/Bill.jsx'));
 const Insights = lazy(() => import('./pages/Insights.jsx'));
 const Catalog = lazy(() => import('./pages/Catalog.jsx'));
+const DemoCatalog = lazy(() => import('./pages/DemoCatalog.jsx'));
 const Settings = lazy(() => import('./pages/Settings.jsx'));
 const ComingSoon = lazy(() => import('./pages/ComingSoon.jsx'));
 const CoachMarks = lazy(() => import('./components/CoachMarks.jsx'));
@@ -20,7 +21,7 @@ export default function MerchantApp() {
         <Suspense fallback={<Skeleton lines={5} />}>
           <Routes>
             <Route path={`${prefix}/bill`} element={<Bill />} />
-            <Route path={`${prefix}/catalog`} element={<Catalog />} />
+            <Route path={`${prefix}/catalog`} element={prefix ? <DemoCatalog /> : <Catalog />} />
             <Route path={`${prefix}/settings`} element={<Settings />} />
             <Route path={`${prefix}/insights`} element={<Insights />} />
             {['customers'].map((name) => (

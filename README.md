@@ -2,7 +2,7 @@
 
 A voice-first counter companion for India's neighbourhood grocery stores.
 
-**Build scope: Phases 1–3, plus the public website.** This repository contains the monorepo foundation and an interactive, accessible design prototype. Sample bills and insights are explicitly illustrative. Merchant accounts and onboarding are implemented; catalog APIs (4), pricing (5), cloud speech (6), parsing (7), persisted billing (8), payments (9), analytics (10), recommendations (11–13), and offline sync (14) are separate milestones.
+**Build scope: Phases 1–4 prototypes, plus the public website.** This repository contains the monorepo foundation and an interactive, accessible design prototype. Sample bills and insights are explicitly illustrative. Merchant accounts, onboarding, catalog search and store-specific items are implemented. Catalog names remain machine drafts awaiting native review, and default prices are synthetic. Pricing (5), cloud speech (6), parsing (7), persisted billing (8), payments (9), analytics (10), recommendations (11–13), and offline sync (14) are separate milestones.
 
 ## Architecture
 
@@ -68,3 +68,9 @@ Deployment preparation and every required variable/secret are in [docs/deploy.md
 Open `/login` to set up a store. `/bill`, `/catalog`, `/insights`, `/settings`, and `/customers` require a session; unfinished accounts resume `/onboarding`. The sample UI remains public under `/demo/bill` and sibling demo routes.
 
 See [the Phase 3 handoff](docs/phase-03-handoff.md) for development OTP configuration, the optional disposable database, security choices, acceptance evidence, and current integration limits.
+
+## Catalog and units (Phase 4)
+
+Run `npm run seed` against your configured MongoDB, restart the API, and open `/catalog` after onboarding. The 758-item draft supports 11 script/name fields, aliases, private prices and custom items, favourites, hidden items, exact quantity previews, and cached read-only search. `npm run gen:catalog` regenerates the draft source; `npm run bench:catalog` checks search performance.
+
+See [the Phase 4 handoff](docs/phase-04-handoff.md) for API and future billing contracts, verification evidence, and outstanding native-language review. Checkpoints are tagged `phase-03-done` and `phase-04-done`. Phase 5 has not started.
