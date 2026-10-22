@@ -7,6 +7,9 @@ import { PageHeading, Skeleton } from './components/primitives.jsx';
 
 const Gallery = import.meta.env.DEV ? lazy(() => import('./pages/Gallery.jsx')) : null;
 const Bill = lazy(() => import('./pages/Bill.jsx'));
+const Catalog = lazy(() => import('./pages/Catalog.jsx'));
+const Settings = lazy(() => import('./pages/Settings.jsx'));
+const ComingSoon = lazy(() => import('./pages/ComingSoon.jsx'));
 function Placeholder({ name }) {
   const { t } = useTranslation();
   return (
@@ -30,14 +33,16 @@ export function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/bill" replace />} />
             <Route path="/bill" element={<Bill />} />
-            {['insights', 'catalog', 'customers', 'settings', 'login'].map((name) => (
+            <Route path="/catalog" element={<Catalog />} />
+            <Route path="/settings" element={<Settings />} />
+            {['insights', 'customers', 'login'].map((name) => (
               <Route key={name} path={`/${name}`} element={<Placeholder name={name} />} />
             ))}
             {Gallery && <Route path="/dev/ui" element={<Gallery />} />}
             {import.meta.env.DEV && (
-              <Route path="/dev/voice" element={<Placeholder name="voice" />} />
+              <Route path="/dev/voice" element={<ComingSoon name="voice" phase={6} />} />
             )}
-            <Route path="*" element={<Placeholder name="notFound" />} />
+            <Route path="*" element={<ComingSoon name="notFound" />} />
           </Routes>
         </Suspense>
       </Shell>
