@@ -1,0 +1,6 @@
+{
+  "id": "/", "name": "Kirana Voice Copilot", "short_name": "Kirana",
+  "start_url": "/bill", "display": "standalone", "background_color": "#0A0A0A", "theme_color": "#0A0A0A",
+  "description": "Phase 2 UI prototype. Offline billing arrives in a later phase.",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

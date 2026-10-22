@@ -1,0 +1,33 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+}
+
+:root {
+  --bg: #0a0a0a;
+  --text: #f4f6f8;
+  --primary: #007ba7;
+  --accent: #ff2d95;
+  color-scheme: dark;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font:
+    16px/1.5 system-ui,
+    sans-serif;
+}
+button,
+input,
+select {
+  font: inherit;
+}
+button,
+a {
+  min-height: 48px;
+}
