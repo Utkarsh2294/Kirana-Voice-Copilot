@@ -47,6 +47,10 @@
     "processingShort": "प्रक्रिया",
     "errorShort": "त्रुटि",
     "idleShort": "तैयार",
-    "listeningShort": "सुन रहा है"
+    "listeningShort": "सुन रहा है",
+    "previewNote": "ऑडियो रिकॉर्ड या भेजा नहीं जाता। असली वॉइस चरण 6 में आएगी।"
+  },
+  "prototype": {
+    "badge": "डिज़ाइन प्रोटोटाइप"
   }
 }

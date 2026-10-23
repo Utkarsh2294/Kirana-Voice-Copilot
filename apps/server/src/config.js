@@ -29,7 +29,20 @@ const envSchema = z
     SARVAM_API_KEY: z.string().default(''),
     SARVAM_BASE_URL: z.url().default('https://api.sarvam.ai'),
     PAYMENT_PROVIDER: z.enum(['manual', 'demo', 'paytm-dqr']).default('demo'),
-    MARKET_FEED: z.enum(['agmarknet', 'crowd', 'simulated']).default('simulated'),
+    MARKET_FEED: z.enum(['agmarknet', 'crowd', 'simulated', 'off']).default('simulated'),
+    DATA_GOV_IN_API_KEY: z.string().default(''),
+    DATA_GOV_IN_RESOURCE_ID: z.string().uuid().default('9ef84268-d588-465a-a308-a864a43d0070'),
+    PRICING_ADMIN_MERCHANT_IDS: z
+      .string()
+      .default('')
+      .transform((value) =>
+        value
+          .split(',')
+          .map((id) => id.trim())
+          .filter(Boolean),
+      )
+      .pipe(z.array(z.string().regex(/^[a-f\d]{24}$/i))),
+    MARKET_JOBS_ENABLED: flag,
     FEATURE_FLAGS: z.string().default(''),
   })
   .superRefine((env, ctx) => {

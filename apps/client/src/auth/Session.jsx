@@ -52,6 +52,7 @@ export function SessionProvider({ children }) {
       if (error.status !== 401) throw error;
     }
     try {
+      await import('../pricing/draft.js').then((module) => module.useDraftBill.getState().clear());
       await import('../catalog/cache.js').then((module) => module.clearCatalogCache(merchant.id));
     } catch {
       /* Revocation still completes when browser storage is unavailable. */

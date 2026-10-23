@@ -47,6 +47,7 @@ import { readCatalogCache, writeCatalogCache } from './cache.js';
 import FavouritesStrip, { itemName } from './FavouritesStrip.jsx';
 import './copy.js';
 import './catalog.css';
+import PriceDetails from '../pricing/PriceDetails.jsx';
 
 const icons = {
   staples: Wheat,
@@ -181,7 +182,22 @@ export default function CatalogScreen() {
       const result = await api(path, { method, ...(body === undefined ? {} : { body }) });
       if (deleted) updateCachedItem(item, true);
       else if (result?.item) updateCachedItem(result.item);
-      notify(t(message));
+      notify(
+        t(message),
+        result?.undoId
+          ? async () => {
+              try {
+                await api(`/merchant-items/${result.item.id}/price`, {
+                  method: 'PUT',
+                  body: { undoOf: result.undoId },
+                });
+                await client.invalidateQueries({ queryKey: key });
+              } catch {
+                notify(t('auth:errors.fallback'));
+              }
+            }
+          : undefined,
+      );
       if (close) {
         setEditing(null);
         setCustom(null);
@@ -411,7 +427,7 @@ export default function CatalogScreen() {
                         {money(item.pricePaise)}
                         <small> / {t(`units.${item.priceUnit}`)}</small>
                       </span>
-                      <PriceSourceBadge source={item.priceSource} />
+                      <PriceSourceBadge source={item.priceSource} demo={item.pricing?.demo} />
                       {item.hidden && (
                         <span className="catalog-hidden">
                           <EyeOff size={13} aria-hidden="true" />
@@ -469,7 +485,7 @@ export default function CatalogScreen() {
         {item && draft && (
           <form className="catalog-item-form" onSubmit={saveItem}>
             <div className="row between">
-              <PriceSourceBadge source={item.priceSource} />
+              <PriceSourceBadge source={item.priceSource} demo={item.pricing?.demo} />
               <ListenButton onClick={() => speakItem(item)} />
             </div>
             <p className="catalog-review-label">
@@ -517,6 +533,7 @@ export default function CatalogScreen() {
                 label={t('hide')}
               />
             </fieldset>
+            <PriceDetails itemId={item.id} price={item.pricing} />
             <section className="catalog-calculation">
               <h3>{t('preview')}</h3>
               <label className="catalog-field">

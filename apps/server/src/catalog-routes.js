@@ -7,10 +7,10 @@ import {
   merchantItemPatchSchema,
   objectIdSchema,
 } from '@kirana/shared/catalog';
-import { unitBase } from '@kirana/shared/units';
 import { emptySchema, problem, validateRequest } from './http.js';
-import { CatalogItem, MerchantItem, CatalogNomination } from './catalog-models.js';
+import { MerchantItem, CatalogNomination } from './catalog-models.js';
 import { catalogService, mergedItems, salesFrequency } from './catalog-service.js';
+import { updateMerchantItem, createCustomItem } from './pricing-service.js';
 import { createCatalogSearch, compareCatalogHits } from '@kirana/shared/catalog-search';
 
 const idParams = z.object({ id: objectIdSchema }).strict();
@@ -32,8 +32,29 @@ function orderByHistory(a, b, stats) {
   );
 }
 
-export function catalogRouter(auth, service = catalogService) {
+export function catalogRouter(auth, service = catalogService, pricing) {
   const router = Router();
+  async function getItems(merchantId) {
+    const items = await mergedItems(merchantId, service);
+    if (!pricing || !items.length) return items;
+    const quotes = new Map(
+      (
+        await pricing.resolvePrices(
+          merchantId,
+          items.map((item) => item.id),
+        )
+      ).map((quote) => [quote.itemId, quote]),
+    );
+    return items.map((item) => {
+      const quote = quotes.get(item.id);
+      return {
+        ...item,
+        pricePaise: quote.pricePerBasePaise,
+        priceSource: quote.source === 'mrp' && quote.demo ? 'demo' : quote.source,
+        pricing: quote,
+      };
+    });
+  }
   router.use(auth.authenticate, (req, res, next) => {
     res.set('Cache-Control', 'no-store');
     if (req.merchant.onboardingStep < 4) return next(problem(403, 'ONBOARDING_REQUIRED'));
@@ -41,7 +62,7 @@ export function catalogRouter(auth, service = catalogService) {
   });
   router.get('/catalog/search', async (req, res) => {
     const { query } = validateRequest(req, emptySchema, searchQuery);
-    const items = await mergedItems(req.merchant._id, service);
+    const items = await getItems(req.merchant._id);
     const stats = await salesFrequency(req.merchant._id);
     const visible = new Map(items.filter((item) => !item.hidden).map((item) => [item.id, item]));
     const index = await service.get();
@@ -67,7 +88,7 @@ export function catalogRouter(auth, service = catalogService) {
   });
   router.get('/catalog/items/:id', async (req, res) => {
     const { params } = validateRequest(req, emptySchema, emptySchema, idParams);
-    const item = (await mergedItems(req.merchant._id, service)).find(
+    const item = (await getItems(req.merchant._id)).find(
       (item) => item.id === params.id && item.catalogItemId,
     );
     if (!item) throw problem(404, 'NOT_FOUND');
@@ -86,7 +107,7 @@ export function catalogRouter(auth, service = catalogService) {
   router.get('/catalog/frequent', async (req, res) => {
     validateRequest(req);
     const stats = await salesFrequency(req.merchant._id);
-    const items = (await mergedItems(req.merchant._id, service)).filter((item) => !item.hidden);
+    const items = (await getItems(req.merchant._id)).filter((item) => !item.hidden);
     const sold = items.filter((item) => stats.has(item.id));
     const favourites = items.filter((item) => item.favourite);
     const basis = sold.length ? 'sales' : favourites.length ? 'favourites' : 'catalog';
@@ -96,7 +117,7 @@ export function catalogRouter(auth, service = catalogService) {
   router.get('/merchant-items', async (req, res) => {
     const { query } = validateRequest(req, emptySchema, viewQuery);
     const [merged, stats] = await Promise.all([
-      mergedItems(req.merchant._id, service),
+      getItems(req.merchant._id),
       salesFrequency(req.merchant._id),
     ]);
     const items = merged.map((item) => ({
@@ -112,65 +133,18 @@ export function catalogRouter(auth, service = catalogService) {
   });
   router.post('/merchant-items/custom', async (req, res) => {
     const { body } = validateRequest(req, customItemSchema);
-    const item = await MerchantItem.create({
-      ...body,
-      merchantId: req.merchant._id,
-      catalogItemId: null,
-    });
+    const item = await createCustomItem(req.merchant._id, body);
     await auth.audit(req, 'custom_item_created', req.merchant._id);
-    const merged = (await mergedItems(req.merchant._id, service)).find(
-      (row) => row.id === String(item._id),
-    );
+    const merged = (await getItems(req.merchant._id)).find((row) => row.id === String(item._id));
     res.status(201).json({ item: merged });
   });
   router.put('/merchant-items/:id', async (req, res) => {
     const { body, params } = validateRequest(req, merchantItemPatchSchema, emptySchema, idParams);
-    const catalog = await CatalogItem.findOne({ _id: params.id, active: true }).lean();
-    const custom =
-      !catalog &&
-      (await MerchantItem.findOne({
-        _id: params.id,
-        merchantId: req.merchant._id,
-        catalogItemId: null,
-        deletedAt: null,
-      }).lean());
-    if (!catalog && !custom) throw problem(404, 'NOT_FOUND');
-    const baseUnit = catalog?.baseUnit || unitBase[custom.unit];
-    if (
-      body.unit &&
-      (unitBase[body.unit] !== baseUnit || (catalog && !catalog.allowedUnits.includes(body.unit)))
-    )
-      throw problem(400, 'VALIDATION_FAILED');
-    if (!catalog && body.savedPricePaise === null) throw problem(400, 'VALIDATION_FAILED');
-    const set = {},
-      unset = {};
-    for (const [key, value] of Object.entries(body)) {
-      if (value === null) unset[key] = '';
-      else set[key] = value;
-    }
-    const filter = catalog
-      ? { merchantId: req.merchant._id, catalogItemId: catalog._id }
-      : { _id: custom._id, merchantId: req.merchant._id, catalogItemId: null, deletedAt: null };
-    const update = {
-      ...(Object.keys(set).length ? { $set: set } : {}),
-      ...(Object.keys(unset).length ? { $unset: unset } : {}),
-      ...(catalog
-        ? { $setOnInsert: { merchantId: req.merchant._id, catalogItemId: catalog._id } }
-        : {}),
-    };
-    try {
-      await MerchantItem.findOneAndUpdate(filter, update, {
-        upsert: Boolean(catalog),
-        new: true,
-        runValidators: true,
-      });
-    } catch (error) {
-      if (!catalog || error.code !== 11000) throw error;
-      await MerchantItem.findOneAndUpdate(filter, update, { new: true, runValidators: true });
-    }
+    const result = await updateMerchantItem(req.merchant._id, params.id, body);
     await auth.audit(req, 'merchant_item_changed', req.merchant._id);
     res.json({
-      item: (await mergedItems(req.merchant._id, service)).find((row) => row.id === params.id),
+      ...result,
+      item: (await getItems(req.merchant._id)).find((row) => row.id === params.id),
     });
   });
   router.delete('/merchant-items/:id', async (req, res) => {

@@ -1,0 +1,6 @@
+{
+  "prototype": {
+    "description": "A working preview of the counter experience. Nothing here creates a sale or collects a payment.",
+    "comingBody": "{{feature}} is scheduled for Phase {{phase}}. Explore the component gallery or return to the sample bill."
+  }
+}

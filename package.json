@@ -25,7 +25,8 @@
     "gen:synthetic": "node scripts/gen-synthetic.js",
     "dev:database": "node scripts/dev-mongo.js",
     "gen:catalog": "node scripts/generate-catalog.js",
-    "bench:catalog": "node --expose-gc scripts/benchmark-catalog.js"
+    "bench:catalog": "node --expose-gc scripts/benchmark-catalog.js",
+    "market:ingest": "node scripts/ingest-market.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

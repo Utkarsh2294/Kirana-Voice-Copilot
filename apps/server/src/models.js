@@ -32,6 +32,7 @@ const merchant = new Schema(
           haptics: { type: Boolean, default: false },
           earcons: { type: Boolean, default: false },
           theme: { type: String, enum: ['auto', 'dark', 'day'], default: 'dark' },
+          targetMarginBps: { type: Number, min: 0, max: 10000, default: 800 },
           closingHour: { type: Number, min: 0, max: 23, default: 0 },
           restockReviewDays: { type: Number, default: 4 },
           supplierLeadDays: { type: Number, default: 1 },

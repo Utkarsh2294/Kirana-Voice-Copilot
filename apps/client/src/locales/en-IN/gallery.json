@@ -47,6 +47,10 @@
     "processingShort": "Processing",
     "errorShort": "Error",
     "idleShort": "Idle",
-    "listeningShort": "Listening"
+    "listeningShort": "Listening",
+    "previewNote": "No audio is recorded or sent. Connect live speech in Phase 6."
+  },
+  "prototype": {
+    "badge": "DESIGN PROTOTYPE"
   }
 }

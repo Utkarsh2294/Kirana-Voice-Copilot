@@ -62,15 +62,18 @@ export function Chip({ children, tone = 'neutral', icon: Icon, ...props }) {
   );
 }
 
-export function PriceSourceBadge({ source = 'demo' }) {
+export function PriceSourceBadge({ source = 'demo', demo = false }) {
   const { t } = useTranslation();
   return (
-    <Chip
-      tone={source === 'merchant' ? 'blue' : source === 'manual' ? 'rose' : 'neutral'}
-      icon={source === 'demo' ? CircleHelp : Check}
-    >
-      {t(`price.${source}`)}
-    </Chip>
+    <span className="row price-source-group">
+      <Chip
+        tone={source === 'merchant' ? 'blue' : source === 'manual' ? 'rose' : 'neutral'}
+        icon={source === 'demo' ? CircleHelp : Check}
+      >
+        {t(`price.${source}`)}
+      </Chip>
+      {demo && source !== 'demo' && <Chip icon={CircleHelp}>{t('price.demo')}</Chip>}
+    </span>
   );
 }
 

@@ -100,7 +100,7 @@ export function BillLine({ item, line, onRemove, onEdit, onQuantity, name }) {
             <span>
               {money(line.pricePaise)} / {t(`units.${item.unit}`)}
             </span>
-            <PriceSourceBadge source={line.source || 'demo'} />
+            <PriceSourceBadge source={line.source || 'demo'} demo={line.demo} />
           </div>
         </div>
         <button

@@ -97,3 +97,7 @@ Phase 3 commit `dd944c9` passed [CI run 39824747547](https://github.com/Utkarsh2
 - [ ] Real device and live-SMS checks remain open from earlier phases.
 
 See [Phase 4 handoff](phase-04-handoff.md) for evidence and honest boundaries. Stop after Phase 4; pricing services, voice, saved bills, payments and full offline sync remain later work.
+
+## Phase 5 — layered prices and private history
+
+Implemented the resolver, MarketPrice/PriceHistory collections, transactional save/reset/Undo, simulated/crowd/Agmarknet adapters, daily-job lease, admin mapping approval, live catalog prices and an authenticated in-memory draft bill. See [the handoff](phase-05-handoff.md) and [pricing assumptions](pricing.md). Live government feed verification is pending: no key is configured and the portal was unreachable. The user authorized Phase 6 after this checkpoint.

@@ -67,6 +67,7 @@ export function Shell({ children }) {
   const NavItem = ({ path, Icon }) => (
     <NavLink
       to={`${prefix}/${path}`}
+      aria-label={t(`nav.${path}`)}
       onClick={(event) => transition(event, `${prefix}/${path}`)}
       className={({ isActive }) => `nav-item ${isActive ? 'is-active' : ''}`}
     >

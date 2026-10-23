@@ -49,6 +49,7 @@ export const merchantSettingsSchema = z
     haptics: z.boolean().optional(),
     earcons: z.boolean().optional(),
     theme: z.enum(['auto', 'dark', 'day']).optional(),
+    targetMarginBps: z.number().int().min(0).max(10000).optional(),
     closingHour: z.number().int().min(0).max(23).optional(),
     restockReviewDays: z.number().int().min(1).max(30).optional(),
     supplierLeadDays: z.number().int().min(0).max(90).optional(),

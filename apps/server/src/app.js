@@ -9,6 +9,9 @@ import mongoSanitize from 'express-mongo-sanitize';
 import { createAuth } from './auth.js';
 import { merchantRouter, regionRouter } from './merchants.js';
 import { problem } from './http.js';
+import { createPricingService } from './pricing-service.js';
+import { createMarketJobs } from './market-feeds.js';
+import { pricingRouter } from './pricing-routes.js';
 import { catalogRouter } from './catalog-routes.js';
 
 export function createApp({
@@ -17,6 +20,8 @@ export function createApp({
   logger = createLogger(),
   smsProvider,
   clock,
+  pricingService,
+  marketJobs,
 }) {
   const app = express();
   app.disable('x-powered-by');
@@ -84,13 +89,16 @@ export function createApp({
       .json({ status: ready ? 'ready' : 'not-ready', checks: { mongo: Boolean(ready) } });
   });
   app.get('/api/v1', (_req, res) =>
-    res.json({ name: 'Kirana Voice Copilot', version: '0.2.0', phase: 4 }),
+    res.json({ name: 'Kirana Voice Copilot', version: '0.2.0', phase: 5 }),
   );
+  const pricing = pricingService || createPricingService({ config });
+  const jobs = marketJobs || createMarketJobs({ config, pricing, logger });
   const auth = createAuth({ config, logger, smsProvider, clock });
   app.use('/api/v1/auth', auth.router);
   app.use('/api/v1/merchants', merchantRouter(auth));
   app.use('/api/v1/regions', regionRouter(auth));
-  app.use('/api/v1', catalogRouter(auth));
+  app.use('/api/v1', pricingRouter(auth, { config, pricing, jobs }));
+  app.use('/api/v1', catalogRouter(auth, undefined, pricing));
   app.use((_req, _res, next) =>
     next(Object.assign(new Error('Route not found'), { status: 404, code: 'NOT_FOUND' })),
   );

@@ -1,0 +1,113 @@
+.price-meta {
+  display: grid;
+  gap: 8px;
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.8;
+}
+.price-meta .row {
+  flex-wrap: wrap;
+}
+.price-details {
+  display: grid;
+  gap: 12px;
+  padding-block: 18px;
+  border-block: 1px solid var(--border);
+}
+.price-details h3 {
+  font-size: 16px;
+}
+.price-details p,
+.price-details li {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-2);
+}
+.price-details ul {
+  margin: 0;
+  padding-inline-start: 18px;
+}
+.price-sparkline {
+  width: 100%;
+  height: 80px;
+  color: var(--primary-text);
+}
+.price-bill-notice {
+  padding: 14px 18px;
+  border-inline-start: 2px solid var(--primary-text);
+  background: var(--surface-1);
+  color: var(--text-2);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-block: 0 24px;
+}
+.price-bill-search {
+  display: grid;
+  gap: 10px;
+  margin-block: 24px;
+}
+.price-bill-search input,
+.price-quantity input {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 16px;
+  border: 1px solid var(--border-control);
+  border-radius: 12px;
+  background: var(--surface-1);
+  color: var(--text);
+  font-size: 16px;
+}
+.price-bill-results {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+.price-bill-results button {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  min-height: 100px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface-1);
+  color: var(--text);
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+.price-bill-results small {
+  color: var(--text-2);
+}
+.price-bill-line-meta {
+  padding: 0 22px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.price-quantity {
+  display: grid;
+  gap: 10px;
+}
+.price-bill-total {
+  padding: 24px;
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  border-radius: 16px;
+  position: sticky;
+  top: 24px;
+  display: grid;
+  gap: 16px;
+}
+.price-bill-total > strong {
+  font: 600 42px/1.4 var(--font-display);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+.price-bill-total > p {
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.8;
+}
+@media (max-width: 1000px) {
+  .price-bill-results {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

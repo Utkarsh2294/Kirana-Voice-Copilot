@@ -25,5 +25,8 @@
     "chartLabels": ["9 am", "11 am", "1 pm", "3 pm", "5 pm", "7 pm"],
     "weekLabels": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
     "monthLabels": ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Today"]
+  },
+  "prototype": {
+    "synthetic": "Illustrative figures · not store performance"
   }
 }

@@ -273,6 +273,8 @@ it('refuses fixed OTP in production and unconfigured SMS does not pretend delive
     loadConfig({
       ...config,
       CORS_ORIGINS: config.CORS_ORIGINS.join(','),
+      PRICING_ADMIN_MERCHANT_IDS: config.PRICING_ADMIN_MERCHANT_IDS.join(','),
+      MARKET_JOBS_ENABLED: 'false',
       COOKIE_SECURE: 'false',
       NODE_ENV: 'production',
       ALLOW_DEV_OTP: 'true',

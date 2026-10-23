@@ -1,3 +1,4 @@
+import '../locales/coming-soon.js';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Construction } from 'lucide-react';

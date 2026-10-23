@@ -1,6 +1,7 @@
 import React from 'react';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { PriceSourceBadge } from '../components/primitives.jsx';
 import { money } from '../format.js';
 import './copy.js';
 
@@ -24,6 +25,7 @@ export default function FavouritesStrip({ items, onPick }) {
             <span>
               {money(item.pricePaise)} / {t(`units.${item.priceUnit}`)}
             </span>
+            <PriceSourceBadge source={item.priceSource} demo={item.pricing?.demo} />
           </button>
         ))}
       </div>

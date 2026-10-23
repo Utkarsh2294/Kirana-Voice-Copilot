@@ -90,7 +90,7 @@
     "items": [
       {
         "q": "Can I use this to run my shop today?",
-        "a": "Not yet for real sales. The prototype now includes merchant accounts, resumable onboarding, and a searchable catalog with your own saved prices. Catalog names need language review and default prices are illustrative. Saved bills, live speech, payment confirmation, and recommendations come in later phases."
+        "a": "Not yet for real sales. You can set up a merchant account, manage your catalog and private prices, and explore a draft bill with layered prices. Default catalog prices and the simulated market feed are illustrative; catalog names still need language review. Saved sales, live speech, payment confirmation and recommendations come later."
       },
       {
         "q": "Which languages are available?",
@@ -183,7 +183,7 @@
   "roadmap": {
     "eyebrow": "THE BUILD ROADMAP",
     "title": "Built with care. One useful step at a time.",
-    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1–4 now include the foundations, sample UI, merchant accounts, resumable onboarding, catalog search, and store-specific item management. Pricing services are next.",
+    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1–5 include the foundations, sample UI, merchant accounts, catalog management and layered pricing with private price history. The voice platform is next.",
     "foundation": "THE FOUNDATION",
     "counter": "THE EVERYDAY COUNTER",
     "growth": "THE NEXT DECISION",
@@ -267,7 +267,7 @@
     "principles": "Our principles",
     "faq": "Questions",
     "source": "View the code",
-    "status": "Phases 1–4 prototype · Pricing services are next",
+    "status": "Phases 1–5 prototype · Voice platform is next",
     "disclaimer": "Sample data. Planned features are labelled. No live speech or payment integration. No claimed provider partnership."
   },
   "meta": {

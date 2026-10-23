@@ -5,6 +5,7 @@ import { UiProvider } from './components/overlays.jsx';
 import { Skeleton } from './components/primitives.jsx';
 
 const Gallery = import.meta.env.DEV ? lazy(() => import('./pages/Gallery.jsx')) : null;
+const PriceBill = lazy(() => import('./pricing/PriceBill.jsx'));
 const Bill = lazy(() => import('./pages/Bill.jsx'));
 const Insights = lazy(() => import('./pages/Insights.jsx'));
 const Catalog = lazy(() => import('./pages/Catalog.jsx'));
@@ -20,7 +21,7 @@ export default function MerchantApp() {
       <Shell>
         <Suspense fallback={<Skeleton lines={5} />}>
           <Routes>
-            <Route path={`${prefix}/bill`} element={<Bill />} />
+            <Route path={`${prefix}/bill`} element={prefix ? <Bill /> : <PriceBill />} />
             <Route path={`${prefix}/catalog`} element={prefix ? <DemoCatalog /> : <Catalog />} />
             <Route path={`${prefix}/settings`} element={<Settings />} />
             <Route path={`${prefix}/insights`} element={<Insights />} />

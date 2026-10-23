@@ -1,3 +1,7 @@
+import cron from 'node-cron';
+import { createPricingService } from './pricing-service.js';
+import { createMarketJobs } from './market-feeds.js';
+import { ensurePricingIndexes } from './pricing-models.js';
 import mongoose from 'mongoose';
 import { createApp } from './app.js';
 import { loadConfig } from './config.js';
@@ -14,7 +18,17 @@ try {
   process.exit(1);
 }
 const logger = createLogger();
+const pricingService = createPricingService({ config });
+const marketJobs = createMarketJobs({ config, pricing: pricingService, logger });
+const marketTask = config.MARKET_JOBS_ENABLED
+  ? cron.schedule('30 18 * * *', () => marketJobs.run().catch(() => {}), {
+      timezone: 'Asia/Kolkata',
+      noOverlap: true,
+    })
+  : null;
 const app = createApp({
+  pricingService,
+  marketJobs,
   config,
   logger,
   isReady: async () => {
@@ -36,6 +50,7 @@ async function connect() {
     });
     await ensureCoreIndexes();
     await ensureCatalogIndexes();
+    await ensurePricingIndexes();
     await catalogService.reload();
   } catch {
     logger.warn({ code: 'MONGO_CONNECT_FAILED' }, 'Database unavailable; retrying in five seconds');
@@ -48,6 +63,7 @@ async function shutdown(signal) {
   if (stopping) return;
   stopping = true;
   clearTimeout(retry);
+  marketTask?.stop();
   logger.info({ signal }, 'Shutting down');
   const deadline = setTimeout(() => process.exit(1), 10_000).unref();
   server.close(async () => {

@@ -1,3 +1,7 @@
+import comingEn from './locales/en-IN/coming-soon.json';
+import comingHi from './locales/hi-IN/coming-soon.json';
+import pricingEn from './pricing/en.json';
+import pricingHi from './pricing/hi.json';
 import catalogEn from './catalog/en.json';
 import catalogHi from './catalog/hi.json';
 import phoneEn from './locales/en-IN/phone.json';
@@ -31,6 +35,8 @@ it('has complete English and Hindi common keys', () => {
     [insightsEn, insightsHi],
     [authEn, authHi],
     [catalogEn, catalogHi],
+    [pricingEn, pricingHi],
+    [comingEn, comingHi],
     [phoneEn, phoneHi],
     [demoCatalogEn, demoCatalogHi],
     [settingsEn, settingsHi],

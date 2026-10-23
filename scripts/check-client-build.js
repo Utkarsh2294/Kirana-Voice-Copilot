@@ -12,27 +12,33 @@ function collect(key) {
   files.add(chunk.file);
   for (const dependency of chunk.imports || []) collect(dependency);
 }
-// Include the first-run coach and asynchronously loaded drag/layout features, not just the entry.
-for (const key of [
-  'index.html',
-  'src/pages/Bill.jsx',
-  'src/components/CoachMarks.jsx',
-  'src/components/motion-features.js',
-])
-  collect(key);
-// Rollup can give a shared dynamic entry a generated manifest key.
+// Measure each real/sample bill independently, including first-run and gesture chunks.
 const merchantKey = Object.keys(manifest).find((key) => manifest[key].name === 'MerchantEntry');
 assert(merchantKey, 'Missing merchant application chunk');
-collect(merchantKey);
+const totals = [];
+for (const route of ['Bill', 'PriceBill']) {
+  files.clear();
+  for (const key of [
+    'index.html',
+    'src/components/CoachMarks.jsx',
+    'src/components/motion-features.js',
+    merchantKey,
+  ])
+    collect(key);
+  const routeKey = Object.keys(manifest).find((key) => manifest[key].name === route);
+  assert(routeKey, `Missing ${route} route`);
+  collect(routeKey);
+  const bytes = [...files]
+    .filter((file) => file.endsWith('.js'))
+    .reduce((sum, file) => sum + gzipSync(readFileSync(root + file)).byteLength, 0);
+  assert(
+    bytes <= 180 * 1024,
+    `${route} initial JS ${(bytes / 1024).toFixed(1)} KiB exceeds 180 KiB gzip`,
+  );
+  totals.push(`${route}: ${(bytes / 1024).toFixed(1)} KiB`);
+}
 const publicChunk = Object.values(manifest).find((chunk) => chunk.name === 'PublicSite');
 assert(publicChunk && !files.has(publicChunk.file), 'Public pages leaked into the bill bundle');
-const bytes = [...files]
-  .filter((file) => file.endsWith('.js'))
-  .reduce((sum, file) => sum + gzipSync(readFileSync(root + file)).byteLength, 0);
-assert(
-  bytes <= 180 * 1024,
-  `Bill-route JS ${(bytes / 1024).toFixed(1)} KiB exceeds the 180 KiB gzip target`,
-);
 assert(
   !readdirSync(`${root}assets`).some((file) => /^Gallery-/.test(file)),
   'Dev gallery leaked into production',
@@ -44,5 +50,5 @@ for (const file of readdirSync(`${root}assets`).filter((file) => file.endsWith('
   );
 }
 process.stdout.write(
-  `Bill-route JavaScript: ${(bytes / 1024).toFixed(1)} KiB gzip including first-run and gesture chunks. Gallery excluded.\n`,
+  `Bill-route JavaScript including first-run and gesture chunks: ${totals.join('; ')}. Gallery excluded.\n`,
 );

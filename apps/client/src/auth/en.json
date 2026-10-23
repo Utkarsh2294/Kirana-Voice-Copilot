@@ -80,5 +80,6 @@
   "accountBody": "Screen preferences update on this device. Save them to your account to use them on your next sign-in.",
   "savePreferences": "Save account preferences",
   "editSetup": "Edit store setup",
-  "preferencesSaved": "Account preferences saved"
+  "preferencesSaved": "Account preferences saved",
+  "targetMargin": "Target margin (%)"
 }
