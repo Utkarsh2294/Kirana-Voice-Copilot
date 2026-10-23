@@ -77,11 +77,11 @@ it('supports menu Escape, day mode, Hindi, and honest expandable answers', async
   expect(usePreferences.getState().language).toBe('hi-IN');
 });
 
-it('keeps every roadmap phase and marks only the current three foundations built', async () => {
+it('keeps every roadmap phase and marks only the six implemented prototype phases built', async () => {
   open('/roadmap');
   await screen.findByRole('heading', { level: 1 });
   expect(within(screen.getByRole('main')).getAllByRole('listitem')).toHaveLength(15);
-  expect(screen.getAllByText('Foundation built')).toHaveLength(5);
+  expect(screen.getAllByText('Foundation built')).toHaveLength(6);
   expect(screen.getByText('Next · not started')).toBeInTheDocument();
   expect(screen.getByText('Offline, security & privacy')).toBeInTheDocument();
 });

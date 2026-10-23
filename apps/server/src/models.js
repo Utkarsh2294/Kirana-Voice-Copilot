@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { voiceLanguageCodes } from '@kirana/shared/voice';
 import { uiLanguageCodes } from '@kirana/shared/languages';
 
 const { Schema } = mongoose;
@@ -9,7 +10,7 @@ const merchant = new Schema(
     storeName: String,
     ownerName: String,
     uiLanguage: { type: String, enum: uiLanguageCodes, default: 'en-IN' },
-    voiceLanguage: { type: String, enum: uiLanguageCodes, default: 'hi-IN' },
+    voiceLanguage: { type: String, enum: voiceLanguageCodes, default: 'hi-IN' },
     voicePreference: { type: String, enum: ['male', 'female'], default: 'female' },
     location: new Schema(
       {
@@ -32,6 +33,11 @@ const merchant = new Schema(
           haptics: { type: Boolean, default: false },
           earcons: { type: Boolean, default: false },
           theme: { type: String, enum: ['auto', 'dark', 'day'], default: 'dark' },
+          voiceTranscriptOptIn: { type: Boolean, default: false },
+          voiceMuted: { type: Boolean, default: false },
+          voiceVolume: { type: Number, min: 0, max: 1, default: 0.8 },
+          voicePace: { type: Number, min: 0.5, max: 2, default: 0.95 },
+          voiceAutoDetect: { type: Boolean, default: false },
           targetMarginBps: { type: Number, min: 0, max: 10000, default: 800 },
           closingHour: { type: Number, min: 0, max: 23, default: 0 },
           restockReviewDays: { type: Number, default: 4 },

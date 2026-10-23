@@ -1,3 +1,4 @@
+import { useReadScreen } from '../voice/useSpeak.js';
 import '../locales/insights.js';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -27,7 +28,7 @@ import {
 import { ProductMark } from '../components/BillLine.jsx';
 import { useUi } from '../components/overlays.jsx';
 import { sampleItems, samplePeriods } from '../prototype/sample-data.js';
-import { money, number } from '../format.js';
+import { number } from '../format.js';
 
 const periods = ['day', 'week', 'month'];
 export function nextPeriod(current, direction) {
@@ -68,8 +69,9 @@ export default function Insights() {
     },
     { axis: 'y', filterTaps: true },
   );
-  const speech = () =>
-    `${t(`insights.${period}`)}. ${t('insights.revenue')}: ${money(data.revenue)}. ${t('insights.bills')}: ${number(data.bills)}. ${t('insights.average')}: ${money(data.average)}. ${t('prototype.synthetic')}`;
+  const speech = ({ lang }) =>
+    import('../voice/readback.js').then((module) => module.buildInsightReadback({ data, lang }));
+  useReadScreen(speech);
   return (
     <>
       <PageHeading

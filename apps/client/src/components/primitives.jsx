@@ -1,3 +1,4 @@
+import { useVoice, speak, stopSpeech, withSpeechOwner } from '../voice/control.js';
 import React, { forwardRef, useLayoutEffect, useRef } from 'react';
 import {
   AlertCircle,
@@ -77,7 +78,29 @@ export function PriceSourceBadge({ source = 'demo', demo = false }) {
   );
 }
 
-export function ListenButton({ state = 'idle', progress = 0, label, onClick, compact = false }) {
+export function ListenButton({
+  state: previewState,
+  progress = 0,
+  label,
+  onClick,
+  text,
+  getText,
+  compact = false,
+}) {
+  const id = React.useId(),
+    current = useVoice((s) => s.speech),
+    owner = useVoice((s) => s.speechOwner);
+  const state = previewState || (owner === id ? current : 'idle');
+  const handle = () => {
+    if (['playing', 'loading'].includes(state)) {
+      stopSpeech();
+      return;
+    }
+    withSpeechOwner(id, () => {
+      if (getText || text !== undefined) speak(getText || text);
+      else onClick?.();
+    });
+  };
   const { t } = useTranslation();
   const labels = {
     idle: 'voice.listen',
@@ -91,9 +114,8 @@ export function ListenButton({ state = 'idle', progress = 0, label, onClick, com
       type="button"
       className={`listen-button ${compact ? 'listen-button--compact' : ''}`}
       aria-label={label || t(labels[state])}
-      onClick={onClick}
+      onClick={handle}
       aria-busy={state === 'loading' || undefined}
-      disabled={state === 'loading'}
     >
       <span className="listen-symbol">
         <Icon size={18} className={state === 'loading' ? 'spin' : ''} />

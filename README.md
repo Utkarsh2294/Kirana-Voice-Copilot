@@ -2,7 +2,7 @@
 
 A voice-first counter companion for India's neighbourhood grocery stores.
 
-**Build scope: Phases 1–5 prototypes, plus the public website.** This repository contains the monorepo foundation and an interactive, accessible design prototype. Sample bills and insights are explicitly illustrative. Merchant accounts, onboarding, catalog search and store-specific items are implemented. Catalog names remain machine drafts awaiting native review, and default prices are synthetic. Layered pricing and private history are included. Cloud speech (6), parsing (7), persisted billing (8), payments (9), analytics (10), recommendations (11–13), and offline sync (14) are separate milestones.
+**Build scope: Phases 1–6 prototypes, plus the public website.** This repository contains the monorepo foundation and an interactive, accessible design prototype. Sample bills and insights are explicitly illustrative. Merchant accounts, onboarding, catalog search and store-specific items are implemented. Catalog names remain machine drafts awaiting native review, and default prices are synthetic. Layered pricing and private history are included. The voice platform is implemented with server-only providers, private caches and browser fallbacks; live provider acceptance needs credentials. Parsing (7), persisted billing (8), payments (9), analytics (10), recommendations (11–13), and offline sync (14) are separate milestones.
 
 ## Architecture
 
@@ -11,7 +11,7 @@ flowchart LR
   PWA[React PWA] --> API[Express /api/v1]
   API --> Mongo[(MongoDB replica set)]
   API --> Reco[Python FastAPI]
-  API -. Phase 6 .-> Sarvam[Sarvam speech]
+  API --> Sarvam[Sarvam speech · configured]
   API -. Phase 9 .-> Paytm[Paytm QR]
   API -. Phase 9 Socket.IO .-> PWA
   Reco -. Future read-only access .-> Mongo
@@ -73,8 +73,12 @@ See [the Phase 3 handoff](docs/phase-03-handoff.md) for development OTP configur
 
 Run `npm run seed` against your configured MongoDB, restart the API, and open `/catalog` after onboarding. The 758-item draft supports 11 script/name fields, aliases, private prices and custom items, favourites, hidden items, exact quantity previews, and cached read-only search. `npm run gen:catalog` regenerates the draft source; `npm run bench:catalog` checks search performance.
 
-See [the Phase 4 handoff](docs/phase-04-handoff.md) for API and future billing contracts, verification evidence, and outstanding native-language review. Checkpoints are tagged `phase-03-done` and `phase-04-done`. Phase 5 adds a real draft bill and layered prices; sales are not persisted yet.
+See [the Phase 4 handoff](docs/phase-04-handoff.md) for API and future billing contracts, verification evidence, and outstanding native-language review. Checkpoints are tagged `phase-03-done` and `phase-04-done`. Phase 5 includes a real draft bill and layered prices; sales are not persisted yet.
 
 ## Pricing (Phase 5)
 
 Run `npm run market:ingest` against the API database to prepare the deterministic demo feed. Restart the API for immediate cache refresh. Open `/bill` to add actual catalog items, edit a price for one draft, or save a private unit price with history and Undo. See [pricing contracts and feed assumptions](docs/pricing.md) and [the Phase 5 handoff](docs/phase-05-handoff.md). Live Agmarknet needs credentials, metadata/licence verification and explicitly approved mappings.
+
+## Voice (Phase 6)
+
+Choose spoken language, voice, speed and volume in Settings. The mic captures a reviewable transcript; Listen reads current screen content. Configure the server-only Sarvam key and a positive paise daily budget to enable cloud voice. The default example disables paid voice. See [the Phase 6 handoff](docs/phase-06-handoff.md) and [voice contracts, privacy and limits](docs/adr/008-voice-wire-protocols-and-limits.md). Native voice quality, live ASR accuracy and physical-device checks remain open. The build stops before Phase 7 order parsing.

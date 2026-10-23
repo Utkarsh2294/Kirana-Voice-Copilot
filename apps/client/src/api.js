@@ -40,6 +40,7 @@ async function send(path, options = {}) {
       code: body.code || 'REQUEST_FAILED',
     });
   }
+  if (options.responseType === 'response') return response;
   return response.status === 204 ? null : response.json();
 }
 export function refreshSession() {

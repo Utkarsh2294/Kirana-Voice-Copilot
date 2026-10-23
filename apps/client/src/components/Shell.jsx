@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { m } from 'motion/react';
@@ -7,7 +7,6 @@ import {
   AudioLines,
   BookOpen,
   ChartNoAxesCombined,
-  FlaskConical,
   LayoutGrid,
   ReceiptText,
   Settings2,
@@ -18,12 +17,16 @@ import {
 import { useTranslation } from 'react-i18next';
 import { usePreferences } from '../preferences.js';
 import { date } from '../format.js';
-import { LanguagePicker, OfflineBanner } from './primitives.jsx';
-import { MicButton } from './Voice.jsx';
+import { LanguagePicker, OfflineBanner, ListenButton } from './primitives.jsx';
+
 import { useUi } from './overlays.jsx';
 import { useReducedMotion } from './PreferencesProvider.jsx';
 import { useSession } from '../auth/Session.jsx';
 
+const MicButton = lazy(() =>
+  import('./Voice.jsx').then((module) => ({ default: module.MicButton })),
+);
+const LiveMic = lazy(() => import('../voice/LiveMic.jsx'));
 const links = [
   { path: 'bill', Icon: ReceiptText },
   { path: 'insights', Icon: ChartNoAxesCombined },
@@ -147,6 +150,15 @@ export function Shell({ children }) {
               {online ? <Wifi size={15} /> : <WifiOff size={15} />}
               <span>{t(online ? 'status.online' : 'status.offline')}</span>
             </span>
+            {merchant && (
+              <ListenButton
+                compact
+                label={t('voice.screen')}
+                onClick={() =>
+                  import('../voice/useSpeak.js').then((module) => module.readCurrentScreen())
+                }
+              />
+            )}
             <span className="topbar-divider" />
             <LanguagePicker
               compact
@@ -158,7 +170,7 @@ export function Shell({ children }) {
         </header>
         <OfflineBanner offline={!online} />
         <div className="prototype-strip">
-          <FlaskConical size={14} />
+          <AudioLines size={14} />
           <span>{t('prototype.banner')}</span>
           <span className="today">
             {date(new Date(), { day: 'numeric', month: 'short', year: 'numeric' })}
@@ -182,7 +194,15 @@ export function Shell({ children }) {
           </m.div>
         </main>
         <div className="desktop-mic">
-          <MicButton docked onComplete={() => notify(t('prototype.voice'))} />
+          {merchant ? (
+            <Suspense fallback={<span className="mic-button" aria-hidden="true" />}>
+              <LiveMic />
+            </Suspense>
+          ) : (
+            <Suspense fallback={null}>
+              <MicButton docked onComplete={() => notify(t('prototype.voice'))} />
+            </Suspense>
+          )}
           <span>{t('voice.hint')}</span>
         </div>
       </div>
@@ -191,7 +211,15 @@ export function Shell({ children }) {
           <NavItem key={link.path} {...link} />
         ))}
         <div className="nav-mic">
-          <MicButton docked onComplete={() => notify(t('prototype.voice'))} />
+          {merchant ? (
+            <Suspense fallback={<span className="mic-button" aria-hidden="true" />}>
+              <LiveMic />
+            </Suspense>
+          ) : (
+            <Suspense fallback={null}>
+              <MicButton docked onComplete={() => notify(t('prototype.voice'))} />
+            </Suspense>
+          )}
         </div>
         {links.slice(2).map((link) => (
           <NavItem key={link.path} {...link} />

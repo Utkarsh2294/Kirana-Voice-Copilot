@@ -32,8 +32,8 @@ export default function AccountSettings() {
         method: 'PUT',
         body: {
           uiLanguage: prefs.language,
-          voiceLanguage: session.merchant.voiceLanguage,
-          voicePreference: session.merchant.voicePreference,
+          voiceLanguage: prefs.voiceLanguage,
+          voicePreference: prefs.voicePreference,
         },
       });
       const result = await api('/merchants/me', {

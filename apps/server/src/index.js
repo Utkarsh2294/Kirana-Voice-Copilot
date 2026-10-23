@@ -1,3 +1,4 @@
+import { ensureVoiceIndexes } from './voice-models.js';
 import cron from 'node-cron';
 import { createPricingService } from './pricing-service.js';
 import { createMarketJobs } from './market-feeds.js';
@@ -40,6 +41,7 @@ const app = createApp({
 const server = app.listen(config.PORT, '0.0.0.0', () =>
   logger.info({ port: config.PORT }, 'API listening'),
 );
+app.locals.voice.attach(server);
 let stopping = false;
 let retry;
 async function connect() {
@@ -51,6 +53,7 @@ async function connect() {
     await ensureCoreIndexes();
     await ensureCatalogIndexes();
     await ensurePricingIndexes();
+    await ensureVoiceIndexes();
     await catalogService.reload();
   } catch {
     logger.warn({ code: 'MONGO_CONNECT_FAILED' }, 'Database unavailable; retrying in five seconds');
@@ -64,6 +67,7 @@ async function shutdown(signal) {
   stopping = true;
   clearTimeout(retry);
   marketTask?.stop();
+  app.locals.voice.close();
   logger.info({ signal }, 'Shutting down');
   const deadline = setTimeout(() => process.exit(1), 10_000).unref();
   server.close(async () => {

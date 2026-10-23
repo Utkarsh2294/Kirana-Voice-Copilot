@@ -1,8 +1,9 @@
+import { useReadScreen } from '../voice/useSpeak.js';
 import React, { lazy, Suspense, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Plus, ReceiptText, ShoppingBasket } from 'lucide-react';
 import { addPaise } from '@kirana/shared/money';
-import { formatQty, lineAmount } from '@kirana/shared/units';
+import { lineAmount } from '@kirana/shared/units';
 import { api } from '../api.js';
 import { useSession } from '../auth/Session.jsx';
 import { BillLine } from '../components/BillLine.jsx';
@@ -28,7 +29,7 @@ export default function PriceBill() {
   const { merchant } = useSession();
   const draft = useDraftBill();
   const lines = draft.merchantId === merchant.id ? draft.lines : [];
-  const { notify, read } = useUi();
+  const { notify } = useUi();
   const [items, setItems] = useState([]),
     [index, setIndex] = useState(null),
     [search, setSearch] = useState('');
@@ -131,13 +132,11 @@ export default function PriceBill() {
       ),
     );
   }
-  const speech = () =>
-    lines
-      .map(
-        (line) =>
-          `${nameFor(byId.get(line.id), i18n.language)}. ${formatQty(line.qtyBase, byId.get(line.id).baseUnit, { locale: i18n.language })}. ${money(lineAmount(line.qtyBase, line.pricePaise, line.unitSize))}`,
-      )
-      .join('. ') + `. ${t('total')}: ${money(total)}`;
+  const speech = ({ lang }) =>
+    import('../voice/readback.js').then((module) =>
+      module.buildBillReadback({ lines, items, total, lang }),
+    );
+  useReadScreen(speech);
   return (
     <>
       <PageHeading
@@ -234,7 +233,7 @@ export default function PriceBill() {
         <aside className="price-bill-total">
           <span>{t('total')}</span>
           <strong>{money(total)}</strong>
-          <ListenButton onClick={() => read(speech)} label={t('read')} />
+          <ListenButton getText={speech} label={t('read')} />
           <p>{t('futurePayments')}</p>
         </aside>
       </div>
@@ -273,7 +272,7 @@ export default function PriceBill() {
         title={t('newTitle')}
         description={t('newBody')}
         confirmLabel={t('nextBill')}
-        onConfirm={() => draft.update(() => [])}
+        onConfirm={() => draft.newBill()}
       />
     </>
   );

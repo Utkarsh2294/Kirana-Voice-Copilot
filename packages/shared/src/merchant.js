@@ -1,3 +1,4 @@
+import { voiceLanguageCodes } from './voice.js';
 import { z } from 'zod';
 import { uiLanguageCodes } from './languages.js';
 
@@ -7,7 +8,7 @@ export const otpVerifySchema = otpRequestSchema.extend({ code: z.string().regex(
 export const languageStepSchema = z
   .object({
     uiLanguage: z.enum(uiLanguageCodes),
-    voiceLanguage: z.enum(uiLanguageCodes),
+    voiceLanguage: z.enum(voiceLanguageCodes),
     voicePreference: z.enum(['male', 'female']).default('female'),
   })
   .strict();
@@ -49,6 +50,11 @@ export const merchantSettingsSchema = z
     haptics: z.boolean().optional(),
     earcons: z.boolean().optional(),
     theme: z.enum(['auto', 'dark', 'day']).optional(),
+    voiceTranscriptOptIn: z.boolean().optional(),
+    voiceMuted: z.boolean().optional(),
+    voiceVolume: z.number().min(0).max(1).optional(),
+    voicePace: z.number().min(0.5).max(2).optional(),
+    voiceAutoDetect: z.boolean().optional(),
     targetMarginBps: z.number().int().min(0).max(10000).optional(),
     closingHour: z.number().int().min(0).max(23).optional(),
     restockReviewDays: z.number().int().min(1).max(30).optional(),

@@ -1,3 +1,4 @@
+import { useReadScreen } from '../voice/useSpeak.js';
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -41,6 +42,13 @@ export default function Onboarding() {
   const [located, setLocated] = useState(false);
   const [qr, setQr] = useState(merchant.upi?.qrImageDataUrl || '');
   const { speak, preview } = useSpeak();
+  const speech = ({ lang }) =>
+    import('../voice/readback.js').then(
+      (module) =>
+        module.buildSetupReadback({ step, lang }) +
+        (step === 0 ? `. ${languages.map((item) => item.name).join(', ')}` : ''),
+    );
+  useReadScreen(speech);
   const heading = useRef(null);
   useEffect(() => heading.current?.focus(), [step]);
   const set = (key, value) => setDraft((previous) => ({ ...previous, [key]: value }));
@@ -178,7 +186,7 @@ export default function Onboarding() {
         {t(`${keys[step]}Title`)}
       </h2>
       <p>{t(`${keys[step]}Body`)}</p>
-      <ListenButton label={t('listen')} onClick={() => speak(t(`${keys[step]}Body`))} />
+      <ListenButton label={t('listen')} getText={speech} />
       {preview && (
         <p className="auth-speech-note" role="status">
           {preview}
@@ -207,7 +215,15 @@ export default function Onboarding() {
                   <button
                     type="button"
                     aria-label={t('previewLanguage', { language: language.name })}
-                    onClick={() => speak(`${language.name}. ${t('previewPhrase')}`)}
+                    onClick={() =>
+                      speak(
+                        () =>
+                          import('../voice/readback.js').then(
+                            (module) => module.voiceGreetings[language.code],
+                          ),
+                        { lang: language.code },
+                      )
+                    }
                   >
                     <Volume2 size={17} aria-hidden="true" />
                   </button>

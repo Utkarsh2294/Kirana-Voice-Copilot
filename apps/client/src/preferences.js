@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { uiLanguageCodes } from '@kirana/shared/languages';
+import { uiLanguageCodes, voiceLanguageCodes } from '@kirana/shared/languages';
 
 const defaults = {
   theme: 'dark',
@@ -8,6 +8,13 @@ const defaults = {
   haptics: false,
   earcons: false,
   tourSeen: false,
+  voiceLanguage: 'hi-IN',
+  voicePreference: 'female',
+  voiceMuted: false,
+  voiceVolume: 0.8,
+  voicePace: 0.95,
+  voiceAutoDetect: false,
+  voiceTranscriptOptIn: false,
 };
 const key = 'kirana-ui-preferences-v1';
 
@@ -16,7 +23,22 @@ export function validatePreferences(value) {
   if (!value || typeof value !== 'object') return result;
   if (['dark', 'day', 'auto'].includes(value.theme)) result.theme = value.theme;
   if (uiLanguageCodes.includes(value.language)) result.language = value.language;
-  for (const field of ['reduceMotion', 'haptics', 'earcons', 'tourSeen'])
+  if (voiceLanguageCodes.includes(value.voiceLanguage)) result.voiceLanguage = value.voiceLanguage;
+  if (['male', 'female'].includes(value.voicePreference))
+    result.voicePreference = value.voicePreference;
+  if (typeof value.voiceVolume === 'number' && value.voiceVolume >= 0 && value.voiceVolume <= 1)
+    result.voiceVolume = value.voiceVolume;
+  if (typeof value.voicePace === 'number' && value.voicePace >= 0.5 && value.voicePace <= 2)
+    result.voicePace = value.voicePace;
+  for (const field of [
+    'reduceMotion',
+    'haptics',
+    'earcons',
+    'tourSeen',
+    'voiceMuted',
+    'voiceAutoDetect',
+    'voiceTranscriptOptIn',
+  ])
     if (typeof value[field] === 'boolean') result[field] = value[field];
   return result;
 }

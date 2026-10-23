@@ -40,8 +40,8 @@ for (const route of ['Bill', 'PriceBill']) {
 const publicChunk = Object.values(manifest).find((chunk) => chunk.name === 'PublicSite');
 assert(publicChunk && !files.has(publicChunk.file), 'Public pages leaked into the bill bundle');
 assert(
-  !readdirSync(`${root}assets`).some((file) => /^Gallery-/.test(file)),
-  'Dev gallery leaked into production',
+  !readdirSync(`${root}assets`).some((file) => /^(Gallery|VoiceHarness)-/.test(file)),
+  'Dev gallery or voice lab leaked into production',
 );
 for (const file of readdirSync(`${root}assets`).filter((file) => file.endsWith('.js'))) {
   assert(

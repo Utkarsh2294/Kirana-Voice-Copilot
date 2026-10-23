@@ -12,7 +12,9 @@
     "./merchant": "./src/merchant.js",
     "./catalog": "./src/catalog.js",
     "./catalog-search": "./src/catalog-search.js",
-    "./pricing": "./src/pricing.js"
+    "./pricing": "./src/pricing.js",
+    "./voice": "./src/voice.js",
+    "./audio": "./src/audio.js"
   },
   "dependencies": {
     "@indic-transliteration/sanscript": "^1.3.3",

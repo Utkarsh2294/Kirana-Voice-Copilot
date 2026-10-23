@@ -74,7 +74,7 @@
   "preview": {
     "eyebrow": "A CLEAR START. AN OPEN ROAD.",
     "title": "Explore what’s taking shape.",
-    "body": "The foundations, sample workspace, and merchant setup flow are built. Explore the sample bill and insights, or sign in to set up your store. Live speech and payments come later.",
+    "body": "Explore sample bills and insights, or sign in to manage your catalog and private prices. Voice capture and readback are implemented; cloud speech needs provider credentials and a daily budget. Parsing and payments are later phases.",
     "today": "Available to explore",
     "items": [
       "Sample bill and price edits",
@@ -90,11 +90,11 @@
     "items": [
       {
         "q": "Can I use this to run my shop today?",
-        "a": "Not yet for real sales. You can set up a merchant account, manage your catalog and private prices, and explore a draft bill with layered prices. Default catalog prices and the simulated market feed are illustrative; catalog names still need language review. Saved sales, live speech, payment confirmation and recommendations come later."
+        "a": "Not yet for real sales. Accounts, catalog, private prices and draft bills work. Voice capture and readback need configured cloud services or supported browser fallbacks. Catalog names and real voice accuracy need review. Saved sales and payments come later."
       },
       {
         "q": "Which languages are available?",
-        "a": "The current interface has English and Hindi copy. The plan targets 11 Indian speech languages, with provider capabilities and native-speaker review to be verified during the voice phases. Other app language choices currently use English fallback."
+        "a": "English and Hindi interface copy is available. The voice platform includes eleven cloud output languages and twenty-three input codes. Provider credentials and native-speaker checks are required for live acceptance. Other screen languages currently use English fallback."
       },
       {
         "q": "Will I have to use voice for every bill?",
@@ -178,12 +178,12 @@
     "resilienceTitle": "Designed for real shop conditions.",
     "resilienceBody": "Noisy counters and uneven internet are part of the plan. Tap and type are essential alternatives. Phase 14 adds offline drafts, an outbox, and visible sync status; cloud speech and live payment checks will still need a connection.",
     "nowTitle": "What can I try now?",
-    "nowBody": "Explore the sample bill and insights layout, or set up a merchant account and manage your own catalog, favourites, custom items, and prices. Catalog names need review and default prices are illustrative. Saved billing, live voice, and payment confirmation come later."
+    "nowBody": "Explore the sample workspace or manage your catalog, favourites and prices. Voice capture and readback use configured speech services or supported browser fallbacks. Catalog names need review. Order parsing, saved sales and payment confirmation come later."
   },
   "roadmap": {
     "eyebrow": "THE BUILD ROADMAP",
     "title": "Built with care. One useful step at a time.",
-    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1–5 include the foundations, sample UI, merchant accounts, catalog management and layered pricing with private price history. The voice platform is next.",
+    "lead": "Our 15-phase plan starts at the counter and grows into a business companion. Phases 1–6 include the foundations, sample UI, merchant accounts, catalog, private pricing and the voice platform. Order parsing comes next.",
     "foundation": "THE FOUNDATION",
     "counter": "THE EVERYDAY COUNTER",
     "growth": "THE NEXT DECISION",
@@ -267,8 +267,8 @@
     "principles": "Our principles",
     "faq": "Questions",
     "source": "View the code",
-    "status": "Phases 1–5 prototype · Voice platform is next",
-    "disclaimer": "Sample data. Planned features are labelled. No live speech or payment integration. No claimed provider partnership."
+    "status": "Phases 1–6 prototype · Order parsing is next",
+    "disclaimer": "Prototype with sample data. Cloud voice requires configuration; real voice quality is not yet verified. No payment collection or claimed provider partnership."
   },
   "meta": {
     "home": {
@@ -285,7 +285,7 @@
     },
     "roadmap": {
       "title": "The 15-phase roadmap | Kirana Voice Copilot",
-      "description": "See the current Phase 1–4 prototype and the planned path through pricing, voice, billing, recommendations, privacy, and release readiness."
+      "description": "Explore the Phases 1–6 prototype and the plan for order parsing, saved sales, payments, advice, privacy and launch readiness."
     }
   },
   "start": "Set up your shop"

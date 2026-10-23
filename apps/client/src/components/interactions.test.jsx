@@ -151,7 +151,7 @@ it('supports keyboard hands-free and Escape cancellation', async () => {
   wrap(<MicButton />);
   screen.getByRole('button', { name: /Microphone:/ }).focus();
   await user.keyboard('{Enter}');
-  expect(screen.getByRole('button', { name: 'Stop microphone preview' })).toHaveAttribute(
+  expect(screen.getByRole('button', { name: 'Finish recording' })).toHaveAttribute(
     'aria-pressed',
     'true',
   );

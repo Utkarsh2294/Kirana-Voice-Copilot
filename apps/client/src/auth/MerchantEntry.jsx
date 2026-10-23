@@ -10,7 +10,7 @@ const SessionRecovery = lazy(() => import('./SessionRecovery.jsx'));
 function SessionRoutes() {
   const location = useLocation();
   const { status, merchant } = useSession();
-  const demo = location.pathname.startsWith('/demo/') || location.pathname.startsWith('/dev/');
+  const demo = location.pathname.startsWith('/demo/') || location.pathname === '/dev/ui';
   if (demo) return <MerchantApp />;
   if (status === 'loading') return <Skeleton lines={4} />;
   if (status === 'unavailable' && location.pathname !== '/login') return <SessionRecovery />;

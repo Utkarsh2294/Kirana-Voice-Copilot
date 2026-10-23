@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { voiceLanguageCodes } from '@kirana/shared/voice';
 
 const flag = z
   .enum(['true', 'false'])
@@ -27,7 +28,45 @@ const envSchema = z
     ALLOW_DEV_OTP: flag,
     SMS_PROVIDER: z.enum(['console', 'msg91', 'twilio']).default('console'),
     SARVAM_API_KEY: z.string().default(''),
-    SARVAM_BASE_URL: z.url().default('https://api.sarvam.ai'),
+    SARVAM_BASE_URL: z
+      .url()
+      .default('https://api.sarvam.ai')
+      .transform((value) => value.replace(/\/$/, '')),
+    DAILY_VOICE_BUDGET: z.coerce.number().int().min(0).max(10000000).default(0),
+    VOICE_UTTERANCES_PER_MINUTE: z.coerce.number().int().min(1).max(60).default(6),
+    VOICE_UTTERANCES_PER_DAY: z.coerce.number().int().min(1).max(10000).default(300),
+    TTS_CACHE_MAX_BYTES: z.coerce
+      .number()
+      .int()
+      .min(1024)
+      .max(1024 * 1024 * 1024)
+      .default(128 * 1024 * 1024),
+    BHASHINI_ENABLED: flag,
+    BHASHINI_CALLBACK_URL: z.union([z.literal(''), z.url()]).default(''),
+    BHASHINI_AUTH_HEADER: z
+      .string()
+      .regex(/^[a-zA-Z0-9-]+$/)
+      .default('Authorization'),
+    BHASHINI_AUTH_VALUE: z.string().default(''),
+    BHASHINI_SERVICES: z
+      .string()
+      .default('{}')
+      .transform((value, ctx) => {
+        try {
+          return JSON.parse(value);
+        } catch {
+          ctx.addIssue({ code: 'custom', message: 'must be valid JSON' });
+          return z.NEVER;
+        }
+      })
+      .pipe(
+        z.record(
+          z.string().refine((code) => voiceLanguageCodes.includes(code)),
+          z
+            .object({ stt: z.string().max(300).optional(), tts: z.string().max(300).optional() })
+            .strict(),
+        ),
+      ),
     PAYMENT_PROVIDER: z.enum(['manual', 'demo', 'paytm-dqr']).default('demo'),
     MARKET_FEED: z.enum(['agmarknet', 'crowd', 'simulated', 'off']).default('simulated'),
     DATA_GOV_IN_API_KEY: z.string().default(''),
@@ -51,6 +90,17 @@ const envSchema = z
         code: 'custom',
         path: ['ALLOW_DEV_OTP'],
         message: 'must be false in production',
+      });
+    if (
+      env.NODE_ENV === 'production' &&
+      [env.SARVAM_BASE_URL, env.BHASHINI_CALLBACK_URL].some(
+        (url) => url && !url.startsWith('https://'),
+      )
+    )
+      ctx.addIssue({
+        code: 'custom',
+        path: ['SARVAM_BASE_URL'],
+        message: 'speech endpoints require HTTPS in production',
       });
     if (env.COOKIE_SAME_SITE === 'none' && !env.COOKIE_SECURE)
       ctx.addIssue({

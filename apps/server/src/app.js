@@ -11,6 +11,7 @@ import { merchantRouter, regionRouter } from './merchants.js';
 import { problem } from './http.js';
 import { createPricingService } from './pricing-service.js';
 import { createMarketJobs } from './market-feeds.js';
+import { createVoicePlatform } from './voice-platform.js';
 import { pricingRouter } from './pricing-routes.js';
 import { catalogRouter } from './catalog-routes.js';
 
@@ -22,6 +23,7 @@ export function createApp({
   clock,
   pricingService,
   marketJobs,
+  voicePlatform,
 }) {
   const app = express();
   app.disable('x-powered-by');
@@ -89,12 +91,15 @@ export function createApp({
       .json({ status: ready ? 'ready' : 'not-ready', checks: { mongo: Boolean(ready) } });
   });
   app.get('/api/v1', (_req, res) =>
-    res.json({ name: 'Kirana Voice Copilot', version: '0.2.0', phase: 5 }),
+    res.json({ name: 'Kirana Voice Copilot', version: '0.2.0', phase: 6 }),
   );
   const pricing = pricingService || createPricingService({ config });
   const jobs = marketJobs || createMarketJobs({ config, pricing, logger });
   const auth = createAuth({ config, logger, smsProvider, clock });
+  const voice = voicePlatform || createVoicePlatform({ config, logger });
+  app.locals.voice = voice;
   app.use('/api/v1/auth', auth.router);
+  app.use('/api/v1/voice', voice.router(auth));
   app.use('/api/v1/merchants', merchantRouter(auth));
   app.use('/api/v1/regions', regionRouter(auth));
   app.use('/api/v1', pricingRouter(auth, { config, pricing, jobs }));

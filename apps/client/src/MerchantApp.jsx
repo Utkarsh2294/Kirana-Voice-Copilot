@@ -4,6 +4,7 @@ import { Shell } from './components/Shell.jsx';
 import { UiProvider } from './components/overlays.jsx';
 import { Skeleton } from './components/primitives.jsx';
 
+const VoiceHarness = import.meta.env.DEV ? lazy(() => import('./voice/VoiceHarness.jsx')) : null;
 const Gallery = import.meta.env.DEV ? lazy(() => import('./pages/Gallery.jsx')) : null;
 const PriceBill = lazy(() => import('./pricing/PriceBill.jsx'));
 const Bill = lazy(() => import('./pages/Bill.jsx'));
@@ -29,9 +30,7 @@ export default function MerchantApp() {
               <Route key={name} path={`${prefix}/${name}`} element={<ComingSoon name={name} />} />
             ))}
             {Gallery && <Route path="/dev/ui" element={<Gallery />} />}
-            {import.meta.env.DEV && (
-              <Route path="/dev/voice" element={<ComingSoon name="voice" phase={6} />} />
-            )}
+            {VoiceHarness && <Route path="/dev/voice" element={<VoiceHarness />} />}
             <Route path="*" element={<ComingSoon name="notFound" />} />
           </Routes>
           <CoachMarks />

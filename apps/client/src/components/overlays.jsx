@@ -1,3 +1,4 @@
+import { speak } from '../voice/control.js';
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
@@ -149,9 +150,7 @@ export function Toast({ message, undo, onClose }) {
 const UiContext = createContext(null);
 export const useUi = () => useContext(UiContext);
 export function UiProvider({ children }) {
-  const { t } = useTranslation();
   const [toast, setToast] = useState(null);
-  const [preview, setPreview] = useState(null);
   const timer = useRef();
   const notify = useCallback((message, undo) => {
     clearTimeout(timer.current);
@@ -160,7 +159,7 @@ export function UiProvider({ children }) {
     if (!undo) timer.current = setTimeout(() => setToast(null), 5000);
   }, []);
   useEffect(() => () => clearTimeout(timer.current), []);
-  const read = useCallback((text) => setPreview(typeof text === 'function' ? text() : text), []);
+  const read = useCallback((text) => speak(text), []);
   return (
     <UiContext.Provider value={{ notify, read }}>
       {children}
@@ -169,17 +168,6 @@ export function UiProvider({ children }) {
           {toast && <Toast key={toast.id} {...toast} onClose={() => setToast(null)} />}
         </AnimatePresence>
       </div>
-      <Sheet
-        open={preview !== null}
-        onOpenChange={(open) => {
-          if (!open) setPreview(null);
-        }}
-        title={t('prototype.listen')}
-        description={t('prototype.listenBody')}
-      >
-        <p className="read-preview">{preview}</p>
-        <p className="phase-note">{t('prototype.voice')}</p>
-      </Sheet>
     </UiContext.Provider>
   );
 }

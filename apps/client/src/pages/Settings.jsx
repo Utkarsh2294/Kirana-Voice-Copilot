@@ -1,3 +1,5 @@
+import { useReadScreen } from '../voice/useSpeak.js';
+import VoiceSettings from '../voice/VoiceSettings.jsx';
 import '../locales/settings.js';
 import React from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
@@ -21,6 +23,10 @@ export default function Settings() {
   const { read } = useUi();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  useReadScreen(
+    () =>
+      `${t('settings.appearance')}. ${t('settings.language')}. ${t('settings.feedback')}. ${prefs.voiceLanguage}. ${prefs.voiceMuted ? 'Muted' : ''}`,
+  );
   const themes = [
     { value: 'dark', Icon: Moon },
     { value: 'day', Icon: Sun },
@@ -127,6 +133,7 @@ export default function Settings() {
         </div>
       </div>
       <AccountSettings />
+      {!pathname.startsWith('/demo/') && <VoiceSettings />}
       <p
         className={`settings-save-note ${prefs.storageError ? 'error-text' : 'muted'}`}
         role="status"

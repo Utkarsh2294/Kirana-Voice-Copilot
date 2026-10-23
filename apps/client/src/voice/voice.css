@@ -1,0 +1,129 @@
+.voice-status {
+  position: fixed;
+  z-index: 55;
+  right: 24px;
+  bottom: 110px;
+  width: min(400px, calc(100vw - 32px));
+  padding: 20px;
+  background: var(--surface-2);
+  border: 1px solid var(--border, #303542);
+  border-radius: 20px;
+  box-shadow: 0 18px 60px #0008;
+  max-height: 55dvh;
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+.voice-status-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.voice-caption {
+  max-height: 100px;
+  overflow: auto;
+}
+.voice-transcript {
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+.voice-settings,
+.voice-lab,
+.voice-lab-tools {
+  display: grid;
+  gap: 20px;
+}
+.voice-settings label,
+.voice-lab label {
+  display: grid;
+  gap: 10px;
+}
+.voice-settings select,
+.voice-lab textarea,
+.voice-settings input[type='range'] {
+  width: 100%;
+  min-height: 48px;
+}
+.voice-settings select,
+.voice-lab textarea {
+  padding: 12px;
+  color: inherit;
+  background: var(--surface-1);
+  border: 1px solid var(--border-control);
+  border-radius: 12px;
+  font: inherit;
+}
+.voice-settings input[type='range'] {
+  accent-color: var(--accent, #5bd8f2);
+}
+.voice-lab textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+.voice-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+}
+.voice-metrics div {
+  padding: 16px;
+  border: 1px solid var(--border, #303542);
+  border-radius: 14px;
+}
+.voice-metrics dt {
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+.voice-metrics dd {
+  margin: 8px 0 0;
+  font-size: 1.1rem;
+}
+.voice-lab .voice-test-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.voice-lab input[type='file'] {
+  width: 100%;
+  padding: 12px;
+  border: 1px dashed var(--border, #303542);
+  border-radius: 12px;
+  min-height: 48px;
+}
+.voice-capability {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.voice-lab code {
+  overflow-wrap: anywhere;
+}
+.voice-lab > * {
+  min-width: 0;
+}
+.voice-settings .row {
+  flex-wrap: wrap;
+}
+@media (min-width: 1200px) {
+  .voice-lab {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: start;
+  }
+  .voice-lab > .page-heading {
+    grid-column: 1/-1;
+  }
+  .voice-lab > .voice-settings {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+@media (max-width: 600px) {
+  .voice-status {
+    right: 16px;
+    bottom: 104px;
+    padding: 16px;
+  }
+  .voice-status p {
+    font-size: 0.875rem;
+  }
+}

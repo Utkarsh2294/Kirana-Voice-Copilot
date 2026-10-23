@@ -29,6 +29,24 @@ jobs:
         with:
           name: client-build
           path: apps/client/dist
+  voice-browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: voice-browser-results
+          path: |
+            playwright-report
+            test-results
   python:
     runs-on: ubuntu-latest
     steps:
@@ -54,7 +72,7 @@ jobs:
       - if: always()
         run: docker compose -f infra/docker-compose.yml down
   deploy-client:
-    needs: [javascript, python, compose]
+    needs: [javascript, python, compose, voice-browser]
     if: github.ref == 'refs/heads/main' && vars.ENABLE_DEPLOY == 'true'
     runs-on: ubuntu-latest
     environment: production
@@ -63,7 +81,7 @@ jobs:
           DEPLOY_HOOK: ${{ secrets.CLIENT_DEPLOY_HOOK }}
         run: test -n "$DEPLOY_HOOK" && curl --fail --max-time 30 -X POST "$DEPLOY_HOOK"
   deploy-services:
-    needs: [javascript, python, compose]
+    needs: [javascript, python, compose, voice-browser]
     if: github.ref == 'refs/heads/main' && vars.ENABLE_DEPLOY == 'true'
     runs-on: ubuntu-latest
     environment: production

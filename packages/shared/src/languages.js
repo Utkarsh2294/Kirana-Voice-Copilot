@@ -12,7 +12,7 @@ export const languages = Object.freeze([
   { code: 'en-IN', name: 'English', script: 'Latin' },
 ]);
 
-// Input capability is provisional; verify providers against their current docs in Phase 6.
+// Sarvam input coverage verified against the current API documentation on 23 October 2026.
 export const extraInputLanguages = Object.freeze([
   'as-IN',
   'ur-IN',
@@ -28,3 +28,5 @@ export const extraInputLanguages = Object.freeze([
   'sd-IN',
 ]);
 export const uiLanguageCodes = languages.map(({ code }) => code);
+
+export const voiceLanguageCodes = [...uiLanguageCodes, ...extraInputLanguages];
